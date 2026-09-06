@@ -33,13 +33,20 @@ almost everything you will hit:
 |---|---|---|---|
 | OpenDXL broker (Docker image, 2021) | 1.2 max | 8 suites, all `TLS_RSA_*`, no forward secrecy | OpenSSL 1.0.2 on Debian stretch (EOL 2022). `WITH_EC` not compiled in — see [The broker](broker/index.md#building-a-current-image) |
 | Trellix DXL < 6.1.1 | 1.2 max | RSA key transport only | Same handshake problem as above |
-| Trellix DXL 6.1.1+ | 1.2 max | Strong ciphers **and** the legacy one (KB14602) | ECDHE available; this is the first version a stock modern client connects to unaided |
+| Trellix DXL 6.1.1+ | 1.2 max | 4 ECDHE (secp256r1) + 8 RSA key transport | Measured against a 6.1.3.55 broker. ECDHE available; the first version a stock modern client connects to unaided |
 | Trellix DXL 6.1.2+ | 1.2 max | as above | Adds IPv6 broker listeners |
-| ePO 5.10 SP1 U7 (management service) | **1.3** | OpenSSL 3.5.7, FIPS 140-3 | `provisionconfig`/`updateconfig` talk to this, not to the MQTT listener |
+| ePO 5.10 SP1 U7 (management service) | **1.3** | 4 TLS 1.3 suites + 4 ECDHE on 1.2 | Measured. `provisionconfig`/`updateconfig` talk to this, not to the MQTT listener. **Offering TLS 1.3 depends on the web server configuration** — the same server presented TLS 1.2 only until Apache was restarted |
 
 The broker appliance in DXL 6.1.x still runs OpenSSL 1.0.2zk, so **TLS 1.3 is not available on
-the fabric connection** regardless of client support. TLS 1.2 with forward secrecy is the
-realistic target.
+the fabric connection** regardless of client support — confirmed by scanning a 6.1.3.55 broker.
+TLS 1.2 with forward secrecy is the realistic target.
+
+!!! tip "Scan the endpoint, do not infer from the version"
+    A version number tells you what is *possible*; only a scan tells you what is *offered*.
+    Both directions of that were observed on one lab fabric in a single session: the open
+    source broker offers more suites than its reputation suggests (eight, not one), and an
+    ePO whose version implies TLS 1.3 presented TLS 1.2 only until its web server was
+    restarted. Use `nmap -Pn -sT --script ssl-enum-ciphers -p <port> <host>`.
 
 FIPS 140-3 on ePO 5.10 SP1 U7 removes RSA key-transport suites and SHA-1 outright. A fabric
 on that profile will not accept a client configured for `AES128-SHA256` — which makes the

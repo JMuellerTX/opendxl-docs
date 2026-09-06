@@ -120,11 +120,14 @@ listener.
 - CSRs are signed **SHA-256** by default, with RSA-2048 keys. Under FIPS 140-3 profiles,
   RSA-3072 or ECDSA P-256 may be required — the fork's CLI takes `--key-type`,
   `--key-bits` and `--key-curve` for that.
-- **Host name verification is off by default** (`VerifyHostname=false`). Historically the
-  broker certificates carried names that did not match how clients addressed them. ePO 5.10
-  SP1 U7 added custom SAN support for agent-handler certificates, which makes turning
-  verification on practical for the first time — but it stays opt-in, because turning it on
-  against an older fabric breaks every connection.
+- **Host name verification is off by default** (`VerifyHostname=false`), and on current
+  fabrics it has to be. A Trellix DXL 6.1.3.55 broker presents a certificate with
+  **`CN=localhost` and no subjectAltName at all**, while publishing itself as a fully
+  qualified host name. Switching verification on against such a broker fails every
+  connection. ePO 5.10 SP1 U7's custom SAN support applies to agent-handler certificates,
+  not to the broker certificate a DXL client validates — so it does not change this.
+  Turn verification on only where you have checked that the broker certificate actually
+  carries the name you connect to.
 
 ## Checklist when a connection fails
 
