@@ -5,11 +5,25 @@ first thing to check when a connection fails without a useful error message.
 
 ## The problem in one paragraph
 
-OpenDXL brokers, and Trellix DXL brokers before version 6.1.1, offer exactly one usable TLS
-1.2 cipher suite: **`AES128-SHA256`** (`TLS_RSA_WITH_AES_128_CBC_SHA256`). It uses RSA key
-transport, which means no forward secrecy. Between roughly 2021 and 2024 every major runtime
-removed RSA-key-transport suites from its defaults. A current client and an old broker
-therefore share no cipher, and the TLS handshake fails.
+OpenDXL brokers, and Trellix DXL brokers before version 6.1.1, offer **only RSA
+key-transport cipher suites** — every suite on the listener is a `TLS_RSA_*` one, so **no
+connection to them has forward secrecy**. Between roughly 2021 and 2024 every major runtime
+dropped `TLS_RSA_*` from its defaults as a class. A current client and an old broker therefore
+share no cipher, and the TLS handshake fails.
+
+A scan of the published `opendxl/opendxl-broker` image finds eight TLS 1.2 suites:
+
+```
+TLS_RSA_WITH_AES_256_GCM_SHA384      TLS_RSA_WITH_AES_256_CBC_SHA256
+TLS_RSA_WITH_AES_128_GCM_SHA256      TLS_RSA_WITH_AES_256_CBC_SHA
+TLS_RSA_WITH_CAMELLIA_256_CBC_SHA    TLS_RSA_WITH_AES_128_CBC_SHA256
+TLS_RSA_WITH_CAMELLIA_128_CBC_SHA    TLS_RSA_WITH_AES_128_CBC_SHA
+```
+
+No TLS 1.3, and no ECDHE or DHE anywhere. `AES128-SHA256`
+(`TLS_RSA_WITH_AES_128_CBC_SHA256`) gets named most often because it is the one the OpenDXL
+clients pin, but pinning a different one from that list does not help — the whole list is the
+problem.
 
 ## Symptoms per runtime
 
@@ -27,7 +41,14 @@ openssl s_client -connect broker:8883 -tls1_2 -cipher 'ALL' </dev/null 2>/dev/nu
   | grep -E 'Cipher|Protocol'
 ```
 
-A broker that answers only `AES128-SHA256` is the old profile.
+List everything a broker offers, rather than just what one client negotiates:
+
+```bash
+nmap -Pn -sT --script ssl-enum-ciphers -p 8883 broker
+```
+
+A broker whose list is entirely `TLS_RSA_*`, with a "Forward Secrecy not supported by any
+cipher" warning, is the old profile.
 
 ## Fixing it on the broker
 

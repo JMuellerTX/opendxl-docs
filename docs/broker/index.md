@@ -60,9 +60,10 @@ The image published on Docker Hub was built in 2021 from `debian:stretch-slim` â
 system that reached end of life in June 2022 â€” with OpenSSL 1.0.2 and a Python 2 runtime for
 the bundled console. Consequences a new user runs into within the first hour:
 
-- **One cipher suite.** The image negotiates only `AES128-SHA256`, an RSA-key-transport suite
-  with no forward secrecy. Recent Python, JDK and Node.js versions have dropped it from their
-  defaults, so a stock modern client fails the handshake. See [TLS and ciphers](tls.md).
+- **No forward secrecy at all.** The image offers eight TLS 1.2 suites and every one of them
+  is RSA key transport (`TLS_RSA_*`). Recent Python, JDK and Node.js versions dropped that
+  whole class from their defaults, so a stock modern client fails the handshake. See
+  [TLS and ciphers](tls.md).
 - **No TLS 1.3.** OpenSSL 1.0.2 predates it. TLS 1.2 is the ceiling.
 - **Unpatched base.** The OS packages carry four years of unfixed advisories.
 
@@ -77,7 +78,7 @@ the practical way to get a broker that a current client can talk to. The known w
 
 - Base image to Debian 12 or UBI 9, `libssl-dev`/`libssl3` instead of `libssl1.0-dev`.
 - Fix the OpenSSL 1.0 API calls in the mosquitto-derived core (`src/mqtt-core/`) for OpenSSL 3.
-- **Define `WITH_EC`.** This is the root cause of the single-cipher behaviour: elliptic-curve
+- **Define `WITH_EC`.** This is the root cause of the missing forward secrecy: elliptic-curve
   support is compiled out of the broker core, so ECDHE suites cannot be negotiated no matter
   what the cipher list says. Everything else about the cipher configuration is downstream of
   this one build flag.

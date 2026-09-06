@@ -10,7 +10,8 @@ they were last released between 2019 and 2021 and predate Python 3.10, current J
 policy, current Node.js LTS lines, and MessagePack 1.0. Three specific breakages account for
 almost everything you will hit:
 
-1. **TLS.** Old brokers offer only `AES128-SHA256`; current runtimes no longer enable it.
+1. **TLS.** Old brokers offer only RSA key-transport suites; current runtimes no longer
+   enable those.
    → [TLS and ciphers](broker/tls.md)
 2. **MessagePack.** The published Python client pins `msgpack<1.0.0`, which is a 2019 release
    with a known advisory and does not install cleanly next to anything current.
@@ -30,7 +31,7 @@ almost everything you will hit:
 
 | Fabric | TLS | Ciphers | Notes |
 |---|---|---|---|
-| OpenDXL broker (Docker image, 2021) | 1.2 max | `AES128-SHA256` only | OpenSSL 1.0.2 on Debian stretch (EOL 2022). `WITH_EC` not compiled in — see [The broker](broker/index.md#building-a-current-image) |
+| OpenDXL broker (Docker image, 2021) | 1.2 max | 8 suites, all `TLS_RSA_*`, no forward secrecy | OpenSSL 1.0.2 on Debian stretch (EOL 2022). `WITH_EC` not compiled in — see [The broker](broker/index.md#building-a-current-image) |
 | Trellix DXL < 6.1.1 | 1.2 max | RSA key transport only | Same handshake problem as above |
 | Trellix DXL 6.1.1+ | 1.2 max | Strong ciphers **and** the legacy one (KB14602) | ECDHE available; this is the first version a stock modern client connects to unaided |
 | Trellix DXL 6.1.2+ | 1.2 max | as above | Adds IPv6 broker listeners |
@@ -111,8 +112,8 @@ HTTP**. It now uses HTTPS.
 
 ### Broker and console
 
-The root cause of the single-cipher behaviour was a missing `WITH_EC` at build time, so
-ECDHE was compiled out regardless of the `ciphers=` setting. The fork rebuilds on Debian 12 /
+The root cause of the missing forward secrecy was `WITH_EC` never being defined at build
+time, so ECDHE was compiled out regardless of the `ciphers=` setting. The fork rebuilds on Debian 12 /
 UBI 9 against OpenSSL 3 (FIPS via the provider API), offers ECDHE/DHE, and exposes
 `DXL_TLS_MODE=modern|legacy|pfs-only` — see [TLS and ciphers](broker/tls.md). The bundled
 console had Python 3 defects that broke provisioning outright; it now runs on 3.8–3.14.

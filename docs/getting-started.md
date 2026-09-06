@@ -26,10 +26,11 @@ The container starts its own certificate authority on first run, which is what m
 step self-contained.
 
 !!! note "The published image is old"
-    The image on Docker Hub was built in 2021 on Debian stretch with OpenSSL 1.0.2 and offers
-    exactly one cipher suite, `AES128-SHA256`. Recent Python, JDK and Node.js versions have
-    dropped that suite from their defaults, so a stock modern client will fail the handshake
-    against it. [TLS and ciphers](broker/tls.md) explains the problem and the ways around it.
+    The image on Docker Hub was built in 2021 on Debian stretch with OpenSSL 1.0.2. Every
+    cipher suite it offers uses RSA key transport, so no connection to it has forward secrecy
+    — and recent Python, JDK and Node.js versions dropped that whole class from their
+    defaults, so a stock modern client will fail the handshake against it.
+    [TLS and ciphers](broker/tls.md) explains the problem and the ways around it.
 
 ## 2. Install the client
 
