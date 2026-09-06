@@ -67,12 +67,47 @@ The [maintained broker fork](../fork.md) exposes three profiles through the envi
 | `modern` (default) | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL:!MD5:!3DES` | Trellix DXL ≥ 6.1.1: forward secrecy first, legacy suite as fallback |
 | `legacy` | `AES128-SHA256:AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:!aNULL:!eNULL` | DXL brokers before 6.1.1 — for reproducing the old behaviour on purpose |
 | `pfs-only` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:!aNULL:!eNULL:!MD5:!3DES` | A FIPS-140-3-oriented profile with no RSA key transport at all |
+| `trellix-6.1` | the twelve suites listed below | Exactly what a Trellix DXL 6.1.3.55 broker presents, measured against a live fabric. Use this to test against production rather than a superset of it |
 
 `DXL_TLS_CIPHERS` overrides the list with an explicit OpenSSL cipher string. An explicit
 `ciphers=` line in `dxlbroker.conf` still wins over both.
 
 `modern` is the profile to run in a mixed estate: current clients negotiate ECDHE, and an old
 client that only knows `AES128-SHA256` still connects.
+
+`trellix-6.1` is the one to *test* against. `modern` is deliberately a superset — it also
+offers DHE, which the Trellix broker does not — so a client that works against `modern` may
+still be relying on something production will not give it:
+
+```
+ECDHE (secp256r1)                       RSA key transport
+  ECDHE-RSA-AES256-GCM-SHA384             AES256-GCM-SHA384   AES256-SHA256
+  ECDHE-RSA-AES128-GCM-SHA256             AES128-GCM-SHA256   AES256-SHA
+  ECDHE-RSA-AES256-SHA384                 CAMELLIA256-SHA     AES128-SHA256
+  ECDHE-RSA-AES128-SHA256                 CAMELLIA128-SHA     AES128-SHA
+```
+
+## TLS 1.3, and post-quantum key exchange
+
+The broker code used to ask OpenSSL for `TLSv1_2_server_method()`, which pins the listener to
+TLS 1.2 whatever the library underneath can do. Built against OpenSSL 4.0.2 and asking for a
+protocol range instead, the fork's broker offers:
+
+```
+TLSv1.3   TLS_AES_256_GCM_SHA384, TLS_AES_128_GCM_SHA256,
+          TLS_CHACHA20_POLY1305_SHA256      group: X25519MLKEM768
+TLSv1.2   15 suites (ECDHE over x25519, DHE, AES128-SHA256 as the fallback)
+```
+
+`X25519MLKEM768` is a **hybrid post-quantum key exchange**: classical X25519 combined with
+ML-KEM-768, so a session recorded today is not decryptable by a future quantum computer unless
+*both* halves fall. It comes free with OpenSSL 4 once the listener stops pinning the protocol
+version.
+
+No Trellix DXL broker offers TLS 1.3 — the 6.1.x line is on OpenSSL 1.0.2zk. The practical use
+of this is therefore testing: it is somewhere to exercise a client's TLS 1.3 path before the
+commercial brokers get there. `tls_version=tlsv1.3` in `dxlbroker.conf` pins the listener to
+1.3 only, which is the configuration to test that path deliberately.
 
 ## Fixing it on the client
 

@@ -35,11 +35,18 @@ almost everything you will hit:
 | Trellix DXL < 6.1.1 | 1.2 max | RSA key transport only | Same handshake problem as above |
 | Trellix DXL 6.1.1+ | 1.2 max | 4 ECDHE (secp256r1) + 8 RSA key transport | Measured against a 6.1.3.55 broker. ECDHE available; the first version a stock modern client connects to unaided |
 | Trellix DXL 6.1.2+ | 1.2 max | as above | Adds IPv6 broker listeners |
+| OpenDXL broker, fork on OpenSSL 4 | **1.3** | 3 TLS 1.3 suites + 15 on TLS 1.2 | Measured. TLS 1.3 key exchange is **X25519MLKEM768**, a post-quantum hybrid. See [the maintained fork](fork.md) |
 | ePO 5.10 SP1 U7 (management service) | **1.3** | 4 TLS 1.3 suites + 4 ECDHE on 1.2 | Measured. `provisionconfig`/`updateconfig` talk to this, not to the MQTT listener. **Offering TLS 1.3 depends on the web server configuration** — the same server presented TLS 1.2 only until Apache was restarted |
 
 The broker appliance in DXL 6.1.x still runs OpenSSL 1.0.2zk, so **TLS 1.3 is not available on
 the fabric connection** regardless of client support — confirmed by scanning a 6.1.3.55 broker.
-TLS 1.2 with forward secrecy is the realistic target.
+Against a Trellix fabric, TLS 1.2 with forward secrecy remains the realistic target.
+
+The open source broker is no longer bound by that. Built against OpenSSL 4.0.2, it negotiates
+TLS 1.3 with an `X25519MLKEM768` key exchange — hybrid X25519 plus ML-KEM-768, so the session
+key survives an attacker who records it now and has a quantum computer later. That makes the
+fork's broker the only DXL broker offering TLS 1.3 at all, which matters mainly as somewhere
+to test a client's TLS 1.3 path before the commercial line gets there.
 
 !!! tip "Scan the endpoint, do not infer from the version"
     A version number tells you what is *possible*; only a scan tells you what is *offered*.
@@ -55,8 +62,8 @@ forward-secrecy-only cipher default the correct one going forward, not merely th
 ## Fixes available in the maintained fork
 
 All 45 repositories are forked and maintained by
-[**@JMuellerTX**](https://github.com/JMuellerTX) — 158 commits across 43 of them, including
-14 security changes and 35 bug fixes. [The maintained fork](fork.md) lists every one of them
+[**@JMuellerTX**](https://github.com/JMuellerTX) — 160 commits across 43 of them, including
+16 security changes and 35 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
 None of it is released to PyPI, npm, Docker Hub or Maven Central, so consuming a fix means
@@ -122,7 +129,7 @@ HTTP**. It now uses HTTPS.
 The root cause of the missing forward secrecy was `WITH_EC` never being defined at build
 time, so ECDHE was compiled out regardless of the `ciphers=` setting. The fork rebuilds on Debian 12 /
 UBI 9 against OpenSSL 3 (FIPS via the provider API), offers ECDHE/DHE, and exposes
-`DXL_TLS_MODE=modern|legacy|pfs-only` — see [TLS and ciphers](broker/tls.md). The bundled
+`DXL_TLS_MODE=modern|legacy|pfs-only|trellix-6.1` — see [TLS and ciphers](broker/tls.md). The bundled
 console had Python 3 defects that broke provisioning outright; it now runs on 3.8–3.14.
 
 ### Node-RED and containers

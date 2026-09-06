@@ -19,13 +19,13 @@ repositories**.
 
 ## What changed, in numbers
 
-158 commits across **43 of 45 repositories**. Two were left alone:
+160 commits across **43 of 45 repositories**. Two were left alone:
 `opendxl-api-specification` (a 2019 draft whose external `$ref` no longer resolves) and
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 14 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Security | 16 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 35 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 8 + 46 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 10 | New unit tests, mostly where a fix needed one to hold |
@@ -34,7 +34,7 @@ repositories**.
 
 ## Security and correctness fixes
 
-The full list of the 49 commits that fix a defect or harden something, as opposed to
+The full list of the 51 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -46,7 +46,9 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-client-python` | Add optional broker host name verification (verify_hostname) |
 | security | `opendxl-client-python` | CLI: selectable key type and size for certificate requests |
 | security | `opendxl-broker` | startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS) |
+| security | `opendxl-broker` | Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM |
 | security | `opendxl-client-java` | Update dependencies with known vulnerabilities |
+| security | `opendxl-client-java` | Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname |
 | security | `opendxl-client-javascript` | Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x |
 | security | `opendxl-elasticsearch-client-python` | Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3) |
 | security | `opendxl-elasticsearch-service-python` | Require elasticsearch 7.17 and drop the urllib3<1.25 pin |
@@ -108,9 +110,10 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest instead of setup.py
 - *docs* — Document the branch strategy (master vs. epo-legacy)
 
-**[opendxl-client-java](https://github.com/derjochenmueller/opendxl-client-java)** — 12 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
+**[opendxl-client-java](https://github.com/derjochenmueller/opendxl-client-java)** — 13 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
 
 - *security* — Update dependencies with known vulnerabilities
+- *security* — Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname
 - *bug fix* — Replace msgpack 0.6.7 with msgpack-core 0.9.12
 - *bug fix* — Keep RSA key exchange cipher suites available for broker connections
 - *bug fix* — CLI: write errors to stderr and make --verbose effective
@@ -355,9 +358,10 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/derjochenmueller/opendxl-broker)** — 9 commits
+**[opendxl-broker](https://github.com/derjochenmueller/opendxl-broker)** — 10 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
+- *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
 - *bug fix* — Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener
 - *bug fix* — Build against OpenSSL 3: FIPS mode via the provider API
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage
