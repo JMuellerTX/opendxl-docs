@@ -1,0 +1,117 @@
+# TLS and ciphers
+
+This is the single most common reason a DXL client that used to work stops working, and the
+first thing to check when a connection fails without a useful error message.
+
+## The problem in one paragraph
+
+OpenDXL brokers, and Trellix DXL brokers before version 6.1.1, offer exactly one usable TLS
+1.2 cipher suite: **`AES128-SHA256`** (`TLS_RSA_WITH_AES_128_CBC_SHA256`). It uses RSA key
+transport, which means no forward secrecy. Between roughly 2021 and 2024 every major runtime
+removed RSA-key-transport suites from its defaults. A current client and an old broker
+therefore share no cipher, and the TLS handshake fails.
+
+## Symptoms per runtime
+
+| Runtime | What you see |
+|---|---|
+| **Python 3.10+** | `ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE]`, or a `connect()` that never succeeds and retries forever because `ConnectRetries` defaults to `-1` |
+| **Java 11+ (current updates)** | `SSLHandshakeException`. JSSE reads `jdk.tls.disabledAlgorithms` once at initialization, so the application cannot re-enable `TLS_RSA_*` for its own sockets — see [Java client](../clients/java.md#tls-on-current-jdks) |
+| **Node.js 18+** | `ERR_SSL_...` / handshake failure from the TLS socket |
+
+In all three the failure is at the transport layer, before any DXL message exists, so nothing
+in the DXL logs explains it. Confirm what the broker actually offers:
+
+```bash
+openssl s_client -connect broker:8883 -tls1_2 -cipher 'ALL' </dev/null 2>/dev/null \
+  | grep -E 'Cipher|Protocol'
+```
+
+A broker that answers only `AES128-SHA256` is the old profile.
+
+## Fixing it on the broker
+
+The right fix, because it removes the problem for every client at once.
+
+**Root cause in the open source broker:** `WITH_EC` is never defined at build time, so
+elliptic-curve support is compiled out of the mosquitto-derived core. The `ciphers=` setting
+can list ECDHE suites all it wants; the binary cannot negotiate them. Rebuilding with
+`WITH_EC` defined — which also means building against OpenSSL 3 on a maintained base image —
+is what actually widens the cipher list.
+
+The modernized broker fork exposes three profiles through the environment:
+
+| `DXL_TLS_MODE` | Cipher list | Models |
+|---|---|---|
+| `modern` (default) | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL:!MD5:!3DES` | Trellix DXL ≥ 6.1.1: forward secrecy first, legacy suite as fallback |
+| `legacy` | `AES128-SHA256:AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:!aNULL:!eNULL` | DXL brokers before 6.1.1 — for reproducing the old behaviour on purpose |
+| `pfs-only` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:!aNULL:!eNULL:!MD5:!3DES` | A FIPS-140-3-oriented profile with no RSA key transport at all |
+
+`DXL_TLS_CIPHERS` overrides the list with an explicit OpenSSL cipher string. An explicit
+`ciphers=` line in `dxlbroker.conf` still wins over both.
+
+`modern` is the profile to run in a mixed estate: current clients negotiate ECDHE, and an old
+client that only knows `AES128-SHA256` still connects.
+
+## Fixing it on the client
+
+When you cannot change the broker.
+
+**Python** — set the cipher list in `dxlclient.config`:
+
+```ini
+[General]
+TlsCiphers=ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL
+TlsMinVersion=1.2
+```
+
+`TlsCiphers` and `TlsMinVersion` are additions of the modernized fork; the released 5.6.0.4
+package has neither, and re-enabling the suite there means patching the `ssl` context by hand.
+
+**Java** — see [Java client](../clients/java.md#tls-on-current-jdks). The in-process fix is
+`TlsCompatibility` in the fork; the runtime-level fix is
+`-Djava.security.properties=<file>` with `TLS_RSA_*` removed from `jdk.tls.disabledAlgorithms`.
+
+**Node.js** — pass the cipher list to the TLS socket options, or start node with
+`--tls-cipher-list`.
+
+Re-enabling `AES128-SHA256` on the client is a deliberate downgrade: that connection has no
+forward secrecy, so a future compromise of the broker's private key exposes recorded traffic
+retroactively. It is an acceptable bridge while brokers are upgraded and a bad permanent
+state.
+
+## Minimum TLS version
+
+`TlsMinVersion` defaults to **1.2** in the modernized Python client. There is no reason to go
+below it: TLS 1.0 and 1.1 are deprecated, and no DXL broker requires them.
+
+TLS 1.3 is a different question. Trellix DXL 6.1.x brokers run on OpenSSL 1.0.2zk and cannot
+offer TLS 1.3 at all, so 1.2 remains the negotiated version against them. ePolicy Orchestrator
+5.10 SP1 Update 7 moved to OpenSSL 3.5.7 and does offer TLS 1.3 — but that is the *management*
+service (`https://epo:8443/remote`, used by `provisionconfig`), not the broker's MQTT
+listener.
+
+## Certificates
+
+- Client certificates are signed by the fabric CA. The client presents one on every
+  connection; it is its identity for [topic authorization](../concepts/topics-and-authorization.md).
+- CSRs are signed **SHA-256** by default, with RSA-2048 keys. Under FIPS 140-3 profiles,
+  RSA-3072 or ECDSA P-256 may be required — the modernized CLI takes
+  `--key-type`, `--key-bits` and `--key-curve` for that.
+- **Host name verification is off by default** (`VerifyHostname=false`). Historically the
+  broker certificates carried names that did not match how clients addressed them. ePO 5.10
+  SP1 U7 added custom SAN support for agent-handler certificates, which makes turning
+  verification on practical for the first time — but it stays opt-in, because turning it on
+  against an older fabric breaks every connection.
+
+## Checklist when a connection fails
+
+1. `openssl s_client -connect broker:8883` — does the handshake complete at all, and with
+   which suite?
+2. If it fails: compare the broker's offered suites against the client runtime's defaults.
+   That is the answer in most cases.
+3. If it succeeds but the client does not connect: check the certificate paths in
+   `dxlclient.config` and that the CA bundle matches the broker's CA.
+4. If the client connects but sees nothing: it is not TLS — check
+   [topic authorization](../concepts/topics-and-authorization.md) and the `broker_ids` /
+   `client_ids` delivery filters on the messages.

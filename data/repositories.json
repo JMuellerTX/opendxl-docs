@@ -1,0 +1,491 @@
+{
+  "groups": [
+    {
+      "key": "core-clients",
+      "title": "Core clients",
+      "blurb": "The libraries that speak the DXL protocol directly."
+    },
+    {
+      "key": "product-clients",
+      "title": "Product client libraries",
+      "blurb": "Typed wrappers around a DXL service, so callers do not hand-build request payloads."
+    },
+    {
+      "key": "services",
+      "title": "Services",
+      "blurb": "Long-running processes that register a request topic and answer on it, normally by calling a third-party API."
+    },
+    {
+      "key": "node-red",
+      "title": "Node-RED nodes",
+      "blurb": "Flow nodes for Node-RED."
+    },
+    {
+      "key": "tooling",
+      "title": "Tooling and scaffolding",
+      "blurb": "Generators, consoles and developer tooling."
+    },
+    {
+      "key": "infra",
+      "title": "Containers and environments",
+      "blurb": "The fabric itself and the ready-made environments around it. The broker has its own page: see [The broker](broker/index.md)."
+    },
+    {
+      "key": "specs",
+      "title": "Specifications and schemas",
+      "blurb": "Contracts rather than code: how a DXL solution describes its API."
+    }
+  ],
+  "repositories": [
+    {
+      "name": "opendxl-client-python",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "Python",
+      "version": "5.7.0.1",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Python Client enables the development of applications that connect to the Trellix Data Exchange Layer messaging fabric for the purposes of sending/receiving events and invoking/providing services.",
+      "url": "https://github.com/opendxl/opendxl-client-python"
+    },
+    {
+      "name": "opendxl-client-java",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "Java",
+      "version": "",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Java Client enables the development of applications that connect to the Trellix Data Exchange Layer messaging fabric for the purposes of sending/receiving events and invoking/providing services .",
+      "url": "https://github.com/opendxl/opendxl-client-java"
+    },
+    {
+      "name": "opendxl-client-javascript",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "JavaScript",
+      "version": "0.1.4",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL JavaScript Client (Node.js) enables the development of applications that connect to the Trellix Data Exchange Layer messaging fabric for the purposes of sending/receiving events and invoking/providing services.",
+      "url": "https://github.com/opendxl/opendxl-client-javascript"
+    },
+    {
+      "name": "opendxl-streaming-client-python",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "Python",
+      "version": "0.1.2",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Streaming Python client library is used to consume records from and produce records to a Data Exchange Layer (DXL) Streaming Service.",
+      "url": "https://github.com/opendxl/opendxl-streaming-client-python"
+    },
+    {
+      "name": "opendxl-streaming-client-java",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "Java",
+      "version": "",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Streaming Java client library is used to consume records from as well as to produce records to a Data Exchange Layer (DXL) Streaming Service.",
+      "url": "https://github.com/opendxl/opendxl-streaming-client-java"
+    },
+    {
+      "name": "opendxl-streaming-client-javascript",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "JavaScript",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Streaming JavaScript client library is used to consume records from and produce records to a Data Exchange Layer (DXL) Streaming Service.",
+      "url": "https://github.com/opendxl/opendxl-streaming-client-javascript"
+    },
+    {
+      "name": "opendxl-databus-client-java",
+      "group": "core-clients",
+      "group_title": "Core clients",
+      "language": "Java",
+      "version": "",
+      "license": "unspecified",
+      "description": "The OpenDXL Databus Java client library is used to consume and produce records from/to a Data Exchange Layer (DXL) Streaming Service.",
+      "url": "https://github.com/opendxl/opendxl-databus-client-java"
+    },
+    {
+      "name": "opendxl-tie-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.3.0",
+      "license": "Apache-2.0",
+      "description": "The Trellix Threat Intelligence Exchange (TIE) DXL Python client library provides a high level wrapper for the TIE Data Exchange Layer (DXL) API.",
+      "url": "https://github.com/opendxl/opendxl-tie-client-python"
+    },
+    {
+      "name": "opendxl-tie-client-javascript",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "JavaScript",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The Trellix Threat Intelligence Exchange (TIE) DXL JavaScript client library provides a high level wrapper for the TIE Data Exchange Layer (DXL) API.",
+      "url": "https://github.com/opendxl/opendxl-tie-client-javascript"
+    },
+    {
+      "name": "opendxl-epo-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.2.2",
+      "license": "Apache-2.0",
+      "description": "The Trellix ePolicy Orchestrator (ePO) DXL Python client library provides a high level wrapper for invoking ePO remote commands via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-epo-client-python"
+    },
+    {
+      "name": "opendxl-epo-client-javascript",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "JavaScript",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The Trellix ePolicy Orchestrator (ePO) DXL JavaScript client library provides a high level wrapper for invoking ePO remote commands via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-epo-client-javascript"
+    },
+    {
+      "name": "opendxl-mar-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.2.1",
+      "license": "Apache-2.0",
+      "description": "The Trellix Active Response (MAR) DXL Python client library provides a high level wrapper for the MAR Data Exchange Layer (DXL) API.",
+      "url": "https://github.com/opendxl/opendxl-mar-client-python"
+    },
+    {
+      "name": "opendxl-mar-client-javascript",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "JavaScript",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "description": "The Trellix Active Response (MAR) DXL JavaScript client library provides a high level wrapper for the MAR Data Exchange Layer (DXL) API.",
+      "url": "https://github.com/opendxl/opendxl-mar-client-javascript"
+    },
+    {
+      "name": "opendxl-pxgrid-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "1.0.1",
+      "license": "Apache-2.0",
+      "description": "The Cisco pxGrid DXL client library provides a high level wrapper for communicating with Cisco pxGrid via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-pxgrid-client-python"
+    },
+    {
+      "name": "opendxl-virustotal-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The VirusTotal DXL Python client library provides a high level wrapper for invoking the VirusTotal API via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-virustotal-client-python"
+    },
+    {
+      "name": "opendxl-domaintools-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The DomainTools DXL Python client library provides a high level wrapper for invoking the DomainTools API via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-domaintools-client-python"
+    },
+    {
+      "name": "opendxl-maxmind-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The MaxMind DXL Python client library provides a high level wrapper for invoking MaxMind Geolocation Lookups via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-maxmind-client-python"
+    },
+    {
+      "name": "opendxl-misp-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The MISP DXL Python client library provides a high level wrapper for invoking the MISP REST APIs via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-misp-client-python"
+    },
+    {
+      "name": "opendxl-elasticsearch-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The Elasticsearch DXL Python client library provides a high level wrapper for invoking the Elasticsearch REST APIs via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-elasticsearch-client-python"
+    },
+    {
+      "name": "opendxl-openc2-client-python",
+      "group": "product-clients",
+      "group_title": "Product client libraries",
+      "language": "Python",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "description": "The OpenC2 DXL Python client library provides a high level wrapper for sending and receiving OpenC2 command and control messages via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-openc2-client-python"
+    },
+    {
+      "name": "opendxl-epo-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The Trellix ePolicy Orchestrator (ePO) DXL Python service exposes access to ePO's remote commands via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-epo-service-python"
+    },
+    {
+      "name": "opendxl-virustotal-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The VirusTotal DXL Python service exposes access to the VirusTotal API via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-virustotal-service-python"
+    },
+    {
+      "name": "opendxl-misp-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.1.5",
+      "license": "Apache-2.0",
+      "description": "The MISP DXL Python Service exposes access to the MISP REST APIs via the Data Exchange Layer (DXL) fabric. The service also provides support for forwarding MISP ZeroMQ message notifications to the DXL fabric.",
+      "url": "https://github.com/opendxl/opendxl-misp-service-python"
+    },
+    {
+      "name": "opendxl-maxmind-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.2.1",
+      "license": "Apache-2.0",
+      "description": "The MaxMind DXL Python service exposes Host/IP Geolocation lookups in a MaxMind GeoLite2 or GeoIP2 database via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-maxmind-service-python"
+    },
+    {
+      "name": "opendxl-domaintools-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.2.1",
+      "license": "Apache-2.0",
+      "description": "The DomainTools DXL Python service exposes access to the DomainTools API via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-domaintools-service-python"
+    },
+    {
+      "name": "opendxl-elasticsearch-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The Elasticsearch DXL Python service exposes access to the Elasticsearch REST APIs via the Data Exchange Layer (DXL) fabric. The service also provides support for storing event notifications received from the DXL fabric to Elasticsearch.",
+      "url": "https://github.com/opendxl/opendxl-elasticsearch-service-python"
+    },
+    {
+      "name": "opendxl-urlvoid-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.2.0",
+      "license": "Apache-2.0",
+      "description": "The URLVoid DXL Python service exposes access to the URLVoid API via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-urlvoid-service-python"
+    },
+    {
+      "name": "opendxl-thehive-service-python",
+      "group": "services",
+      "group_title": "Services",
+      "language": "Python",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "description": "TheHive DXL Python Service exposes access to the TheHive REST APIs via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/opendxl-thehive-service-python"
+    },
+    {
+      "name": "node-red-contrib-dxl",
+      "group": "node-red",
+      "group_title": "Node-RED nodes",
+      "language": "JavaScript",
+      "version": "0.1.4",
+      "license": "Apache-2.0",
+      "description": "The Node-RED OpenDXL contribution package enables the development of flows in Node-RED which connect to the Data Exchange Layer messaging fabric for the purposes of sending/receiving events and invoking/providing services.",
+      "url": "https://github.com/opendxl/node-red-contrib-dxl"
+    },
+    {
+      "name": "node-red-contrib-dxl-epo-client",
+      "group": "node-red",
+      "group_title": "Node-RED nodes",
+      "language": "JavaScript",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The Trellix ePolicy Orchestrator (ePO) DXL Node-RED client package enables the development of flows in Node-RED which invoke ePO remote commands via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/node-red-contrib-dxl-epo-client"
+    },
+    {
+      "name": "node-red-contrib-dxl-tie-client",
+      "group": "node-red",
+      "group_title": "Node-RED nodes",
+      "language": "JavaScript",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "description": "The Trellix Threat Intelligence Exchange (TIE) DXL Node-RED client package enables the development of flows in Node-RED which use TIE features (manage reputations, determine where a file has executed, etc.) via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/node-red-contrib-dxl-tie-client"
+    },
+    {
+      "name": "node-red-contrib-dxl-mar-client",
+      "group": "node-red",
+      "group_title": "Node-RED nodes",
+      "language": "JavaScript",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "description": "The Trellix Active Response (MAR) DXL Node-RED client package enables the development of flows in Node-RED which perform MAR searches via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/node-red-contrib-dxl-mar-client"
+    },
+    {
+      "name": "node-red-contrib-dxl-pxgrid-client",
+      "group": "node-red",
+      "group_title": "Node-RED nodes",
+      "language": "JavaScript",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The Cisco pxGrid DXL Node-RED client package enables the development of flows in Node-RED which communicate with Cisco pxGrid via the Data Exchange Layer (DXL) fabric.",
+      "url": "https://github.com/opendxl/node-red-contrib-dxl-pxgrid-client"
+    },
+    {
+      "name": "opendxl-bootstrap-python",
+      "group": "tooling",
+      "group_title": "Tooling and scaffolding",
+      "language": "Python",
+      "version": "0.2.2",
+      "license": "Apache-2.0",
+      "description": "The purpose of the OpenDXL Bootstrap application is to generate the structure and related files necessary (a project) for developing a Data Exchange Layer (DXL) integration with Python. Multiple templates are available which control the type of project to generate (a client wrapper, a persistent application which exposes services, etc.).",
+      "url": "https://github.com/opendxl/opendxl-bootstrap-python"
+    },
+    {
+      "name": "opendxl-bootstrap-javascript",
+      "group": "tooling",
+      "group_title": "Tooling and scaffolding",
+      "language": "JavaScript",
+      "version": "0.1.1",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Bootstrap JavaScript library includes helpers for developing a Data Exchange Layer integration with JavaScript. The helpers extend the basic functionality of the OpenDXL JavaScript Client (Node.js).",
+      "url": "https://github.com/opendxl/opendxl-bootstrap-javascript"
+    },
+    {
+      "name": "opendxl-console",
+      "group": "tooling",
+      "group_title": "Tooling and scaffolding",
+      "language": "Python",
+      "version": "0.3.3",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Console is a pluggable web-based console that provides a high-level user interface for interacting with a DXL fabric. One of the primary modules is the \"Fabric Monitor\" which enables the invocation of DXL services and sending/receiving DXL events via a graphical interface.",
+      "url": "https://github.com/opendxl/opendxl-console"
+    },
+    {
+      "name": "bootprint-opendxl",
+      "group": "tooling",
+      "group_title": "Tooling and scaffolding",
+      "language": "JavaScript",
+      "version": "0.1.4",
+      "license": "Apache-2.0",
+      "description": "This package contains a template, partials and styles for bootprint to convert OpenDXL-Specifications into a static HTML-page.",
+      "url": "https://github.com/opendxl/bootprint-opendxl"
+    },
+    {
+      "name": "opendxl-build-status",
+      "group": "tooling",
+      "group_title": "Tooling and scaffolding",
+      "language": "—",
+      "version": "",
+      "license": "unspecified",
+      "description": "This purpose of this repository is to provide a single place to see the status of all OpenDXL builds.",
+      "url": "https://github.com/opendxl/opendxl-build-status"
+    },
+    {
+      "name": "opendxl-broker",
+      "group": "infra",
+      "group_title": "Broker, containers and environments",
+      "language": "—",
+      "version": "",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Broker is an open source version of a Data Exchange Layer (DXL) broker. The broker executes in a standalone mode and does not require an external management interface. The only currently supported packaged delivery mechanism for the OpenDXL Broker is a Docker image.",
+      "url": "https://github.com/opendxl/opendxl-broker"
+    },
+    {
+      "name": "opendxl-environment",
+      "group": "infra",
+      "group_title": "Broker, containers and environments",
+      "language": "—",
+      "version": "",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL Environment is a pre-configured environment available as a Docker image that supports the development and running of OpenDXL solutions.",
+      "url": "https://github.com/opendxl/opendxl-environment"
+    },
+    {
+      "name": "opendxl-node-red-docker",
+      "group": "infra",
+      "group_title": "Broker, containers and environments",
+      "language": "—",
+      "version": "",
+      "license": "Apache-2.0",
+      "description": "This repository contains the files necessary to build a Docker image that consists of the core Node-RED installation along with a set of standard OpenDXL Node-RED extensions.",
+      "url": "https://github.com/opendxl/opendxl-node-red-docker"
+    },
+    {
+      "name": "opendxl-cuckoo-reporting-module",
+      "group": "infra",
+      "group_title": "Broker, containers and environments",
+      "language": "—",
+      "version": "",
+      "license": "other",
+      "description": "The OpenDXL Cuckoo Reporting Module provides a reporting module for Cuckoo Sandbox. When this module is installed in a Cuckoo environment, it will broadcast Cuckoo report analyses as DXL events on a DXL Fabric. This module is for Cuckoo Sandbox 2.0.5 or greater. Please see the Cuckoo Reporting Modules documentation for information on Cuckoo Reporting Modules.",
+      "url": "https://github.com/opendxl/opendxl-cuckoo-reporting-module"
+    },
+    {
+      "name": "opendxl-api-specification",
+      "group": "specs",
+      "group_title": "Specifications and schemas",
+      "language": "—",
+      "version": "",
+      "license": "Apache-2.0",
+      "description": "The OpenDXL API Specification defines a standard interface description for applications which connect to the Trellix Data Exchange Layer (DXL) messaging fabric. The specification provides a mechanism for describing the API for DXL-based solutions, including:",
+      "url": "https://github.com/opendxl/opendxl-api-specification"
+    },
+    {
+      "name": "mcafee-dxl-schemas",
+      "group": "specs",
+      "group_title": "Specifications and schemas",
+      "language": "—",
+      "version": "",
+      "license": "unspecified",
+      "description": "This repository is comprised of DXL schemas for Trellix-related products",
+      "url": "https://github.com/opendxl/mcafee-dxl-schemas"
+    },
+    {
+      "name": "mvision-api-developer-guide",
+      "group": "specs",
+      "group_title": "Specifications and schemas",
+      "language": "—",
+      "version": "",
+      "license": "unspecified",
+      "description": "Sample code and developer notes for the MVISION (now Trellix) cloud APIs: device, threat-event and event-by-group endpoints, with runnable examples in Python, Go and TypeScript. Not a DXL client - it documents the REST side of the platform that DXL integrations are frequently combined with.",
+      "url": "https://github.com/opendxl/mvision-api-developer-guide"
+    }
+  ]
+}

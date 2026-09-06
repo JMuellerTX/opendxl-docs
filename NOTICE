@@ -1,0 +1,33 @@
+OpenDXL Documentation
+Copyright 2026 OpenDXL community contributors
+
+This product includes software and documentation developed at McAfee LLC and,
+subsequently, at Musarubra US LLC (Trellix).
+
+Portions of this documentation quote, summarise or describe source code from the
+OpenDXL project (https://github.com/opendxl), which carries the following
+copyright notices:
+
+    Copyright (c) 2018 McAfee LLC - All Rights Reserved.
+    Copyright 2024 Musarubra US LLC
+
+Those notices are retained as required by section 4 of the Apache License,
+Version 2.0. Nothing in this repository transfers, replaces or supersedes them.
+
+TRADEMARKS
+
+The Apache License, Version 2.0, does not grant permission to use the trade
+names, trademarks, service marks or product names of the licensor (section 6).
+
+"Trellix", the Trellix logo, "Musarubra", "ePolicy Orchestrator", "Threat
+Intelligence Exchange" and "Active Response" are trademarks or registered
+trademarks of Musarubra US LLC. "McAfee" is a trademark of McAfee, LLC. Other
+names may be trademarks of their respective owners.
+
+This is a community documentation project. It is not an official Trellix product
+and is not endorsed by Musarubra US LLC.
+
+FONTS
+
+Montserrat, used by the accompanying community site, is licensed under the
+SIL Open Font License, Version 1.1 (https://openfontlicense.org/).

@@ -1,0 +1,76 @@
+site_name: OpenDXL Documentation
+site_description: >-
+  Documentation for the OpenDXL ecosystem — the Data Exchange Layer fabric, its clients,
+  the open source broker and the reference integrations.
+repo_url: https://github.com/JMuellerTX/opendxl-docs
+edit_uri: edit/main/docs/
+copyright: >-
+  Apache-2.0. Community documentation — not an official Trellix product.
+
+theme:
+  name: material
+  language: en
+  font:
+    text: Montserrat
+    code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
+    - search.highlight
+    - toc.follow
+
+extra_css:
+  - assets/brand.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+nav:
+  - Overview: index.md
+  - Architecture: architecture.md
+  - Getting started: getting-started.md
+  - Concepts:
+      - Messages and payloads: concepts/messages.md
+      - Services and requests: concepts/services.md
+      - Topics and authorization: concepts/topics-and-authorization.md
+  - Clients:
+      - Python: clients/python.md
+      - Java: clients/java.md
+      - JavaScript (Node.js): clients/javascript.md
+      - Node-RED: clients/node-red.md
+  - Broker:
+      - Running a broker: broker/index.md
+      - TLS and ciphers: broker/tls.md
+  - Integrations: integrations.md
+  - Repositories: repositories.md
+  - Compatibility: compatibility.md
+  - Security: security.md
+  - Community: community.md
+  - Project history: history.md
+  - Contributing: contributing.md

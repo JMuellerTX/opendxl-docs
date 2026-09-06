@@ -1,0 +1,19 @@
+/* Trellix brand tokens for the mkdocs-material theme.
+   Palette: Trellix Brand Guidelines 2025. Green is an accent, never a background. */
+:root {
+  --md-primary-fg-color:        #1A1A1A;   /* Graphite */
+  --md-primary-fg-color--light: #4D4D4D;
+  --md-primary-fg-color--dark:  #000000;
+  --md-accent-fg-color:         #2814FF;   /* Royal Blue */
+  --md-typeset-a-color:         #2814FF;
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #1A1A1A;
+  --md-accent-fg-color:         #7C6BFF;
+  --md-typeset-a-color:         #7C6BFF;
+  --md-default-bg-color:        #1A1A1A;
+}
+/* Brand flow line under the header */
+.md-header { border-bottom: 3px solid transparent;
+  border-image: linear-gradient(103deg,#2814FF 0%,#2814FF 34%,#00A5FF 68%,#00CD00 100%) 1; }
+.md-typeset h1, .md-typeset h2 { font-weight: 600; letter-spacing: -.02em; }
