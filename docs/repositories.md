@@ -27,7 +27,7 @@ and invoking/providing services.
 
 The OpenDXL Java Client enables the development of applications that connect to the Trellix
 Data Exchange Layer messaging fabric for the purposes of sending/receiving events and
-invoking/providing services .
+invoking/providing services.
 
 ### [opendxl-client-javascript](https://github.com/opendxl/opendxl-client-javascript)
 

@@ -5,7 +5,7 @@ provisioning is done with the Python CLI or ePolicy Orchestrator, then the resul
 `dxlclient.config` is read by the Java client.
 
 - Upstream: [opendxl/opendxl-client-java](https://github.com/opendxl/opendxl-client-java)
-- API documentation: [opendxl.github.io/opendxl-client-java](https://opendxl.github.io/opendxl-client-java/javadoc/)
+- API documentation: [opendxl.github.io/opendxl-client-java](https://opendxl.github.io/opendxl-client-java/docs/javadoc/index.html)
 
 ## Connect
 

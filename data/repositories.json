@@ -54,7 +54,7 @@
       "language": "Java",
       "version": "",
       "license": "Apache-2.0",
-      "description": "The OpenDXL Java Client enables the development of applications that connect to the Trellix Data Exchange Layer messaging fabric for the purposes of sending/receiving events and invoking/providing services .",
+      "description": "The OpenDXL Java Client enables the development of applications that connect to the Trellix Data Exchange Layer messaging fabric for the purposes of sending/receiving events and invoking/providing services.",
       "url": "https://github.com/opendxl/opendxl-client-java"
     },
     {

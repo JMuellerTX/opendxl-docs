@@ -17,7 +17,8 @@ consider whether a fork already fixes what you found.
 
 **[Open Cybersecurity Alliance](https://opencybersecurityalliance.org/)** — OpenDXL was
 contributed to the OCA in 2019. The OCA is the venue for questions about interoperability
-standards rather than about a particular client library.
+standards rather than about a particular client library. (As of this writing the OCA site's
+TLS certificate has expired, so browsers warn before loading it.)
 
 ## The old forum
 
