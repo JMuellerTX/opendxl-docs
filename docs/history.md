@@ -44,7 +44,9 @@ honest about that is more useful than a status badge:
 - **The open source packages are not maintained upstream.** No releases since 2020/2021, and
   the accumulated dependency drift described in [Compatibility](compatibility.md) is real.
 - **The license does not expire.** Apache-2.0 is irrevocable. Anyone may fork, fix and
-  redistribute, and several people have.
+  redistribute, and several people have. The fork this documentation is written against is
+  maintained by [@JMuellerTX](https://github.com/JMuellerTX) and covers all 45 repositories —
+  see [the maintained fork](fork.md).
 
 If you are choosing DXL for a new integration: the fabric is a reasonable choice, and you
 should expect to carry the client library yourself — pin a fork, or vendor it, rather than

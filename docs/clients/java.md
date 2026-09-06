@@ -74,7 +74,7 @@ connections.
 The symptom is a TLS `handshake_failure` on every connection attempt; and because
 `connectRetries` defaults to `-1`, the client then retries forever instead of failing.
 
-The modernized fork handles this in `TlsCompatibility`, which removes the `TLS_RSA_*` entry
+The [maintained fork](../fork.md) handles this in `TlsCompatibility`, which removes the `TLS_RSA_*` entry
 from the security property before JSSE is first used. Opt out when every broker in reach
 supports ECDHE:
 
@@ -96,7 +96,7 @@ The durable fix is on the broker side: a broker that offers ECDHE needs none of 
 
 ## JDK versions
 
-The upstream releases target Java 8. The modernized fork maintains one branch per JDK line —
+The upstream releases target Java 8. The [maintained fork](../fork.md) keeps one branch per JDK line —
 `master` (JDK 21), `jdk17`, `jdk11`, `jdk8` — because the Gradle toolchain, the foojay
 resolver and the test rules differ enough between them that a single build cannot cover all
 four. Fixes land on `master` and are cherry-picked downwards.

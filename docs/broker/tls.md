@@ -39,7 +39,7 @@ can list ECDHE suites all it wants; the binary cannot negotiate them. Rebuilding
 `WITH_EC` defined — which also means building against OpenSSL 3 on a maintained base image —
 is what actually widens the cipher list.
 
-The modernized broker fork exposes three profiles through the environment:
+The [maintained broker fork](../fork.md) exposes three profiles through the environment:
 
 | `DXL_TLS_MODE` | Cipher list | Models |
 |---|---|---|
@@ -65,11 +65,12 @@ TlsCiphers=ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL
 TlsMinVersion=1.2
 ```
 
-`TlsCiphers` and `TlsMinVersion` are additions of the modernized fork; the released 5.6.0.4
-package has neither, and re-enabling the suite there means patching the `ssl` context by hand.
+`TlsCiphers` and `TlsMinVersion` are additions of the [maintained fork](../fork.md); the
+released 5.6.0.4 package has neither, and re-enabling the suite there means patching the
+`ssl` context by hand.
 
 **Java** — see [Java client](../clients/java.md#tls-on-current-jdks). The in-process fix is
-`TlsCompatibility` in the fork; the runtime-level fix is
+`TlsCompatibility` in the [maintained fork](../fork.md); the runtime-level fix is
 `-Djava.security.properties=<file>` with `TLS_RSA_*` removed from `jdk.tls.disabledAlgorithms`.
 
 **Node.js** — pass the cipher list to the TLS socket options, or start node with
@@ -82,7 +83,7 @@ state.
 
 ## Minimum TLS version
 
-`TlsMinVersion` defaults to **1.2** in the modernized Python client. There is no reason to go
+`TlsMinVersion` defaults to **1.2** in the fork's Python client. There is no reason to go
 below it: TLS 1.0 and 1.1 are deprecated, and no DXL broker requires them.
 
 TLS 1.3 is a different question. Trellix DXL 6.1.x brokers run on OpenSSL 1.0.2zk and cannot
@@ -96,8 +97,8 @@ listener.
 - Client certificates are signed by the fabric CA. The client presents one on every
   connection; it is its identity for [topic authorization](../concepts/topics-and-authorization.md).
 - CSRs are signed **SHA-256** by default, with RSA-2048 keys. Under FIPS 140-3 profiles,
-  RSA-3072 or ECDSA P-256 may be required — the modernized CLI takes
-  `--key-type`, `--key-bits` and `--key-curve` for that.
+  RSA-3072 or ECDSA P-256 may be required — the fork's CLI takes `--key-type`,
+  `--key-bits` and `--key-curve` for that.
 - **Host name verification is off by default** (`VerifyHostname=false`). Historically the
   broker certificates carried names that did not match how clients addressed them. ePO 5.10
   SP1 U7 added custom SAN support for agent-handler certificates, which makes turning

@@ -70,6 +70,7 @@ nav:
   - Integrations: integrations.md
   - Repositories: repositories.md
   - Compatibility: compatibility.md
+  - The maintained fork: fork.md
   - Security: security.md
   - Community: community.md
   - Project history: history.md

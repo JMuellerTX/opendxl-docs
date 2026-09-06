@@ -44,11 +44,16 @@ FIPS 140-3 on ePO 5.10 SP1 U7 removes RSA key-transport suites and SHA-1 outrigh
 on that profile will not accept a client configured for `AES128-SHA256` — which makes the
 forward-secrecy-only cipher default the correct one going forward, not merely the tidier one.
 
-## Fixes available in the modernized fork
+## Fixes available in the maintained fork
 
-Work done in [github.com/derjochenmueller](https://github.com/derjochenmueller) across the
-OpenDXL repositories. None of it is released to PyPI, npm or Maven Central yet, so consuming
-it means installing from git.
+All 45 repositories are forked and maintained by
+[**@JMuellerTX**](https://github.com/JMuellerTX) — 158 commits across 43 of them, including
+14 security changes and 35 bug fixes. [The maintained fork](fork.md) lists every one of them
+per repository, and explains how to consume them.
+
+None of it is released to PyPI, npm, Docker Hub or Maven Central, so consuming a fix means
+installing from git. The summary below covers the fixes that change what works; the full
+inventory is on the fork page.
 
 ### Python client
 
@@ -80,11 +85,43 @@ log4j, BouncyCastle, httpclient and JUnit updated; one branch per JDK line (21/1
 `request` replaced. **The downstream packages do not benefit until a release reaches npm**,
 because they depend on the published `@opendxl/dxl-client@0.1.4`.
 
+### Product client libraries
+
+Three of these carried real defects, not just stale packaging:
+
+- **pxGrid** — an event callback raised whenever `content` was not base64-encoded JSON, which
+  killed the callback thread instead of skipping the message.
+- **MAR** — `TypeError` when the service returned a non-string error body, so a failed search
+  surfaced as a crash rather than an error.
+- **Elasticsearch** — `AttributeError` on error responses that carry no `info` field, plus a
+  `urllib3<1.25` pin that dragged in nine known vulnerabilities.
+
+Plus `stix2 < 3` for OpenC2 (openc2 1.0.5 is incompatible with stix2 3.x) and an ePO client
+`SyntaxWarning` from an `is` comparison on an integer.
+
 ### Services and bootstrap
 
-`dxlbootstrap` fixed for setuptools ≥ 82 (`pkg_resources` import); Elasticsearch client pinned
-to a supported range instead of `urllib3<1.25`; DomainTools API 2.x; all eight reference
-services build on `python:3.13-slim`.
+`dxlbootstrap` fixed for setuptools ≥ 82 (the `pkg_resources` import that broke every service
+at import time); Python 3.12+ compatibility across all eight reference services;
+Elasticsearch pinned to a supported range instead of `urllib3<1.25`; DomainTools API 2.x;
+`enum34` dropped from MISP; all eight build on `python:3.13-slim`.
+
+One security fix worth naming: the **MaxMind service downloaded its database over plain
+HTTP**. It now uses HTTPS.
+
+### Broker and console
+
+The root cause of the single-cipher behaviour was a missing `WITH_EC` at build time, so
+ECDHE was compiled out regardless of the `ciphers=` setting. The fork rebuilds on Debian 12 /
+UBI 9 against OpenSSL 3 (FIPS via the provider API), offers ECDHE/DHE, and exposes
+`DXL_TLS_MODE=modern|legacy|pfs-only` — see [TLS and ciphers](broker/tls.md). The bundled
+console had Python 3 defects that broke provisioning outright; it now runs on 3.8–3.14.
+
+### Node-RED and containers
+
+Node-RED 4.x for the test suites, and the `@opendxl/dxl-client ^0.0.1` ranges corrected to
+`^0.1.0` — the old range installed two copies of the client side by side. The environment and
+node-red-docker images move to maintained bases.
 
 ## Open items
 

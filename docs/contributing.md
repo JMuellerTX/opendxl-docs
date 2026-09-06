@@ -44,21 +44,28 @@ docs/
   integrations.md          the reference services and their client libraries
   repositories.md          generated — see below
   compatibility.md         versions, TLS matrix, what is broken and what is fixed
+  fork.md                  generated — every change in the maintained fork
   security.md              hardening guidance
   community.md             where to ask
   history.md               McAfee to Trellix, stewardship, trademarks
 data/repositories.json     source of truth for the repository catalogue
+data/fork-changes.json     the fork's commits, extracted from git history
 tools/gen_repositories.py  regenerates docs/repositories.md
+tools/gen_fork.py          regenerates docs/fork.md
 ```
 
-`docs/repositories.md` is **generated**. Edit `data/repositories.json` and run:
+`docs/repositories.md` and `docs/fork.md` are **generated**. Edit the JSON and run the
+matching tool:
 
 ```bash
 python tools/gen_repositories.py
+python tools/gen_fork.py
 ```
 
-The same JSON feeds the repository listing on the community site, so a change there shows up
-in both places.
+`data/repositories.json` also feeds the repository listing on the community site, so a change
+there shows up in both places. `data/fork-changes.json` is produced from the git history of
+the fork clones by a local script — do not hand-edit it; re-extract instead, so the page
+cannot claim a fix that was never committed.
 
 ## Building the site
 

@@ -12,8 +12,8 @@ the product board closest to your question and mention OpenDXL in the title.
 **GitHub issues** — for a bug or a question about a specific repository, its own issue tracker
 is the right place. Include the client version, the runtime version, the broker version, and
 the actual error. Given the state of upstream maintenance
-([history](history.md#what-stewardship-looks-like-now)), expect a slow answer or none, and
-consider whether a fork already fixes what you found.
+([history](history.md#what-stewardship-looks-like-now)), expect a slow answer or none — and
+check [the maintained fork](fork.md) first, because it may already fix what you found.
 
 **[Open Cybersecurity Alliance](https://opencybersecurityalliance.org/)** — OpenDXL was
 contributed to the OCA in 2019. The OCA is the venue for questions about interoperability

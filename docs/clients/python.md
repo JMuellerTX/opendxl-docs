@@ -31,12 +31,12 @@ The settings that matter most in practice:
 | `incoming_message_thread_pool_size` | `1` | Callbacks are serialized at the default. Raise it if handlers are slow — and then guard shared state. |
 | `keep_alive_interval` | 1800 s | MQTT keep-alive |
 | `reconnect_delay` / `_max` | 1 s / 60 s | Exponential backoff between reconnects |
-| `TlsMinVersion` | `1.2` | Minimum TLS version. Added in the modernized fork; see [TLS](../broker/tls.md). |
+| `TlsMinVersion` | `1.2` | Minimum TLS version. Added in the [maintained fork](../fork.md); see [TLS](../broker/tls.md). |
 | `TlsCiphers` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL` | OpenSSL cipher string. Also fork-added. |
 | `VerifyHostname` | `false` | Broker host name verification. Off by default for compatibility. |
 
 `TlsMinVersion`, `TlsCiphers` and `VerifyHostname` do not exist in the released 5.6.0.4
-package — they come from the modernization work described in [Compatibility](../compatibility.md).
+package — they come from the [maintained fork](../fork.md).
 
 ## Lifecycle
 

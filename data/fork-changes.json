@@ -1,0 +1,1184 @@
+{
+  "author": "JMuellerTX",
+  "fork_owner_account": "derjochenmueller",
+  "totals": {
+    "commits": 158,
+    "repositories_touched": 43,
+    "repositories_total": 45,
+    "by_kind": {
+      "bug": 35,
+      "security": 14,
+      "docs": 4,
+      "ci": 41,
+      "deps": 46,
+      "feature": 8,
+      "tests": 10
+    },
+    "misattributed_commits": 8
+  },
+  "repositories": [
+    {
+      "name": "opendxl-client-python",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [
+        "epo-legacy",
+        "fix/python3-modernization"
+      ],
+      "commits": [
+        {
+          "subject": "Fix msgpack 1.x compatibility, connection/threading bugs and modernize tests",
+          "kind": "bug",
+          "author": "Bot"
+        },
+        {
+          "subject": "Default TLS cipher list: forward secrecy first, AES128-SHA256 as fallback",
+          "kind": "security",
+          "author": "Bot"
+        },
+        {
+          "subject": "Add TlsCiphers setting to the client configuration file",
+          "kind": "security",
+          "author": "Bot"
+        },
+        {
+          "subject": "Document the branch strategy (master vs. epo-legacy)",
+          "kind": "docs",
+          "author": "Bot"
+        },
+        {
+          "subject": "master: forward-secrecy-only TLS cipher default (ePO 5.10 SP1 U7+, DXL 6.1.1+)",
+          "kind": "security",
+          "author": "Bot"
+        },
+        {
+          "subject": "CI: run pytest on Python 3.9-3.14 with current actions",
+          "kind": "ci",
+          "author": "Bot"
+        },
+        {
+          "subject": "CI: also build the epo-legacy branch and allow manual runs",
+          "kind": "ci",
+          "author": "Bot"
+        },
+        {
+          "subject": "CI: Python 3.10-3.14 matrix, current actions, pytest instead of setup.py",
+          "kind": "ci",
+          "author": "Bot"
+        },
+        {
+          "subject": "Do not wait for the connect callback when connect() already failed",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add tls_min_version (default TLS 1.2) to the client configuration",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add optional broker host name verification (verify_hostname)",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CLI: selectable key type and size for certificate requests",
+          "kind": "security",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "bootprint-opendxl",
+      "group": "tooling",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "mcafee-dxl-schemas",
+      "group": "specs",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "ePO schema: detectedUTC is a string with format date-time",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "mvision-api-developer-guide",
+      "group": "specs",
+      "default_branch": "main",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Update TypeScript sample dependencies (axios 1.x, yargs 17)",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "node-red-contrib-dxl",
+      "group": "node-red",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Use Node-RED 4.x and node-red-node-test-helper 0.3.6 for the test suite",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "node-red-contrib-dxl-epo-client",
+      "group": "node-red",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Use Node-RED 4.x for the test suite",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "node-red-contrib-dxl-mar-client",
+      "group": "node-red",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Use Node-RED 4.x for the test suite",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "node-red-contrib-dxl-pxgrid-client",
+      "group": "node-red",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Use Node-RED 4.x for the test suite and fix the dxl-client range",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "node-red-contrib-dxl-tie-client",
+      "group": "node-red",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Use Node-RED 4.x for the test suite",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-api-specification",
+      "group": "specs",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": []
+    },
+    {
+      "name": "opendxl-bootstrap-javascript",
+      "group": "tooling",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Update uuid dev dependency to 11.x and ignore generated test config",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-bootstrap-python",
+      "group": "tooling",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Replace pkg_resources with importlib.resources, fix SyntaxWarnings",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-broker",
+      "group": "infra",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build against OpenSSL 3: FIPS mode via the provider API",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Force LF line endings for the files copied into the image",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Docker: Debian 12 / UBI 9 base images, OpenSSL 3, Python 3 console",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "startup: run the console from its virtual environment, RFC 5280 key usage",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test the image with the fork of the Java client, current actions",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: run the Java client test suite on JDK 21",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-build-status",
+      "group": "tooling",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": []
+    },
+    {
+      "name": "opendxl-client-java",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [
+        "jdk11",
+        "jdk17",
+        "jdk8"
+      ],
+      "commits": [
+        {
+          "subject": "Build with Gradle 8.14.5 and an explicit Java 8 target",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update dependencies with known vulnerabilities",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Replace msgpack 0.6.7 with msgpack-core 0.9.12",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Keep RSA key exchange cipher suites available for broker connections",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CLI: write errors to stderr and make --verbose effective",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: actions/checkout@v4 and setup-java@v4 with a Temurin JDK matrix",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Docs: sync the dependency version references to 0.2.9",
+          "kind": "docs",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: compile the sources as UTF-8 and fix the non-ASCII wire format vectors",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: run the CLI tests without a SecurityManager (JDK 18+)",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: per-JDK branch model with toolchain auto-provisioning",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: master is the JDK 21 line (toolchain 21, --release 21)",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-client-javascript",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Make PKI test helpers work with OpenSSL 3.2+ and Windows line endings",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-console",
+      "group": "tooling",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Support Python 3.8-3.14",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: Python 3.10-3.14 matrix, current actions, pytest",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Docker: python:3.13-slim base image, two-stage build",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix provisioning on Python 3 (client configuration template read)",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-cuckoo-reporting-module",
+      "group": "infra",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "README: fix dead link to the Cuckoo reporting module documentation",
+          "kind": "docs",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-databus-client-java",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [
+        "jdk11",
+        "jdk17",
+        "jdk8"
+      ],
+      "commits": [
+        {
+          "subject": "Build with Gradle 8.14.5 on current JDKs",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update Kafka to 3.9.2 and repair the embedded test cluster",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: actions/checkout@v4 and setup-java@v4 with a Temurin JDK matrix",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: replace ExpectedSystemExit with an exit handler seam",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: keep OWASP dependency-check off the Java 8 build classpath",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: pin the JDK with a Gradle toolchain",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Sample: use StoreQueryParameters for the state store lookup",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "README: document the per-JDK branch model",
+          "kind": "docs",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: master is the JDK 21 line",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-domaintools-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Add unit tests for DomainToolsApiClient with a fake DXL client",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-domaintools-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Require domaintools_api 2.x",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-elasticsearch-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix AttributeError for error responses without \"info\", add unit tests",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3)",
+          "kind": "security",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-elasticsearch-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Require elasticsearch 7.17 and drop the urllib3<1.25 pin",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-environment",
+      "group": "infra",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Force LF line endings for shell scripts",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Move to python:3.12-slim-bookworm, Node 22, JDK 17 and current tools",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-epo-client-javascript",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-epo-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix SyntaxWarning: compare ePO service count with == instead of is",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-epo-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-mar-client-javascript",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-mar-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix TypeError for non-string MAR error bodies, Python 3 doc examples",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add unit tests for MarClient with a fake DXL client",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-maxmind-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: mocked client wrapper tests, skip sample test without license key",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the fixed dxlclient and dxlbootstrap forks first",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-maxmind-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Download the MaxMind database over HTTPS",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: skip the sample test when no MaxMind license key is configured",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-misp-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the fixed dxlclient and dxlbootstrap forks first",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-misp-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Drop the enum34 dependency",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-node-red-docker",
+      "group": "infra",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Force LF line endings for shell scripts",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Move to the supported nodered/node-red image, Node 22 and Python 3",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-openc2-client-python",
+      "group": "product-clients",
+      "default_branch": "main",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Add unit tests for OpenC2Client with a fake DXL client",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Require stix2 < 3 (openc2 1.0.5 is incompatible with stix2 3.x)",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-pxgrid-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Do not raise from event callbacks when \"content\" is not base64 JSON",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add unit tests for the client request methods",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, run pytest in CI",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-streaming-client-java",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [
+        "jdk11",
+        "jdk17",
+        "jdk8"
+      ],
+      "commits": [
+        {
+          "subject": "Build with Gradle 8.14.5 on current JDKs",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update dependencies",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: run on JDK 9+ and allow a configurable WireMock port",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: GitHub Actions with actions/checkout@v4 and setup-java@v4",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: replace ExpectedSystemExit with an exit handler seam",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: keep OWASP dependency-check off the Java 8 build classpath",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: per-JDK branch model with toolchain auto-provisioning",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: master is the JDK 21 line (toolchain 21, --release 21)",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: foojay resolver 0.9.0 so Gradle can run on a Java 8/11 JVM",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-streaming-client-javascript",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Replace the deprecated request package with @cypress/request",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-streaming-client-python",
+      "group": "core-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix SyntaxWarning in fake streaming service sample",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-thehive-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-tie-client-javascript",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Update GitHub Actions workflow to current action versions and Node 18-22",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-tie-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-urlvoid-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-virustotal-client-python",
+      "group": "product-clients",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    },
+    {
+      "name": "opendxl-virustotal-service-python",
+      "group": "services",
+      "default_branch": "master",
+      "extra_branches": [],
+      "commits": [
+        {
+          "subject": "Fix Python 3.12+ compatibility",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Modernize packaging and CI for Python 3.8-3.14",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Dockerfile: build on python:3.13-slim",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        }
+      ]
+    }
+  ]
+}

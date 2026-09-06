@@ -23,6 +23,7 @@ line do I need, and why does my connection fail on a current runtime".
 | [Integrations](docs/integrations.md) | TIE, ePO, MAR, VirusTotal, MISP and the rest |
 | [Repositories](docs/repositories.md) | All 45 repositories, grouped by purpose |
 | [Compatibility](docs/compatibility.md) | Version matrix, what is broken, what is fixed where |
+| [The maintained fork](docs/fork.md) | Every fix in the fork, per repository, and how to install it |
 | [Security](docs/security.md) | Certificates, transport, authorization, payload hygiene |
 | [Community](docs/community.md) · [History](docs/history.md) | Where to ask; McAfee to Trellix, stewardship, trademarks |
 
@@ -33,11 +34,15 @@ pip install mkdocs mkdocs-material
 mkdocs serve
 ```
 
-`docs/repositories.md` is generated from `data/repositories.json`:
+Two pages are generated; edit their data files, not the Markdown:
 
 ```bash
-python tools/gen_repositories.py
+python tools/gen_repositories.py   # docs/repositories.md <- data/repositories.json
+python tools/gen_fork.py           # docs/fork.md         <- data/fork-changes.json
 ```
+
+`data/fork-changes.json` is extracted from the git history of the fork clones by a local
+script, so the fork page cannot drift from what was actually committed.
 
 ## Contributing
 

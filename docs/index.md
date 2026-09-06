@@ -65,6 +65,8 @@ current Node.js LTS lines, and the TLS policy of current JDKs.
 
 The code is still Apache-2.0 and still useful — the fabric protocol has not changed — but
 anyone adopting it today should read [Compatibility](compatibility.md) before pinning the
-released artifacts. [Project history and stewardship](history.md) covers what changed, what
-that means for support expectations, and where discussion happens now
+released artifacts. All 45 repositories are forked and kept working by
+[@JMuellerTX](https://github.com/JMuellerTX); [the maintained fork](fork.md) lists every fix
+and how to install it. [Project history and stewardship](history.md) covers what changed,
+what that means for support expectations, and where discussion happens now
 ([community](community.md)).
