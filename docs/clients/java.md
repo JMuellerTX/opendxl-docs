@@ -94,6 +94,25 @@ containing a `jdk.tls.disabledAlgorithms` value without `TLS_RSA_*`.
 The durable fix is on the broker side: a broker that offers ECDHE needs none of this. See
 [TLS and ciphers](../broker/tls.md).
 
+## TLS 1.3, `TlsMinVersion` and `VerifyHostname`
+
+The upstream client obtains its context with `SSLContext.getInstance("TLSv1.2")`, which pins
+every connection to TLS 1.2 no matter what the broker offers. The [maintained fork](../fork.md)
+creates the context for `"TLS"` and applies a floor per socket instead, so a broker that offers
+TLS 1.3 — the fork's own broker does — is used at TLS 1.3, and older brokers still negotiate 1.2.
+Two keys in the `[General]` section of `dxlclient.config` match the Python client's spelling
+and defaults:
+
+| Key | Default | Meaning |
+|---|---|---|
+| `TlsMinVersion` | `1.2` | Lowest TLS version the client accepts; `1.3` or the JSSE names (`TLSv1.3`) are accepted too |
+| `VerifyHostname` | `false` | `true` sets the HTTPS endpoint-identification algorithm; off by default because broker certificates on current fabrics carry `CN=localhost` and no SAN |
+
+The floor is built from the protocols the JDK actually reports, so a Java 8 runtime older than
+8u261 (no TLS 1.3) simply negotiates TLS 1.2 instead of failing. The change is on all four
+branches (`master`, `jdk17`, `jdk11`, `jdk8`) and was verified with the client test suite
+against a broker on each line.
+
 ## JDK versions
 
 The upstream releases target Java 8. The [maintained fork](../fork.md) keeps one branch per JDK line —

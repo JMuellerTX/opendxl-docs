@@ -19,7 +19,7 @@ repositories**.
 
 ## What changed, in numbers
 
-160 commits across **43 of 45 repositories**. Two were left alone:
+161 commits across **43 of 45 repositories**. Two were left alone:
 `opendxl-api-specification` (a 2019 draft whose external `$ref` no longer resolves) and
 `opendxl-build-status`.
 
@@ -27,7 +27,7 @@ repositories**.
 |---|---|---|
 | Security | 16 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 35 | Defects that make the published code fail on a current runtime or return wrong results |
-| Build and packaging | 8 + 46 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
+| Build and packaging | 8 + 47 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 10 | New unit tests, mostly where a fix needed one to hold |
 | CI | 41 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 4 | READMEs that no longer describe the code |
@@ -358,7 +358,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/derjochenmueller/opendxl-broker)** — 10 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/derjochenmueller/opendxl-broker)** — 11 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
@@ -367,6 +367,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage
 - *feature* — Docker: Debian 12 / UBI 9 base images, OpenSSL 3, Python 3 console
 - *dependencies* — Force LF line endings for the files copied into the image
+- *dependencies* — Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test the image with the fork of the Java client, current actions
 - *CI* — CI: run the Java client test suite on JDK 21

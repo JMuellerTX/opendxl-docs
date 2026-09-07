@@ -30,7 +30,9 @@ step self-contained.
     cipher suite it offers uses RSA key transport, so no connection to it has forward secrecy
     — and recent Python, JDK and Node.js versions dropped that whole class from their
     defaults, so a stock modern client will fail the handshake against it.
-    [TLS and ciphers](broker/tls.md) explains the problem and the ways around it.
+    [TLS and ciphers](broker/tls.md) explains the problem and the ways around it. The
+    [maintained fork](fork.md) builds a current image (OpenSSL 4, TLS 1.3, forward secrecy)
+    in about 25 minutes — see [Building a current image](broker/index.md#building-a-current-image).
 
 ## 2. Install the client
 

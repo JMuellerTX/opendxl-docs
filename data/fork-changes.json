@@ -2,7 +2,7 @@
   "author": "JMuellerTX",
   "fork_owner_account": "derjochenmueller",
   "totals": {
-    "commits": 160,
+    "commits": 161,
     "repositories_touched": 43,
     "repositories_total": 45,
     "by_kind": {
@@ -10,7 +10,7 @@
       "security": 16,
       "docs": 4,
       "ci": 41,
-      "deps": 46,
+      "deps": 47,
       "feature": 8,
       "tests": 10
     },
@@ -351,6 +351,11 @@
         {
           "subject": "Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]

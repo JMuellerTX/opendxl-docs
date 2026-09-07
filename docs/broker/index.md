@@ -72,18 +72,36 @@ state makes that clearer than it used to be.
 
 ## Building a current image
 
-The Dockerfile is generated from `docker/Dockerfile.template` by `docker/build.sh`; a Red Hat
-UBI variant lives in `docker/redhat-ubi`. Rebuilding on a maintained base with OpenSSL 3 is
-the practical way to get a broker that a current client can talk to. The known work involved:
+The [maintained fork](../fork.md) has done this work. Its `master` builds the broker against
+**OpenSSL 4.0.2** (compiled from source into `/opt/openssl`, because no distribution packages
+4.x yet) and ships two Dockerfiles:
 
-- Base image to Debian 12 or UBI 9, `libssl-dev`/`libssl3` instead of `libssl1.0-dev`.
-- Fix the OpenSSL 1.0 API calls in the mosquitto-derived core (`src/mqtt-core/`) for OpenSSL 3.
-- **Define `WITH_EC`.** This is the root cause of the missing forward secrecy: elliptic-curve
-  support is compiled out of the broker core, so ECDHE suites cannot be negotiated no matter
-  what the cipher list says. Everything else about the cipher configuration is downstream of
-  this one build flag.
-- Drop the Python 2 runtime — it exists only for the bundled console, which a test broker
-  does not need.
+| Dockerfile | Base | Status |
+|---|---|---|
+| `Dockerfile` (generated from `docker/Dockerfile.template` by `docker/build.sh`) | Debian | Built by the fork's CI on every push |
+| `docker/almalinux/Dockerfile` | AlmaLinux 10 builder, `almalinux:10-minimal` runtime | Built and measured 2026-09-07: OpenSSL 4.0.2 as `libssl.so.4`, TLS 1.3 with `X25519MLKEM768`, TLS 1.2 ECDHE, WebSockets on 443 also TLS 1.3, container `healthy` after 10 s, Python 3.12 runtime, no Python 2 |
+
+```bash
+git clone https://github.com/derjochenmueller/opendxl-broker
+cd opendxl-broker
+docker build -f docker/almalinux/Dockerfile -t dxlbroker:almalinux .   # about 25 minutes
+docker run -d --name dxlbroker -p 8883:8883 -p 8443:8443 -p 8444:443 dxlbroker:almalinux
+```
+
+What the port consisted of, for anyone maintaining a different base:
+
+- OpenSSL 4 makes `ASN1_STRING` opaque and removes the version-locked `TLSv1_2_server_method()`
+  family, so the mosquitto-derived core (`src/mqtt-core/`), the certificate-extension parsing in
+  `brokerlib` and the pinned libwebsockets fork (`docker/patches/`) all needed changes. The
+  same change is what allows TLS 1.3 at all.
+- The makefiles ignore `CFLAGS`/`LDFLAGS` and take `ADD_INCLUDE`/`ADD_LIB` instead; the build
+  asserts with `ldd` that the binary resolves `libssl.so.4`, because a broker that reports
+  OpenSSL 4 while loading the distribution's OpenSSL 3 is worse than a failed build.
+- **`WITH_EC`** had to be defined. That was the root cause of the missing forward secrecy:
+  elliptic-curve support was compiled out of the core, so no cipher list could enable ECDHE.
+- The Python 2 runtime is gone; the console runs on Python 3 from the fixed console fork.
+- `DXL_TLS_MODE` selects the cipher profile at start (`modern`, `legacy`, `pfs-only`,
+  `trellix-6.1`), see [TLS and ciphers](tls.md); `docker-compose.test.yml` starts all four.
 
 ## Related components
 
