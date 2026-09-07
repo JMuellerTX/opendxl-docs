@@ -94,7 +94,7 @@ containing a `jdk.tls.disabledAlgorithms` value without `TLS_RSA_*`.
 The durable fix is on the broker side: a broker that offers ECDHE needs none of this. See
 [TLS and ciphers](../broker/tls.md).
 
-## TLS 1.3, `TlsMinVersion` and `VerifyHostname`
+## TLS 1.3, `TlsMinVersion`, `TlsCiphers` and `VerifyHostname`
 
 The upstream client obtains its context with `SSLContext.getInstance("TLSv1.2")`, which pins
 every connection to TLS 1.2 no matter what the broker offers. The [maintained fork](../fork.md)
@@ -106,12 +106,49 @@ and defaults:
 | Key | Default | Meaning |
 |---|---|---|
 | `TlsMinVersion` | `1.2` | Lowest TLS version the client accepts; `1.3` or the JSSE names (`TLSv1.3`) are accepted too |
+| `TlsCiphers` | `default` | The cipher suites to enable, as a comma separated list of **JSSE cipher suite names**; `default` keeps the suites the JDK enables |
 | `VerifyHostname` | `false` | `true` sets the HTTPS endpoint-identification algorithm; off by default because broker certificates on current fabrics carry `CN=localhost` and no SAN |
 
 The floor is built from the protocols the JDK actually reports, so a Java 8 runtime older than
 8u261 (no TLS 1.3) simply negotiates TLS 1.2 instead of failing. The change is on all four
 branches (`master`, `jdk17`, `jdk11`, `jdk8`) and was verified with the client test suite
 against a broker on each line.
+
+### `TlsCiphers` is *not* an OpenSSL cipher list
+
+The Python client hands its `TlsCiphers` value to OpenSSL, so there it is an OpenSSL cipher
+list with groups, exclusions and ordering by strength
+(`ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL`). JSSE has none of that: a Java
+runtime only takes a list of concrete cipher suite names. The fork therefore does not try to
+translate the syntax — the Java client reads the setting as a comma separated list of JSSE
+names:
+
+```ini
+[General]
+TlsCiphers=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256
+```
+
+What follows from that:
+
+- A `dxlclient.config` **shared with a Python client** keeps working. The OpenSSL list is not a
+  JSSE name, so the Java client logs a warning and uses the JDK's default suites, which
+  together with [`TlsCompatibility`](#tls-on-current-jdks) reach every broker the Python
+  default reaches.
+- Setting the value **programmatically** (`DxlClientConfig.setTlsCiphers`) throws
+  `IllegalArgumentException` for OpenSSL syntax, rather than silently ignoring it.
+- Suites the running JDK does not know are dropped with a warning. If nothing usable is left,
+  the connection fails instead of quietly falling back to the default suites — the same
+  behaviour as `ssl.SSLContext.set_ciphers()` raising in Python.
+- Restricting the list to TLS 1.2 suites also **caps the protocol version**: a TLS 1.3
+  handshake needs one of the `TLS_AES_*` / `TLS_CHACHA20_*` suites, so leaving them out makes
+  the client negotiate 1.2 even against a broker that offers 1.3.
+
+Measured with JDK 21 against the fork's broker containers: the default and an explicit
+`TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384` both negotiate that suite; configuring
+`TLS_RSA_WITH_AES_128_CBC_SHA256` really pins the connection to the legacy suite, and the
+PFS-only broker then refuses the handshake; against the TLS 1.3 broker the default and
+`TLS_AES_256_GCM_SHA384` negotiate TLSv1.3, while a 1.2-only list drops the connection back to
+TLSv1.2.
 
 ## Provisioning CLI: certificate validation and key size
 

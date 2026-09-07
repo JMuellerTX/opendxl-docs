@@ -128,6 +128,11 @@ released 5.6.0.4 package has neither, and re-enabling the suite there means patc
 **Java** — see [Java client](../clients/java.md#tls-on-current-jdks). The in-process fix is
 `TlsCompatibility` in the [maintained fork](../fork.md); the runtime-level fix is
 `-Djava.security.properties=<file>` with `TLS_RSA_*` removed from `jdk.tls.disabledAlgorithms`.
+The fork's Java client also understands `TlsCiphers`, but as a comma separated list of JSSE
+cipher suite names (`TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,...`), not as an OpenSSL cipher
+list — JSSE has no equivalent of the OpenSSL syntax. An OpenSSL value in a shared
+configuration file is ignored with a warning. See
+[Java client](../clients/java.md#tlsciphers-is-not-an-openssl-cipher-list).
 
 **Node.js** — pass the cipher list to the TLS socket options, or start node with
 `--tls-cipher-list`.

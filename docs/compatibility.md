@@ -90,9 +90,12 @@ The client is maintained on two lines, because the right cipher default depends 
 
 ### Java client
 
-`TlsCompatibility` re-enables `TLS_RSA_*` before JSSE initializes; jackson-databind
-2.9.7 → 2.22; msgpack 0.6.7 → msgpack-core 0.9.12 with wire-format reference vectors;
-log4j, BouncyCastle, httpclient and JUnit updated; one branch per JDK line (21/17/11/8).
+`TlsCompatibility` re-enables `TLS_RSA_*` before JSSE initializes; TLS 1.3 is reachable and
+`TlsMinVersion`, `VerifyHostname` and `TlsCiphers` (JSSE suite names, not an OpenSSL cipher
+list) match the Python client's config keys; the provisioning CLI validates the management
+server's certificate and `-e/--truststore` works at all; jackson-databind 2.9.7 → 2.22;
+msgpack 0.6.7 → msgpack-core 0.9.12 with wire-format reference vectors; log4j, BouncyCastle,
+httpclient and JUnit updated; one branch per JDK line (21/17/11/8).
 
 ### JavaScript
 
