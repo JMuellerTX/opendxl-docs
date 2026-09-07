@@ -138,13 +138,26 @@ Options worth knowing:
 | `-s/--san NAME …` | Subject Alternative Names in the CSR |
 | `-P/--passphrase [PASS]` | Encrypt the generated private key |
 | `--key-type rsa\|ec`, `--key-bits`, `--key-curve` | Key type and strength for FIPS profiles (fork addition). Measured against ePO 5.10 / DXL 6.1.3: RSA-3072 works end-to-end; an EC key is signed by ePO but the broker refuses it in the handshake (it only requests RSA client certificates) — see [Compatibility](../compatibility.md#open-items) |
-| `-e/--truststore FILE` | CA bundle used to validate the management service |
+| `-e/--truststore FILE` | PEM file with the CA that issued the management service's certificate. Needed whenever that CA is private, which is the normal case: ePO issues its web certificate from its own server CA |
+| `--insecure` | Skip certificate validation of the management service entirely (fork addition; not recommended) |
 | `-t/--port` | Management service port (8443 by default) |
 
-!!! warning "`--truststore` defaults to no verification"
-    Without `-e`, the CLI does not verify the management service's certificate — it only
-    suppresses the warning. On a managed fabric, pass the ePO CA bundle. This default is
-    listed as an open item in [Compatibility](../compatibility.md#open-items).
+!!! note "The management service's certificate is validated by default (fork)"
+    Upstream, `provisionconfig` and `updateconfig` without `-e` did **not** verify the
+    management service's certificate — they only suppressed the warning. The fork validates
+    against the system's trusted CAs by default, so against an ePO server the command now
+    fails with a message that names the fix: export the ePO server CA and pass it with `-e`.
+    Two details measured against ePO 5.10:
+
+    - Address ePO by the host name in its certificate. By IP the check fails with a host name
+      mismatch, and the error message says so.
+    - Python 3.13+ verifies in `VERIFY_X509_STRICT` mode, which rejects the ePO server CA
+      because it carries no Key Usage extension. The CLI drops that one flag for the CA you
+      named with `-e` (you trust it explicitly); it stays in force for the system store.
+
+    `--insecure` restores the old behaviour for the rare case where the CA is not available.
+    `--key-type ec` now logs a warning, because DXL brokers up to 6.1.3 refuse ECDSA client
+    certificates in the handshake.
 
 ## Logging
 
