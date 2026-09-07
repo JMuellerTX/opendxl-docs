@@ -122,7 +122,7 @@ TlsMinVersion=1.2
 ```
 
 `TlsCiphers` and `TlsMinVersion` are additions of the [maintained fork](../fork.md); the
-released 5.6.0.4 package has neither, and re-enabling the suite there means patching the
+released 5.7.0.1 package has neither, and re-enabling the suite there means patching the
 `ssl` context by hand.
 
 **Java** — see [Java client](../clients/java.md#tls-on-current-jdks). The in-process fix is

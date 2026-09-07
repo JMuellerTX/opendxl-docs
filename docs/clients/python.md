@@ -5,7 +5,7 @@ it is the only one that ships the provisioning CLI.
 
 - Upstream: [opendxl/opendxl-client-python](https://github.com/opendxl/opendxl-client-python)
 - API documentation: [opendxl.github.io/opendxl-client-python](https://opendxl.github.io/opendxl-client-python/pydoc/)
-- Latest released version: 5.6.0.4 (2020) — see [Compatibility](../compatibility.md) before pinning it
+- Latest released version: 5.7.0.1 (2025-01-30) — newer than it looks, but the fixes below are not in it; see [Compatibility](../compatibility.md) before pinning it
 
 ## Install
 
@@ -35,7 +35,7 @@ The settings that matter most in practice:
 | `TlsCiphers` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL` | OpenSSL cipher string. Also fork-added. |
 | `VerifyHostname` | `false` | Broker host name verification. Off by default for compatibility. |
 
-`TlsMinVersion`, `TlsCiphers` and `VerifyHostname` do not exist in the released 5.6.0.4
+`TlsMinVersion`, `TlsCiphers` and `VerifyHostname` do not exist in the released 5.7.0.1
 package — they come from the [maintained fork](../fork.md).
 
 ## Lifecycle

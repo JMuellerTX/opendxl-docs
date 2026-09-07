@@ -81,7 +81,7 @@ client.registerServiceAsync(info)
 
 ## Dependency state
 
-The published `@opendxl/dxl-client@0.1.4` (2020) pulls `mqtt` 2.x, which brings `ws` 6.2.1 and
+The published `@opendxl/dxl-client@0.1.4` (2024-09-17) pulls `mqtt` 2.x, which brings `ws` 6.2.1 and
 a set of known advisories, plus `tmp` 0.0.33. The [maintained fork](../fork.md) moves to
 `mqtt` 5.x and current `tmp`/`uuid`.
 

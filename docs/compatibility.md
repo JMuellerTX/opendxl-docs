@@ -22,9 +22,9 @@ almost everything you will hit:
 
 | Client | Published release | Declares | Actually works on |
 |---|---|---|---|
-| Python (`dxlclient`) | 5.6.0.4 (2020) | `python_requires>=2.7.9` | 3.8–3.9 as released; 3.10+ needs the TLS and msgpack fixes |
-| Java (`com.opendxl:dxlclient`) | 0.2.6 (2020) | Java 8 | Java 8–21; **11+ needs the `TLS_RSA_*` workaround** — see [Java client](clients/java.md#tls-on-current-jdks) |
-| JavaScript (`@opendxl/dxl-client`) | 0.1.4 (2020) | Node 8+ | Runs on current Node, but its `mqtt` 2.x tree carries advisories |
+| Python (`dxlclient`) | 5.7.0.1 (2025-01-30) | `python_requires>=2.7.9` | 3.8–3.9 as released; 3.10+ needs the TLS and msgpack fixes. The 2025 release changed the copyright headers, not the code that matters here: it still pins `msgpack<1.0.0`, still calls `ssl.PROTOCOL_SSLv23` with `tls_insecure_set(True)`, and still vendors `oscrypto` |
+| Java (`com.opendxl:dxlclient`) | 0.2.6 (2020-12-01) | Java 8 | Java 8–21; **11+ needs the `TLS_RSA_*` workaround** — see [Java client](clients/java.md#tls-on-current-jdks) |
+| JavaScript (`@opendxl/dxl-client`) | 0.1.4 (2024-09-17) | Node 8+ | Runs on current Node, but its `mqtt` 2.x tree carries advisories |
 | Node-RED nodes | 0.1.x (2020) | Node-RED 0.19+ | Works on Node-RED 4.x; inherits the JavaScript client's dependency tree |
 
 ## Broker and fabric versions
@@ -102,6 +102,16 @@ httpclient and JUnit updated; one branch per JDK line (21/17/11/8).
 `mqtt` 2.14 → 5.15 (which is what clears the `ws` advisories), `tmp` 0.2.x, `uuid` 11,
 `request` replaced. **The downstream packages do not benefit until a release reaches npm**,
 because they depend on the published `@opendxl/dxl-client@0.1.4`.
+
+!!! note "Published versions, checked against the registries on 2026-09-07"
+
+    PyPI has moved since 2020, npm has too, and neither carries the fixes: `dxlclient`
+    5.6.0.5 (2024-07-17), 5.7.0.0 and **5.7.0.1** (both 2025-01-30) are the releases after
+    5.6.0.4, and `@opendxl/dxl-client` **0.1.4** was published on 2024-09-17 (0.1.3 a month
+    earlier). Maven Central is the exception: `com.opendxl:dxlclient` **0.2.6** is still the
+    2020-12-01 build. What changed in the newer releases is packaging and copyright headers -
+    the msgpack pin, the TLS context and the vendored `oscrypto` are unchanged, so everything
+    on this page still applies to the current releases.
 
 ### Product client libraries
 
