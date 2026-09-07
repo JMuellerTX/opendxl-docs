@@ -2,17 +2,17 @@
   "author": "JMuellerTX",
   "fork_owner_account": "derjochenmueller",
   "totals": {
-    "commits": 161,
+    "commits": 176,
     "repositories_touched": 43,
     "repositories_total": 45,
     "by_kind": {
       "bug": 35,
       "security": 16,
       "docs": 4,
-      "ci": 41,
-      "deps": 47,
-      "feature": 8,
-      "tests": 10
+      "ci": 47,
+      "deps": 54,
+      "tests": 12,
+      "feature": 8
     },
     "misattributed_commits": 8
   },
@@ -84,6 +84,31 @@
         {
           "subject": "CLI: selectable key type and size for certificate requests",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Make connect() safe against concurrent callers; do not drop odd otherFields silently",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CLI: validate the management server's certificate by default",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CLI: report the TLS reason, not the whole request URL, on a failed handshake",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: DXL_TEST_CONFIG selects the client configuration for the broker-based tests",
+          "kind": "tests",
           "author": "JMuellerTX"
         }
       ]
@@ -357,6 +382,31 @@
           "subject": "Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: only flip UseWebSockets, and time the job out",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Report TLS version, cipher and certificate thumbprint in the client connect event",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: build both Dockerfiles and run the client suites against the compose test fabric",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: clone the Python client with its submodule",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: the Java CLI now validates the management server's certificate too; pass --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -441,6 +491,26 @@
           "subject": "Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: only flip UseWebSockets, and time the job out",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: give up on an unreachable broker instead of reconnecting forever",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Build: mark the jars Multi-Release so log4j prints INFO and WARN again",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -501,6 +571,11 @@
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Issue X.509 v3 client certificates with the usual extensions",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]

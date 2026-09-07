@@ -19,7 +19,7 @@ repositories**.
 
 ## What changed, in numbers
 
-161 commits across **43 of 45 repositories**. Two were left alone:
+176 commits across **43 of 45 repositories**. Two were left alone:
 `opendxl-api-specification` (a 2019 draft whose external `$ref` no longer resolves) and
 `opendxl-build-status`.
 
@@ -27,9 +27,9 @@ repositories**.
 |---|---|---|
 | Security | 16 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 35 | Defects that make the published code fail on a current runtime or return wrong results |
-| Build and packaging | 8 + 47 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
-| Tests | 10 | New unit tests, mostly where a fix needed one to hold |
-| CI | 41 | Working GitHub Actions instead of `python setup.py test` |
+| Build and packaging | 8 + 54 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
+| Tests | 12 | New unit tests, mostly where a fix needed one to hold |
+| CI | 47 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 4 | READMEs that no longer describe the code |
 
 ## Security and correctness fixes
@@ -95,7 +95,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Core clients
 
-**[opendxl-client-python](https://github.com/derjochenmueller/opendxl-client-python)** — 12 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
+**[opendxl-client-python](https://github.com/derjochenmueller/opendxl-client-python)** — 17 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
 
 - *security* — Default TLS cipher list: forward secrecy first, AES128-SHA256 as fallback
 - *security* — Add TlsCiphers setting to the client configuration file
@@ -105,12 +105,17 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *security* — CLI: selectable key type and size for certificate requests
 - *bug fix* — Fix msgpack 1.x compatibility, connection/threading bugs and modernize tests
 - *bug fix* — Do not wait for the connect callback when connect() already failed
+- *dependencies* — Make connect() safe against concurrent callers; do not drop odd otherFields silently
+- *dependencies* — CLI: validate the management server's certificate by default
+- *dependencies* — CLI: report the TLS reason, not the whole request URL, on a failed handshake
+- *tests* — Tests: DXL_TEST_CONFIG selects the client configuration for the broker-based tests
 - *CI* — CI: run pytest on Python 3.9-3.14 with current actions
 - *CI* — CI: also build the epo-legacy branch and allow manual runs
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest instead of setup.py
+- *CI* — CI: provision against the throwaway broker with --insecure
 - *docs* — Document the branch strategy (master vs. epo-legacy)
 
-**[opendxl-client-java](https://github.com/derjochenmueller/opendxl-client-java)** — 13 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
+**[opendxl-client-java](https://github.com/derjochenmueller/opendxl-client-java)** — 17 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
 
 - *security* — Update dependencies with known vulnerabilities
 - *security* — Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname
@@ -121,9 +126,13 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *feature* — Build: per-JDK branch model with toolchain auto-provisioning
 - *feature* — Build: master is the JDK 21 line (toolchain 21, --release 21)
 - *dependencies* — Build with Gradle 8.14.5 and an explicit Java 8 target
+- *dependencies* — CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits
+- *dependencies* — Build: mark the jars Multi-Release so log4j prints INFO and WARN again
 - *tests* — Tests: run the CLI tests without a SecurityManager (JDK 18+)
+- *tests* — Tests: give up on an unreachable broker instead of reconnecting forever
 - *CI* — CI: actions/checkout@v4 and setup-java@v4 with a Temurin JDK matrix
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
+- *CI* — CI: only flip UseWebSockets, and time the job out
 - *docs* — Docs: sync the dependency version references to 0.2.9
 
 **[opendxl-client-javascript](https://github.com/derjochenmueller/opendxl-client-javascript)** — 4 commits
@@ -348,17 +357,18 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Replace pkg_resources with importlib.resources, fix SyntaxWarnings
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
 
-**[opendxl-console](https://github.com/derjochenmueller/opendxl-console)** — 5 commits
+**[opendxl-console](https://github.com/derjochenmueller/opendxl-console)** — 6 commits
 
 - *bug fix* — Support Python 3.8-3.14
 - *bug fix* — Fix provisioning on Python 3 (client configuration template read)
 - *dependencies* — Docker: python:3.13-slim base image, two-stage build
+- *dependencies* — Issue X.509 v3 client certificates with the usual extensions
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/derjochenmueller/opendxl-broker)** — 11 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/derjochenmueller/opendxl-broker)** — 16 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
@@ -368,9 +378,14 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *feature* — Docker: Debian 12 / UBI 9 base images, OpenSSL 3, Python 3 console
 - *dependencies* — Force LF line endings for the files copied into the image
 - *dependencies* — Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid
+- *dependencies* — Report TLS version, cipher and certificate thumbprint in the client connect event
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test the image with the fork of the Java client, current actions
 - *CI* — CI: run the Java client test suite on JDK 21
+- *CI* — CI: only flip UseWebSockets, and time the job out
+- *CI* — CI: build both Dockerfiles and run the client suites against the compose test fabric
+- *CI* — CI: clone the Python client with its submodule
+- *CI* — CI: the Java CLI now validates the management server's certificate too; pass --insecure
 
 **[opendxl-cuckoo-reporting-module](https://github.com/derjochenmueller/opendxl-cuckoo-reporting-module)** — 1 commits
 
