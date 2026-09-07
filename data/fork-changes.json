@@ -2,19 +2,19 @@
   "author": "JMuellerTX",
   "fork_owner_account": "derjochenmueller",
   "totals": {
-    "commits": 176,
+    "commits": 181,
     "repositories_touched": 43,
     "repositories_total": 45,
     "by_kind": {
       "bug": 35,
       "security": 16,
       "docs": 4,
-      "ci": 47,
-      "deps": 54,
-      "tests": 12,
+      "ci": 49,
+      "deps": 56,
+      "tests": 13,
       "feature": 8
     },
-    "misattributed_commits": 8
+    "misattributed_commits": 0
   },
   "repositories": [
     {
@@ -29,42 +29,42 @@
         {
           "subject": "Fix msgpack 1.x compatibility, connection/threading bugs and modernize tests",
           "kind": "bug",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "Default TLS cipher list: forward secrecy first, AES128-SHA256 as fallback",
           "kind": "security",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "Add TlsCiphers setting to the client configuration file",
           "kind": "security",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "Document the branch strategy (master vs. epo-legacy)",
           "kind": "docs",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "master: forward-secrecy-only TLS cipher default (ePO 5.10 SP1 U7+, DXL 6.1.1+)",
           "kind": "security",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "CI: run pytest on Python 3.9-3.14 with current actions",
           "kind": "ci",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "CI: also build the epo-legacy branch and allow manual runs",
           "kind": "ci",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "CI: Python 3.10-3.14 matrix, current actions, pytest instead of setup.py",
           "kind": "ci",
-          "author": "Bot"
+          "author": "JMuellerTX"
         },
         {
           "subject": "Do not wait for the connect callback when connect() already failed",
@@ -109,6 +109,21 @@
         {
           "subject": "Tests: DXL_TEST_CONFIG selects the client configuration for the broker-based tests",
           "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Tests: TLS 1.3 minimum must connect when the broker offers TLS 1.3",
+          "kind": "tests",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Replace oscrypto/asn1crypto with cryptography in the provisioning CLI",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: run the suite against the fork's broker as a second axis",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -407,6 +422,11 @@
           "subject": "CI: the Java CLI now validates the management server's certificate too; pass --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: publish the broker images to GHCR",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -509,6 +529,11 @@
         },
         {
           "subject": "Build: mark the jars Multi-Release so log4j prints INFO and WARN again",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax",
           "kind": "deps",
           "author": "JMuellerTX"
         }
