@@ -154,7 +154,12 @@ listener.
   connection; it is its identity for [topic authorization](../concepts/topics-and-authorization.md).
 - CSRs are signed **SHA-256** by default, with RSA-2048 keys. Under FIPS 140-3 profiles,
   RSA-3072 or ECDSA P-256 may be required — the fork's CLI takes `--key-type`,
-  `--key-bits` and `--key-curve` for that.
+  `--key-bits` and `--key-curve` for that. Measured on 2026-09-07 against ePO 5.10 with a
+  DXL 6.1.3.55 broker: **RSA-3072 is signed and connects** (TLS 1.2,
+  `ECDHE-RSA-AES256-GCM-SHA384`); an **EC P-256 certificate is signed by ePO but refused by
+  the broker** with `handshake_failure`, because the broker's CertificateRequest only offers
+  the client certificate type `RSA sign` and the signature algorithms `RSA+SHA256/384/512`.
+  ECDSA client identities need a broker-side change first.
 - **Host name verification is off by default** (`VerifyHostname=false`), and on current
   fabrics it has to be. A Trellix DXL 6.1.3.55 broker presents a certificate with
   **`CN=localhost` and no subjectAltName at all**, while publishing itself as a fully

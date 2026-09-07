@@ -137,7 +137,7 @@ Options worth knowing:
 |---|---|
 | `-s/--san NAME …` | Subject Alternative Names in the CSR |
 | `-P/--passphrase [PASS]` | Encrypt the generated private key |
-| `--key-type rsa\|ec`, `--key-bits`, `--key-curve` | Key type and strength for FIPS profiles (fork addition) |
+| `--key-type rsa\|ec`, `--key-bits`, `--key-curve` | Key type and strength for FIPS profiles (fork addition). Measured against ePO 5.10 / DXL 6.1.3: RSA-3072 works end-to-end; an EC key is signed by ePO but the broker refuses it in the handshake (it only requests RSA client certificates) — see [Compatibility](../compatibility.md#open-items) |
 | `-e/--truststore FILE` | CA bundle used to validate the management service |
 | `-t/--port` | Management service port (8443 by default) |
 
