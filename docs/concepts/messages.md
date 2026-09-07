@@ -9,7 +9,7 @@ fields. Understanding the envelope explains most of what the client libraries do
 |---|---|---|
 | `version` | library | Message format version — decides which optional fields are present |
 | `message_id` | library | UUID; correlates a response to its request |
-| `source_client_id` | library | The sending client's identity (from its certificate) |
+| `source_client_id` | library | The sending client's identity — the **SHA-1 thumbprint of its certificate**, not the `ClientId` from its configuration; see below |
 | `source_broker_id` | broker | Which broker the message entered the fabric through |
 | `broker_ids` | caller | Optional: restrict delivery to these brokers |
 | `client_ids` | caller | Optional: restrict delivery to these clients |
@@ -19,6 +19,24 @@ fields. Understanding the envelope explains most of what the client libraries do
 `broker_ids` and `client_ids` are delivery filters, not authorization. Leave them empty unless
 you have a specific reason; narrowing delivery is a common source of "the subscriber never
 gets anything" bugs.
+
+### Who a message is from
+
+The `ClientId` a client writes into its configuration never reaches the fabric. Measured
+against the open source broker and against a Trellix DXL broker 6.1.3 alike:
+
+- `source_client_id` on every message a client publishes is the **SHA-1 thumbprint of the
+  client's certificate** (lowercase hex, no colons) — the same value the broker's topic
+  authorization is written against.
+- Registry payloads carry the same thumbprint as `clientGuid`, and a per-connection identity
+  as `clientInstanceGuid` in the form `<thumbprint>:<instance guid>`; the instance guid changes
+  with every connection.
+- Events the broker itself publishes (service registry, connect events) carry the **broker's**
+  GUID as `source_client_id`.
+
+So identity on a DXL fabric is the certificate, and two clients provisioned with the same
+certificate are the same identity. Correlate connect events, registrations and published
+messages on the thumbprint, never on the configured `ClientId`.
 
 ## Encoding
 

@@ -54,6 +54,44 @@ Topic authorization is covered in
 [Topics and authorization](../concepts/topics-and-authorization.md); the cipher list is the
 subject of [TLS and ciphers](tls.md) and is the setting most likely to need attention.
 
+## Client connect events
+
+The broker can publish an event for every client that connects or disconnects:
+`/mcafee/event/dxl/clientregistry/connect` and `/disconnect`. This is **off by default**
+(`sendConnectEvents=false` in `dxlbroker.conf`), and a Trellix DXL broker 6.1.3 does not
+publish them either — measured with a subscriber on the topic while a second client
+connected. A monitoring tool therefore has to treat these events as an optional source.
+
+Upstream, the payload is `{"clientGuid": "<thumbprint>:<instance guid>"}`. The
+[maintained fork](../fork.md) adds what the TLS layer knows at connect time, so the
+question "who is still connecting with a legacy cipher suite" can be answered from the
+fabric itself:
+
+```json
+{
+  "clientGuid":     "5a752ed6a24f6d2dd77634b0c68dd729b48d4613:c5c018fe-812e-47a3-856d-9f8a9dfb1426",
+  "certThumbprint": "5a752ed6a24f6d2dd77634b0c68dd729b48d4613",
+  "tlsVersion":     "TLSv1.3",
+  "cipher":         "TLS_AES_256_GCM_SHA384",
+  "protocol":       "mqtt",
+  "remoteAddress":  "172.17.0.1"
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `certThumbprint` | SHA-1 of the client certificate, lowercase hex without colons — the same form `topicauth.policy` uses |
+| `tlsVersion` | Negotiated protocol version, `TLSv1.2` or `TLSv1.3` |
+| `cipher` | Negotiated cipher suite, **IANA name** (`TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`), the spelling JSSE, rustls and SIEM products use — not OpenSSL's `ECDHE-RSA-AES256-GCM-SHA384` |
+| `protocol` | `mqtt` or `websocket` |
+| `remoteAddress` | Peer address as the broker sees it; WebSocket connections report the IPv4-mapped IPv6 form (`::ffff:172.17.0.1`) |
+
+Every added field is optional and only written when known. The disconnect event still
+carries only `clientGuid`, and events from brokers without the change are unchanged, so a
+reader that only knows `clientGuid` keeps working. In the fork's container image
+`DXL_SEND_CONNECT_EVENTS=true` switches the events on; `docker-compose.test.yml` sets it
+for all four TLS profiles. Verified over MQTT and WebSockets against the AlmaLinux image.
+
 ## The container image is old
 
 The image published on Docker Hub was built in 2021 from `debian:stretch-slim` — an operating
