@@ -113,6 +113,24 @@ The floor is built from the protocols the JDK actually reports, so a Java 8 runt
 branches (`master`, `jdk17`, `jdk11`, `jdk8`) and was verified with the client test suite
 against a broker on each line.
 
+## Provisioning CLI: certificate validation and key size
+
+`java -jar dxlclient-all.jar provisionconfig|updateconfig` talks to the management service
+over HTTPS. Upstream, the CLI accepted any server certificate and skipped host name
+verification unless `-e/--truststore` was given, and `-e` itself never worked: the option's
+value, the file name, was handed to the certificate parser as if it were the PEM content
+(`No certificate data found`). The [maintained fork](../fork.md) fixes both and mirrors the
+Python CLI:
+
+| Option | Behaviour |
+|---|---|
+| none | Validate against the JVM's trusted CAs, with host name verification. Against an ePO server this fails, with a message that names the fix, because the ePO web certificate comes from the server's own CA |
+| `-e/--truststore FILE` | Validate against the CAs in the PEM file; the file must exist. Address the server by the host name in its certificate, not by IP |
+| `--insecure` | Accept any certificate (the old default); refused together with `-e` |
+| `--key-bits 2048\|3072\|4096` | RSA key size of the generated private key (was fixed at 2048). No EC option on purpose: DXL brokers up to 6.1.3 refuse ECDSA client certificates |
+
+Verified against a broker container with JDK 21; the change is on all four branches.
+
 ## JDK versions
 
 The upstream releases target Java 8. The [maintained fork](../fork.md) keeps one branch per JDK line —
