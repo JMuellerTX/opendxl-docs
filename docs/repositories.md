@@ -308,6 +308,15 @@ Specifications into a static HTML-page.
 This purpose of this repository is to provide a single place to see the status of all
 OpenDXL builds.
 
+### [opendxl-siem-sensor](https://github.com/JMuellerTX/opendxl-siem-sensor)
+
+*Rust · v0.1.0 (in development) · Apache-2.0*
+
+Monitoring sensor for a DXL fabric: subscribes to the registry and connect events, keeps a
+model of services, clients and brokers, normalises everything to OCSF and CEF and forwards
+it to a SIEM over syslog, HTTP/JSON or Kafka. Detects legacy cipher suites, unknown
+certificate thumbprints, publishers on sensitive…
+
 ## Containers and environments
 
 The fabric itself and the ready-made environments around it. The broker has its own page: see [The broker](broker/index.md).

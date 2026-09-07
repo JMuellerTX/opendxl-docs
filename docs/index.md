@@ -42,6 +42,7 @@ anyone who was not depending on it directly.
 | **Services** | Long-running processes that register a topic and answer requests — the reference ones wrap third-party APIs | [Integrations](integrations.md) |
 | **Client libraries for services** | Typed wrappers so callers do not hand-build request payloads (TIE, ePO, MAR, VirusTotal, MISP, …) | [Repositories](repositories.md) |
 | **Bootstrap** | Code generator that scaffolds a new DXL service or client project | [Repositories](repositories.md#tooling-and-scaffolding) |
+| **SIEM sensor** | Makes a fabric observable: service, client and connection events normalised to OCSF/CEF, with detections such as legacy cipher suites and unknown certificates | [SIEM sensor](siem-sensor.md) |
 
 ## Where to start
 
@@ -52,6 +53,8 @@ anyone who was not depending on it directly.
   [Java](clients/java.md), [JavaScript](clients/javascript.md),
   [Node-RED](clients/node-red.md)) and read [Services and requests](concepts/services.md).
 - **Operating a fabric** → [The broker](broker/index.md) and [TLS and ciphers](broker/tls.md).
+- **Watching a fabric from the SOC** → the [SIEM sensor](siem-sensor.md) forwards what happens on
+  the fabric to a SIEM and flags what should not happen.
 - **Planning against a Trellix DXL deployment** → [Compatibility](compatibility.md) has the
   version, TLS and cipher matrix for DXL 6.1.x and ePO 5.10 SP1.
 

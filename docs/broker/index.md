@@ -86,7 +86,8 @@ fabric itself:
 | `protocol` | `mqtt` or `websocket` |
 | `remoteAddress` | Peer address as the broker sees it; WebSocket connections report the IPv4-mapped IPv6 form (`::ffff:172.17.0.1`) |
 
-Every added field is optional and only written when known. The disconnect event still
+The [SIEM sensor](siem-sensor.md) consumes these fields for its legacy-cipher and
+unknown-certificate detections. Every added field is optional and only written when known. The disconnect event still
 carries only `clientGuid`, and events from brokers without the change are unchanged, so a
 reader that only knows `clientGuid` keeps working. In the fork's container image
 `DXL_SEND_CONNECT_EVENTS=true` switches the events on; `docker-compose.test.yml` sets it

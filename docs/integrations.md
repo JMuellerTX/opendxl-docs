@@ -63,6 +63,8 @@ on the fabric. Do not put third-party credentials in DXL payloads.
 - **OpenC2** (`opendxl-openc2-client-python`) — sends OASIS OpenC2 commands over DXL.
 - **Cuckoo Sandbox** (`opendxl-cuckoo-reporting-module`) — a Cuckoo reporting module that
   publishes analysis results onto the fabric as events.
+- **SIEM** (`opendxl-siem-sensor`, Rust) — the other direction: the fabric's own events, normalised
+  to OCSF/CEF and forwarded to a SIEM, with detections. See [SIEM sensor](siem-sensor.md).
 
 ## Running a service
 

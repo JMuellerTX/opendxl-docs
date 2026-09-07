@@ -486,6 +486,16 @@
       "license": "unspecified",
       "description": "Sample code and developer notes for the MVISION (now Trellix) cloud APIs: device, threat-event and event-by-group endpoints, with runnable examples in Python, Go and TypeScript. Not a DXL client - it documents the REST side of the platform that DXL integrations are frequently combined with.",
       "url": "https://github.com/opendxl/mvision-api-developer-guide"
+    },
+    {
+      "name": "opendxl-siem-sensor",
+      "group": "tooling",
+      "group_title": "Tooling and scaffolding",
+      "language": "Rust",
+      "version": "0.1.0 (in development)",
+      "license": "Apache-2.0",
+      "description": "Monitoring sensor for a DXL fabric: subscribes to the registry and connect events, keeps a model of services, clients and brokers, normalises everything to OCSF and CEF and forwards it to a SIEM over syslog, HTTP/JSON or Kafka. Detects legacy cipher suites, unknown certificate thumbprints, publishers on sensitive topics, expired service registrations and fabric changes. Maintained under JMuellerTX; not a fork of an upstream repository.",
+      "url": "https://github.com/JMuellerTX/opendxl-siem-sensor"
     }
   ]
 }
