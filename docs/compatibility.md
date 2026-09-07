@@ -78,7 +78,7 @@ inventory is on the fork page.
 | Threading | Thread leak after a failed `connect()`; reconnect deadlock; service TTL timer; async callback leak |
 | `connect()` | No longer waits the full callback timeout after the connect has already failed — a failing connect took roughly twice as long as it needed to |
 | TLS | `PROTOCOL_TLS_CLIENT`; `TlsCiphers` config key; `TlsMinVersion` (default 1.2); `VerifyHostname` (default off) |
-| CLI | `--key-type` / `--key-bits` / `--key-curve` for FIPS-profile CSRs |
+| CLI | `--key-type` / `--key-bits` / `--key-curve` for FIPS-profile CSRs; the management server's certificate is validated by default; `cryptography` replaces the unmaintained `oscrypto` submodule and `asn1crypto` |
 | IPv6 | Broker address parsing for `[::1]` and `id;port;host;2001:db8::1` |
 | Python | 3.9–3.14 CI matrix, pytest suite instead of nose |
 

@@ -159,6 +159,26 @@ Options worth knowing:
     `--key-type ec` now logs a warning, because DXL brokers up to 6.1.3 refuse ECDSA client
     certificates in the handshake.
 
+!!! note "The CLI uses `cryptography` instead of `oscrypto` (fork)"
+    The released package generates keys and certificate requests with
+    [`oscrypto`](https://github.com/wbond/oscrypto) plus `asn1crypto`, and vendors oscrypto as
+    a git submodule. oscrypto has had no release since 1.3.0 in 2022, and its OpenSSL backend
+    parses the library version string in a way that fails outright on several OpenSSL 3.x
+    builds — on those systems `generatecsr` cannot even produce a key.
+
+    The fork replaced both with [`cryptography`](https://cryptography.io), the maintained
+    library with a compiled backend and wheels for every supported platform. The certificate
+    requests are unchanged in structure — same subject attribute order, same extensions
+    (`basicConstraints CA:FALSE`, critical `keyUsage`, `extendedKeyUsage clientAuth`, optional
+    `subjectAltName`), same SHA-256 signature — verified by diffing `openssl req -text` output
+    from both implementations. Private keys are still PKCS#8 PEM, encrypted with PBES2
+    (AES-256-CBC, PBKDF2-HMAC-SHA256) when `-P` is given; the KDF iteration count is now the
+    library's default of 2048 rather than oscrypto's 25000, because `cryptography` does not
+    expose that parameter for PKCS#8.
+
+    Practical effect for anyone installing from the fork: one dependency (`cryptography`)
+    instead of two, no `oscrypto` submodule, and eight fewer top-level packages installed.
+
 ## Logging
 
 The client uses the standard `logging` module under the `dxlclient` logger:

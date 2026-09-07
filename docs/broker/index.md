@@ -6,6 +6,9 @@ authorization, a service registry, and bridging to other brokers.
 
 - Upstream: [opendxl/opendxl-broker](https://github.com/opendxl/opendxl-broker)
 - Image: [`opendxl/opendxl-broker`](https://hub.docker.com/r/opendxl/opendxl-broker) on Docker Hub
+  (2021, OpenSSL 1.0.2 — see [below](#the-container-image-is-old)); the maintained fork
+  publishes a current one to
+  [`ghcr.io/derjochenmueller/opendxl-broker`](https://github.com/derjochenmueller/opendxl-broker/pkgs/container/opendxl-broker)
 
 It speaks the same protocol as a Trellix DXL broker. A client provisioned against one works
 against the other; what differs is management (files here, ePolicy Orchestrator there),
@@ -126,6 +129,31 @@ cd opendxl-broker
 docker build -f docker/almalinux/Dockerfile -t dxlbroker:almalinux .   # about 25 minutes
 docker run -d --name dxlbroker -p 8883:8883 -p 8443:8443 -p 8444:443 dxlbroker:almalinux
 ```
+
+### Or pull it
+
+The fork's CI publishes both images to GitHub Container Registry on every push to `master`,
+after the build jobs have run the Java and Python client suites against them:
+
+```bash
+docker pull ghcr.io/derjochenmueller/opendxl-broker:debian      # also :latest
+docker pull ghcr.io/derjochenmueller/opendxl-broker:almalinux
+docker run -d --name dxlbroker -p 8883:8883 -p 8443:8443 -p 8444:443 \
+  ghcr.io/derjochenmueller/opendxl-broker:latest
+```
+
+The tags name the base image, not a TLS profile: `modern`, `legacy`, `pfs-only` and
+`trellix-6.1` are `DXL_TLS_MODE` settings chosen when the container starts, and one image
+serves all of them. Every push also gets a `<base>-<short sha>` tag, so a run can be pinned to
+the commit it was tested with.
+
+!!! note "One manual step after the first publish"
+
+    A container package created by a GitHub Actions workflow is **private**, and GitHub has no
+    API to change that. After the first successful publish, the owner has to switch it once, by
+    hand, under *Packages → opendxl-broker → Package settings → Danger Zone → Change visibility
+    → Public*. Until then only workflows in the broker repository itself can pull the image —
+    which is why the client repository's CI axis that uses it is `continue-on-error` for now.
 
 What the port consisted of, for anyone maintaining a different base:
 
