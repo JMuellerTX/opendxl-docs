@@ -1,19 +1,20 @@
-/* Trellix brand tokens for the mkdocs-material theme.
-   Palette: Trellix Brand Guidelines 2025. Green is an accent, never a background. */
+/* OpenDXL documentation theme tokens for mkdocs-material.
+   Palette: the project's own identity, taken from the historical opendxl.com
+   stylesheet (deep teal-blue ramp). No third-party brand assets. */
 :root {
-  --md-primary-fg-color:        #1A1A1A;   /* Graphite */
-  --md-primary-fg-color--light: #4D4D4D;
-  --md-primary-fg-color--dark:  #000000;
-  --md-accent-fg-color:         #2814FF;   /* Royal Blue */
-  --md-typeset-a-color:         #2814FF;
+  --md-primary-fg-color:        #16242C;   /* ink */
+  --md-primary-fg-color--light: #245269;   /* deep teal-blue */
+  --md-primary-fg-color--dark:  #0E181E;
+  --md-accent-fg-color:         #32708F;
+  --md-typeset-a-color:         #245269;
 }
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color:        #1A1A1A;
-  --md-accent-fg-color:         #7C6BFF;
-  --md-typeset-a-color:         #7C6BFF;
-  --md-default-bg-color:        #1A1A1A;
+  --md-primary-fg-color:        #16242C;
+  --md-accent-fg-color:         #7CC3E3;
+  --md-typeset-a-color:         #7CC3E3;
+  --md-default-bg-color:        #16242C;
 }
-/* Brand flow line under the header */
+/* Flow line under the header: the same ramp the website uses */
 .md-header { border-bottom: 3px solid transparent;
-  border-image: linear-gradient(103deg,#2814FF 0%,#2814FF 34%,#00A5FF 68%,#00CD00 100%) 1; }
+  border-image: linear-gradient(103deg,#16242C 0%,#245269 34%,#32708F 68%,#4F9CC0 100%) 1; }
 .md-typeset h1, .md-typeset h2 { font-weight: 600; letter-spacing: -.02em; }
