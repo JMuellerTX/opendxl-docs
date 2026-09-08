@@ -8,7 +8,7 @@ authorization, a service registry, and bridging to other brokers.
 - Image: [`opendxl/opendxl-broker`](https://hub.docker.com/r/opendxl/opendxl-broker) on Docker Hub
   (2021, OpenSSL 1.0.2 — see [below](#the-container-image-is-old)); the maintained fork
   publishes a current one to
-  [`ghcr.io/derjochenmueller/opendxl-broker`](https://github.com/derjochenmueller/opendxl-broker/pkgs/container/opendxl-broker)
+  [`ghcr.io/jmuellertx/opendxl-broker`](https://github.com/JMuellerTX/opendxl-broker/pkgs/container/opendxl-broker)
 
 It speaks the same protocol as a Trellix DXL broker. A client provisioned against one works
 against the other; what differs is management (files here, ePolicy Orchestrator there),
@@ -124,7 +124,7 @@ The [maintained fork](../fork.md) has done this work. Its `master` builds the br
 | `docker/almalinux/Dockerfile` | AlmaLinux 10 builder, `almalinux:10-minimal` runtime | Built and measured 2026-09-07: OpenSSL 4.0.2 as `libssl.so.4`, TLS 1.3 with `X25519MLKEM768`, TLS 1.2 ECDHE, WebSockets on 443 also TLS 1.3, container `healthy` after 10 s, Python 3.12 runtime, no Python 2 |
 
 ```bash
-git clone https://github.com/derjochenmueller/opendxl-broker
+git clone https://github.com/JMuellerTX/opendxl-broker
 cd opendxl-broker
 docker build -f docker/almalinux/Dockerfile -t dxlbroker:almalinux .   # about 25 minutes
 docker run -d --name dxlbroker -p 8883:8883 -p 8443:8443 -p 8444:443 dxlbroker:almalinux
@@ -136,10 +136,10 @@ The fork's CI publishes both images to GitHub Container Registry on every push t
 after the build jobs have run the Java and Python client suites against them:
 
 ```bash
-docker pull ghcr.io/derjochenmueller/opendxl-broker:debian      # also :latest
-docker pull ghcr.io/derjochenmueller/opendxl-broker:almalinux
+docker pull ghcr.io/jmuellertx/opendxl-broker:debian      # also :latest
+docker pull ghcr.io/jmuellertx/opendxl-broker:almalinux
 docker run -d --name dxlbroker -p 8883:8883 -p 8443:8443 -p 8444:443 \
-  ghcr.io/derjochenmueller/opendxl-broker:latest
+  ghcr.io/jmuellertx/opendxl-broker:latest
 ```
 
 The tags name the base image, not a TLS profile: `modern`, `legacy`, `pfs-only` and

@@ -1,16 +1,16 @@
 {
   "author": "JMuellerTX",
-  "fork_owner_account": "derjochenmueller",
+  "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 250,
+    "commits": 281,
     "repositories_touched": 43,
     "repositories_total": 45,
     "by_kind": {
       "bug": 36,
       "security": 22,
       "docs": 4,
-      "ci": 95,
-      "deps": 72,
+      "ci": 96,
+      "deps": 102,
       "tests": 13,
       "feature": 8
     },
@@ -135,6 +135,11 @@
           "subject": "Release workflow: build a wheel and publish it as a GitHub release",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: the GHCR broker axis is no longer optional",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -179,6 +184,11 @@
           "subject": "Update TypeScript sample dependencies (axios 1.x, yargs 17)",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Sample sent the API client secret over unverified TLS",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -216,6 +226,11 @@
         {
           "subject": "CI: install the client from the branch, not the stale release tarball",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -306,6 +321,11 @@
           "subject": "Pin ws to 6.2.6 below websocket-stream",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -379,6 +399,11 @@
           "subject": "CI: install the client from the branch, not the stale release tarball",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -401,6 +426,11 @@
         {
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -496,6 +526,11 @@
         {
           "subject": "CI: publish the broker images to GHCR",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -616,6 +651,11 @@
           "subject": "Release workflow: GitHub release plus GitHub Packages, version marked as a fork build",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -722,6 +762,11 @@
           "subject": "Add the LGPL notice and licence texts, drop the SDK's WEB-INF",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -825,6 +870,11 @@
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -868,6 +918,11 @@
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -900,6 +955,11 @@
         {
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -944,6 +1004,11 @@
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -966,6 +1031,11 @@
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -995,6 +1065,11 @@
           "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1022,6 +1097,11 @@
         {
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1061,6 +1141,11 @@
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1088,6 +1173,11 @@
         {
           "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1122,6 +1212,11 @@
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1149,6 +1244,11 @@
         {
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1198,6 +1298,11 @@
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1220,6 +1325,11 @@
         {
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1262,6 +1372,11 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
           "kind": "deps",
           "author": "JMuellerTX"
         }
@@ -1315,6 +1430,11 @@
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1347,6 +1467,11 @@
         {
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1489,6 +1614,11 @@
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1517,6 +1647,11 @@
           "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1539,6 +1674,11 @@
         {
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1578,6 +1718,11 @@
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1600,6 +1745,11 @@
         {
           "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1637,6 +1787,11 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Point the fork references at JMuellerTX",
           "kind": "deps",
           "author": "JMuellerTX"
         }

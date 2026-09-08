@@ -14,7 +14,7 @@ fixes below, so install the [maintained fork](../fork.md) instead — it keeps t
 `dxlclient`, so anything that depends on the package is satisfied:
 
 ```bash
-pip install "dxlclient @ git+https://github.com/derjochenmueller/opendxl-client-python@epo-legacy"
+pip install "dxlclient @ git+https://github.com/JMuellerTX/opendxl-client-python@epo-legacy"
 ```
 
 Install it *before* the project that pulls `dxlclient` in, or pip will fetch the PyPI
