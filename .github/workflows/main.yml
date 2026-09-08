@@ -1,0 +1,67 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  build:
+    name: docs
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: Install
+      run: pip install mkdocs mkdocs-material
+
+    # --strict turns a warning into a failure, so a link to a page that was
+    # renamed or removed cannot reach the published site.
+    - name: Build
+      run: mkdocs build --strict
+
+    # Two pages are generated from data/. Regenerating them must be a no-op:
+    # if it is not, someone edited the Markdown by hand and the next
+    # regeneration would silently throw that edit away.
+    - name: The generated pages match their data
+      run: |
+        set -eu
+        python tools/gen_repositories.py
+        python tools/gen_fork.py
+        if ! git diff --quiet -- docs/repositories.md docs/fork.md; then
+          echo "::error::docs/repositories.md or docs/fork.md differs from what the generator produces."
+          echo "::error::Edit data/repositories.json or data/fork-changes.json and regenerate."
+          git --no-pager diff -- docs/repositories.md docs/fork.md
+          exit 1
+        fi
+
+    # The standalone copy is the one people take away with them, and it breaks
+    # in ways the served site does not - a link that only resolves behind a web
+    # server, a resource that only loads from a CDN. build_offline.py fails on
+    # both, so this is a real check rather than a second build.
+    - name: Standalone copy
+      run: python tools/build_offline.py
+
+    - name: Nothing in the standalone copy is loaded from outside it
+      run: |
+        set -eu
+        if grep -rEl '<(script|link)[^>]+(src|href)="https?://' site-offline/; then
+          echo "::error::the standalone copy loads a resource over the network"
+          exit 1
+        fi
+        echo "no external resource is loaded"
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: opendxl-docs-offline
+        path: site-offline/
+        retention-days: 14

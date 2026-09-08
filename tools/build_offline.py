@@ -15,8 +15,9 @@ Three things separate this from `mkdocs build`:
   a directory URL needs a server, and turns off the web font.
 * Material's search works from `file://` only through the `iframe-worker` shim,
   which the theme loads from a CDN. This vendors it, so the folder makes no
-  network request at all. Without network access the build still succeeds and
-  says which one thing will not work.
+  network request at all. Without network access the reference is removed
+  rather than left pointing at the CDN: the build still succeeds, and search
+  is the one thing that does not work.
 * Afterwards every internal link is resolved against the output. A build that
   looks fine in a browser tab and 404s two clicks deeper is worse than no
   build, so a broken link fails this script.
@@ -108,10 +109,17 @@ def vendor_search_shim(out: Path) -> bool:
             SHIM_CACHE.write_text(source, encoding="utf-8")
             print("      downloaded and cached at %s" % SHIM_CACHE.relative_to(REPO))
         except (urllib.error.URLError, TimeoutError, OSError) as error:
+            # Leaving the tag in place would keep a CDN reference in a copy
+            # whose whole point is that it needs no network. Strip it instead:
+            # the search box stops working, everything else is unaffected, and
+            # the promise "loads nothing from outside the folder" still holds.
             print("      could not fetch %s (%s)" % (SHIM_URL, error))
-            print("      the build is still complete and offline; only the search box")
-            print("      will not work when opened from a local folder. Run again with")
-            print("      network access, or pass --no-search-shim to accept it.")
+            for page in pages:
+                page.write_text(SHIM_TAG.sub("", page.read_text(encoding="utf-8")),
+                                encoding="utf-8")
+            print("      removed the CDN reference from %d page(s)" % len(pages))
+            print("      the copy is complete and offline; only the search box will not")
+            print("      work. Run again with network access to restore it.")
             return False
 
     target = out / SHIM_LOCAL
