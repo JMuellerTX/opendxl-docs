@@ -66,9 +66,12 @@ All 45 repositories are forked and maintained by
 16 security changes and 35 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
-None of it is released to PyPI, npm, Docker Hub or Maven Central, so consuming a fix means
-installing from git. The summary below covers the fixes that change what works; the full
-inventory is on the fork page.
+None of it is on PyPI, npm, Docker Hub or Maven Central - those namespaces belong to the
+upstream project (see [Security](security.md#package-names-are-a-security-boundary)). The fork
+publishes its own releases instead: a wheel, the Java jars, an npm tarball and a broker image
+on GHCR, each keeping the upstream name and carrying a `fork.n` version marker. [The
+maintained fork](fork.md#using-the-fork) has the commands. The summary below covers the fixes
+that change what works; the full inventory is on the fork page.
 
 ### Python client
 
@@ -100,8 +103,12 @@ httpclient and JUnit updated; one branch per JDK line (21/17/11/8).
 ### JavaScript
 
 `mqtt` 2.14 → 5.15 (which is what clears the `ws` advisories), `tmp` 0.2.x, `uuid` 11,
-`request` replaced. **The downstream packages do not benefit until a release reaches npm**,
-because they depend on the published `@opendxl/dxl-client@0.1.4`.
+`request` replaced. The downstream packages (`node-red-contrib-dxl-*`, the ePO/TIE/MAR client
+libraries) depend on the published `@opendxl/dxl-client@0.1.4`, so they keep the old tree
+until something replaces it. The fork's release tarball does exactly that: it keeps the
+`@opendxl/dxl-client` name and versions itself `0.1.4+fork.1`, and semver ignores build
+metadata when matching ranges, so `npm install <tarball url>` satisfies their `^0.1.x` without
+editing a single downstream `package.json`.
 
 !!! note "Published versions, checked against the registries on 2026-09-07"
 

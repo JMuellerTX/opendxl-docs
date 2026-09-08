@@ -137,14 +137,26 @@ def per_repo(data):
 
 FOOTER = """## Using the fork
 
-Nothing is published to a package registry, so every consumer installs from git.
+Each core client now has releases: a tag builds the artifacts, publishes them where the
+namespace allows it, and attaches them to a release page. **Nothing is published to PyPI,
+npmjs.com or Maven Central** - those namespaces belong to the upstream project, and a fork
+occupying a namespace it does not own is the supply-chain problem described on the
+[security page](security.md#package-names-are-a-security-boundary). The artifacts keep the
+upstream names so they drop into an existing install, and carry a `fork.n` version marker so
+the two cannot be confused.
 
-**Python**
+**Python** - the wheel from the [releases](https://github.com/%(owner)s/opendxl-client-python/releases),
+or straight from git:
 
 ```bash
 pip install "git+https://github.com/%(owner)s/opendxl-client-python@epo-legacy#egg=dxlclient"
 pip install "git+https://github.com/%(owner)s/opendxl-bootstrap-python@master#egg=dxlbootstrap"
 ```
+
+The distribution is called `dxlclient` and versioned `5.7.0.1+fork.1`; a local version
+identifier still satisfies the plain `dxlclient` dependency the downstream OpenDXL projects
+declare, which is what takes them off the `msgpack<1.0.0` pin of the published package, and
+`pip list` shows which build is installed.
 
 Pick the client branch that matches your fabric:
 
@@ -152,29 +164,35 @@ Pick the client branch that matches your fabric:
 |---|---|---|
 | `master` | Forward-secrecy suites only | ePO 5.10 SP1 U7+ / DXL 6.1.1+ |
 | `epo-legacy` | Forward secrecy first, `AES128-SHA256` as fallback | Older fabrics and the open source broker |
-| `fix/python3-modernization` | — | Shared fix history; tracks `epo-legacy` |
+| `fix/python3-modernization` | - | Shared fix history; tracks `epo-legacy` |
 
-**Java** — clone and `./gradlew publishToMavenLocal`, or consume the branch matching your
-JDK line: `master` (JDK 21), `jdk17`, `jdk11`, `jdk8`.
+**Java** - the jars from the releases (the `-all` jar is the shaded one the provisioning CLI
+runs from), this repository's GitHub Packages Maven registry, or `./gradlew
+publishToMavenLocal` from a clone. Coordinates stay `com.opendxl:dxlclient`, version
+`0.2.9-fork.1` on `master` (JDK 21) and `0.2.9-fork.1-jdk17` / `-jdk11` / `-jdk8` on the
+branch for each JDK line - the four lines build different bytecode and cannot share one set
+of coordinates.
 
-**JavaScript** — install from the git URL. Note that the downstream packages
-(`node-red-contrib-dxl-*`, the ePO/TIE/MAR client libraries) depend on the *published*
-`@opendxl/dxl-client@0.1.4`, so they keep the old transitive tree until a release reaches
-npm. Fixing that needs a publish, not a further code change.
+**JavaScript** - the tarball from the releases:
 
-**Broker** — build the image from the fork; `DXL_TLS_MODE` then selects the cipher profile.
-See [TLS and ciphers](broker/tls.md#fixing-it-on-the-broker).
+```bash
+npm install https://github.com/%(owner)s/opendxl-client-javascript/releases/download/v0.1.4+fork.1/opendxl-dxl-client-0.1.4+fork.1.tgz
+```
+
+It keeps the name `@opendxl/dxl-client`, and `+fork.1` is semver *build metadata*, which is
+ignored when matching ranges - so it satisfies the `^0.1.x` dependency the downstream packages
+(`node-red-contrib-dxl-*`, the ePO/TIE/MAR client libraries) declare and replaces the
+published 0.1.4 with its `mqtt` 2.x tree in an existing install.
+
+**Broker** - pull `ghcr.io/%(owner)s/opendxl-broker:latest` (or `:almalinux`), or build the
+image from the fork; `DXL_TLS_MODE` then selects the cipher profile. See
+[TLS and ciphers](broker/tls.md#fixing-it-on-the-broker).
 
 ## Known caveats
 
-- **No releases.** Every consumer installs from git. This is the single biggest limitation,
-  and it is what keeps the known-vulnerable transitive dependencies alive in the downstream
-  projects even where the code is fixed.
-- **%(misattributed)d early commits carry a stale author.** The first
-  `opendxl-client-python` commits were pushed before the git identity was corrected and
-  record `Bot <bot@example.com>` rather than `%(author)s`. The work and the review are the
-  same; only the recorded author is wrong. Correcting it means rewriting history on three
-  branches, which has not been done.
+- **The releases are not on the public registries**, by design (see above). Consuming them
+  means a URL, a GitHub Packages registry entry, or a git reference - not a bare
+  `pip install dxlclient`.
 - **Not offered upstream yet.** No pull request has been opened against
   `opendxl/opendxl-client-python`. Given upstream's activity since 2021, that is a question
   of whether anyone would merge it rather than whether it is ready.
@@ -187,8 +205,11 @@ See [TLS and ciphers](broker/tls.md#fixing-it-on-the-broker).
 def main():
     data = json.load(open(DATA, encoding='utf-8'))
     body = (header(data) + highlights(data) + '\n' + per_repo(data) + '\n' +
-            FOOTER % {'owner': data['fork_owner_account'], 'author': data['author'],
-                      'misattributed': data['totals']['misattributed_commits']})
+            FOOTER % {'owner': data['fork_owner_account']})
+    misattributed = data['totals']['misattributed_commits']
+    if misattributed:
+        body += ('- **%d early commits carry a stale author** (`Bot <bot@example.com>` rather '
+                 'than `%s`).\n' % (misattributed, data['author']))
     open(OUT, 'w', encoding='utf-8', newline='\n').write(body)
     print('wrote %s (%d commits, %d repositories)'
           % (OUT, data['totals']['commits'], data['totals']['repositories_touched']))
