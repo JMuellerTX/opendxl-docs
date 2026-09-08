@@ -80,6 +80,45 @@ line. [Compatibility](compatibility.md) lists what has been fixed where.
 Generate an SBOM for whatever you actually ship and check it against an advisory database.
 For these projects that is not optional hygiene — the transitive trees are five years old.
 
+## Package names are a security boundary
+
+The coordinates a build file resolves are part of the attack surface, and for Java they are
+tied to a domain name. Maven Central verifies a namespace by asking the publisher to place a
+**DNS TXT record on the matching domain**: `com.opendxl` is proven by control of
+`opendxl.com`. Whoever holds that domain can claim the namespace and publish *new* versions
+under coordinates that existing builds already resolve — `com.opendxl:dxlclient`,
+`com.opendxl:dxldatabusclient`, `com.opendxl:dxlstreamingclient`. Published artifacts on
+Central are immutable, so this is not about rewriting the past; it is about the next version.
+
+This is a known class of attack, not a thought experiment:
+
+- **MavenGate** (Oversecured, January 2024) checked 33,938 domains behind Maven group IDs and
+  found 6,170 — **18%** — expired or purchasable, `com.opencsv` and `net.jpountz.lz4` among
+  them. Sonatype disagreed that the attack is practical given its automation, and disabled
+  accounts tied to expired domains anyway; a detailed rebuttal argues the methodology
+  overcounted. The residual risk both sides agree on is the one above: new versions under
+  existing coordinates.
+- **`ctx` on PyPI and `phpass` on Packagist** (May 2022): a maintainer's domain expired, an
+  attacker re-registered it for a few dollars, received the password-reset mail and published
+  credential-stealing versions of a package that had been untouched for eight years.
+- PyPI now re-checks the domains behind maintainer e-mail addresses every 30 days and has
+  marked **over 1,800** addresses unverified since June 2025 — registries treat domain expiry
+  as an attack vector, not as paperwork.
+- The same shape one level up is **repojacking**: a renamed GitHub organisation frees its old
+  name, and every `github.com/<old-name>/<repo>` reference — including the `scm` and `url`
+  fields the OpenDXL Java client writes into its POM — can be pointed somewhere else.
+
+Two consequences for anyone working with these projects:
+
+- **If you consume OpenDXL artifacts**, pin versions, verify signatures where they exist, and
+  keep an SBOM. A coordinate you have resolved for years is not automatically the same
+  publisher.
+- **The maintained fork does not publish under `com.opendxl`, `@opendxl` or the PyPI name
+  `dxlclient`** — those namespaces belong to the upstream project, and a fork that occupied
+  them would be indistinguishable from the attack described above. Fork builds are consumed
+  from git or from the fork's own releases, and the Python client marks itself
+  `5.7.0.1+fork.1` so an installed environment can tell which one it has.
+
 ## Reporting a vulnerability
 
 For a vulnerability in a Trellix product, follow
