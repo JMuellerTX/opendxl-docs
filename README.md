@@ -34,6 +34,33 @@ pip install mkdocs mkdocs-material
 mkdocs serve
 ```
 
+### A standalone copy
+
+`tools/build_offline.py` produces a folder that works from a local disk - open
+`index.html` in a browser, no web server, no network:
+
+```bash
+python tools/build_offline.py           # -> site-offline/
+python tools/build_offline.py --zip     # also dist/opendxl-docs-offline-<date>.zip
+```
+
+It differs from `mkdocs build` in three ways, and each of them is the reason a
+plain build does not work from a folder:
+
+* `mkdocs.offline.yml` writes `page.html` instead of `page/index.html` - a
+  directory URL needs a server - and turns off the web font, which would be the
+  one request that leaves the machine.
+* Material's search only works from `file://` through the `iframe-worker` shim,
+  which the theme loads from a CDN. The script vendors it into the output and
+  caches it under `tools/vendor/`. Without network access the build still
+  succeeds and says that search is the one thing that will not work.
+* `404.html` is dropped: its links are absolute, because a not-found page is
+  served from an arbitrary URL, and from a folder nothing serves it anyway.
+
+Afterwards every internal link is resolved against the output, and a link that
+does not resolve fails the build - a copy that looks fine on the first page and
+404s two clicks deeper is worse than no copy.
+
 Two pages are generated; edit their data files, not the Markdown:
 
 ```bash

@@ -1,0 +1,24 @@
+# Configuration for the standalone build, used by tools/build_offline.py.
+#
+# The normal build maps a page to `page/index.html` and relies on a web server
+# to serve the directory. From a local folder that produces a directory listing
+# or a 404, so the offline build turns it into `page.html` instead. Material's
+# `offline` plugin then rewrites the search index into something a `file://`
+# page may load.
+#
+# Everything else is inherited, so there is one source of truth for the nav,
+# the theme and the content.
+
+INHERIT: mkdocs.yml
+
+use_directory_urls: false
+site_url: ""
+
+theme:
+  # Google Fonts would be the one request that leaves the machine. Material
+  # falls back to the system stack, which is what a local build should do.
+  font: false
+
+plugins:
+  - search
+  - offline
