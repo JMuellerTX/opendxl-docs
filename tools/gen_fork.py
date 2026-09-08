@@ -158,6 +158,20 @@ identifier still satisfies the plain `dxlclient` dependency the downstream OpenD
 declare, which is what takes them off the `msgpack<1.0.0` pin of the published package, and
 `pip list` shows which build is installed.
 
+**Install order matters.** Put the fork's client (and `dxlbootstrap`) in the environment
+*before* the project that depends on it - pip then finds the requirement already satisfied and
+never asks PyPI:
+
+```bash
+pip install "dxlclient @ git+https://github.com/%(owner)s/opendxl-client-python@epo-legacy"
+pip install "dxlbootstrap @ git+https://github.com/%(owner)s/opendxl-bootstrap-python@master"
+pip install .          # or the downstream project
+```
+
+Measured: with that order a downstream project's environment ends up with `dxlclient
+5.7.0.1+fork.1` and `msgpack 1.2.2`; with a plain `pip install .` it gets the published client
+and `msgpack 0.6.2`. Every CI workflow in the fork does it in this order.
+
 Pick the client branch that matches your fabric:
 
 | Branch | Cipher default | For |
