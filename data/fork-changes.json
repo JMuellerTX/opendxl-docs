@@ -2,15 +2,15 @@
   "author": "JMuellerTX",
   "fork_owner_account": "derjochenmueller",
   "totals": {
-    "commits": 181,
+    "commits": 215,
     "repositories_touched": 43,
     "repositories_total": 45,
     "by_kind": {
       "bug": 35,
       "security": 16,
       "docs": 4,
-      "ci": 49,
-      "deps": 56,
+      "ci": 75,
+      "deps": 64,
       "tests": 13,
       "feature": 8
     },
@@ -125,6 +125,16 @@
           "subject": "CI: run the suite against the fork's broker as a second axis",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Mark the fork's version: 5.7.0.1+fork.1",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release workflow: build a wheel and publish it as a GitHub release",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -190,6 +200,11 @@
         },
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -261,6 +276,11 @@
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -314,6 +334,11 @@
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -331,6 +356,11 @@
         {
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -536,6 +566,16 @@
           "subject": "Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Do not write TlsCiphers=default into the configuration file",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release workflow: GitHub release plus GitHub Packages, version marked as a fork build",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -563,6 +603,21 @@
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release workflow: npm install, not npm ci",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release workflow: run the tests that do not need a broker",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -600,6 +655,16 @@
         },
         {
           "subject": "Issue X.509 v3 client certificates with the usual extensions",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Lint: the certificate module is over pylint's line limit",
           "kind": "deps",
           "author": "JMuellerTX"
         }
@@ -695,6 +760,11 @@
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -723,6 +793,11 @@
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -745,6 +820,11 @@
         {
           "subject": "Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3)",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -773,6 +853,11 @@
         {
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -820,6 +905,11 @@
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -837,6 +927,11 @@
         {
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -861,6 +956,11 @@
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -882,6 +982,11 @@
         },
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -907,6 +1012,11 @@
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -928,6 +1038,11 @@
         },
         {
           "subject": "CI: install the fixed dxlclient and dxlbootstrap forks first",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -963,6 +1078,11 @@
           "subject": "Tests: skip the sample test when no MaxMind license key is configured",
           "kind": "tests",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -979,6 +1099,11 @@
         },
         {
           "subject": "CI: install the fixed dxlclient and dxlbootstrap forks first",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -1008,6 +1133,11 @@
         {
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -1050,6 +1180,11 @@
           "subject": "Require stix2 < 3 (openc2 1.0.5 is incompatible with stix2 3.x)",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1072,6 +1207,11 @@
         {
           "subject": "Packaging and CI for Python 3.8-3.14, run pytest in CI",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -1199,6 +1339,11 @@
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1222,6 +1367,11 @@
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1234,6 +1384,11 @@
         {
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -1258,6 +1413,11 @@
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1270,6 +1430,11 @@
         {
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -1293,6 +1458,11 @@
         {
           "subject": "Dockerfile: build on python:3.13-slim",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: provision against the throwaway broker with --insecure",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
