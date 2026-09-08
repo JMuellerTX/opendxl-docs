@@ -31,10 +31,11 @@ KIND_LABEL = {
     'tests': 'tests',
     'deps': 'dependencies',
     'ci': 'CI',
+    'chore': 'Chore',
     'docs': 'docs',
 }
 # Order for the per-repo listing: the interesting things first.
-KIND_ORDER = ['security', 'bug', 'feature', 'deps', 'tests', 'ci', 'docs']
+KIND_ORDER = ['security', 'bug', 'feature', 'deps', 'tests', 'ci', 'docs', 'chore']
 
 
 def header(data):
@@ -67,8 +68,7 @@ repositories**.
 
 ## What changed, in numbers
 
-%(commits)d commits across **%(touched)d of %(total)d repositories**. Two were left alone:
-`opendxl-api-specification` (a 2019 draft whose external `$ref` no longer resolves) and
+%(commits)d commits across **%(touched)d of %(total)d repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
@@ -79,6 +79,7 @@ repositories**.
 | Tests | %(tests)d | New unit tests, mostly where a fix needed one to hold |
 | CI | %(ci)d | Working GitHub Actions instead of `python setup.py test` |
 | Docs | %(docs)d | READMEs that no longer describe the code |
+| Chore | %(chore)d | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 """ % {
         'author': data['author'], 'owner': data['fork_owner_account'],
@@ -87,6 +88,7 @@ repositories**.
         'security': by.get('security', 0), 'bug': by.get('bug', 0),
         'feature': by.get('feature', 0), 'deps': by.get('deps', 0),
         'tests': by.get('tests', 0), 'ci': by.get('ci', 0), 'docs': by.get('docs', 0),
+        'chore': by.get('chore', 0),
     }
 
 

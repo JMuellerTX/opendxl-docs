@@ -25,22 +25,22 @@ repositories**.
 
 ## What changed, in numbers
 
-281 commits across **43 of 45 repositories**. Two were left alone:
-`opendxl-api-specification` (a 2019 draft whose external `$ref` no longer resolves) and
+321 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 22 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
-| Bug fixes | 36 | Defects that make the published code fail on a current runtime or return wrong results |
-| Build and packaging | 8 + 102 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
+| Security | 47 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Bug fixes | 56 | Defects that make the published code fail on a current runtime or return wrong results |
+| Build and packaging | 10 + 53 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
-| CI | 96 | Working GitHub Actions instead of `python setup.py test` |
+| CI | 104 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 4 | READMEs that no longer describe the code |
+| Chore | 34 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 ## Security and correctness fixes
 
-The full list of the 58 commits that fix a defect or harden something, as opposed to
+The full list of the 103 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -51,35 +51,69 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-client-python` | Add tls_min_version (default TLS 1.2) to the client configuration |
 | security | `opendxl-client-python` | Add optional broker host name verification (verify_hostname) |
 | security | `opendxl-client-python` | CLI: selectable key type and size for certificate requests |
+| security | `opendxl-client-python` | CLI: validate the management server's certificate by default |
+| security | `opendxl-client-python` | Replace oscrypto/asn1crypto with cryptography in the provisioning CLI |
+| security | `bootprint-opendxl` | Move to bootprint 4, which drops five critical advisories |
+| security | `mvision-api-developer-guide` | Sample sent the API client secret over unverified TLS |
+| security | `node-red-contrib-dxl` | Pin tmp and uuid below the published DXL client |
 | security | `node-red-contrib-dxl-epo-client` | Pin ws to 6.2.6 below websocket-stream |
+| security | `node-red-contrib-dxl-epo-client` | Pin tmp and uuid below the published DXL client |
 | security | `node-red-contrib-dxl-mar-client` | Pin ws to 6.2.6 below websocket-stream |
+| security | `node-red-contrib-dxl-mar-client` | Pin tmp and uuid below the published DXL client |
 | security | `node-red-contrib-dxl-pxgrid-client` | Pin ws to 6.2.6 below websocket-stream |
+| security | `node-red-contrib-dxl-pxgrid-client` | Pin tmp and uuid below the published DXL client |
 | security | `node-red-contrib-dxl-tie-client` | Pin ws to 6.2.6 below websocket-stream |
+| security | `node-red-contrib-dxl-tie-client` | Pin tmp and uuid below the published DXL client |
+| security | `opendxl-bootstrap-javascript` | Pin tmp and uuid below the published DXL client |
 | security | `opendxl-broker` | startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS) |
 | security | `opendxl-broker` | Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM |
 | security | `opendxl-client-java` | Update dependencies with known vulnerabilities |
 | security | `opendxl-client-java` | Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname |
+| security | `opendxl-client-java` | CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits |
+| security | `opendxl-client-java` | Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax |
 | security | `opendxl-client-javascript` | Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x |
 | security | `opendxl-client-javascript` | Validate the management server certificate in the provisioning CLI |
 | security | `opendxl-console` | Add the LGPL notice and licence texts, drop the SDK's WEB-INF |
+| security | `opendxl-domaintools-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-elasticsearch-client-python` | Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3) |
 | security | `opendxl-elasticsearch-service-python` | Require elasticsearch 7.17 and drop the urllib3<1.25 pin |
+| security | `opendxl-elasticsearch-service-python` | Image: run the service as an unprivileged user |
+| security | `opendxl-environment` | Say why this image runs as root, and what that costs |
+| security | `opendxl-epo-client-javascript` | Pin tmp and uuid below the published DXL client |
+| security | `opendxl-epo-service-python` | Image: run the service as an unprivileged user |
+| security | `opendxl-epo-service-python` | Stop suppressing a certificate warning that was never the caller's choice |
+| security | `opendxl-mar-client-javascript` | Pin tmp and uuid below the published DXL client |
 | security | `opendxl-maxmind-service-python` | Download the MaxMind database over HTTPS |
+| security | `opendxl-maxmind-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-misp-service-python` | Drop the enum34 dependency |
+| security | `opendxl-misp-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-streaming-client-javascript` | Replace the deprecated request package with @cypress/request |
+| security | `opendxl-thehive-service-python` | Image: run the service as an unprivileged user |
+| security | `opendxl-tie-client-javascript` | Pin tmp and uuid below the published DXL client |
+| security | `opendxl-urlvoid-service-python` | Image: run the service as an unprivileged user |
+| security | `opendxl-virustotal-service-python` | Image: run the service as an unprivileged user |
 | bug fix | `opendxl-client-python` | Fix msgpack 1.x compatibility, connection/threading bugs and modernize tests |
 | bug fix | `opendxl-client-python` | Do not wait for the connect callback when connect() already failed |
+| bug fix | `opendxl-client-python` | Make connect() safe against concurrent callers; do not drop odd otherFields silently |
+| bug fix | `opendxl-client-python` | CLI: report the TLS reason, not the whole request URL, on a failed handshake |
 | bug fix | `mcafee-dxl-schemas` | ePO schema: detectedUTC is a string with format date-time |
 | bug fix | `node-red-contrib-dxl-pxgrid-client` | Use Node-RED 4.x for the test suite and fix the dxl-client range |
+| bug fix | `opendxl-api-specification` | Move the schema from Swagger 2.0 to OpenAPI 3.2, and make it checkable |
 | bug fix | `opendxl-bootstrap-python` | Replace pkg_resources with importlib.resources, fix SyntaxWarnings |
 | bug fix | `opendxl-broker` | Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener |
 | bug fix | `opendxl-broker` | Build against OpenSSL 3: FIPS mode via the provider API |
 | bug fix | `opendxl-broker` | startup: run the console from its virtual environment, RFC 5280 key usage |
+| bug fix | `opendxl-broker` | Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid |
+| bug fix | `opendxl-broker` | Image: install dxlbootstrap from the fork, or the console will not start |
 | bug fix | `opendxl-client-java` | Replace msgpack 0.6.7 with msgpack-core 0.9.12 |
 | bug fix | `opendxl-client-java` | Keep RSA key exchange cipher suites available for broker connections |
 | bug fix | `opendxl-client-java` | CLI: write errors to stderr and make --verbose effective |
 | bug fix | `opendxl-client-java` | Build: compile the sources as UTF-8 and fix the non-ASCII wire format vectors |
+| bug fix | `opendxl-client-java` | Build: mark the jars Multi-Release so log4j prints INFO and WARN again |
+| bug fix | `opendxl-client-java` | Do not write TlsCiphers=default into the configuration file |
+| bug fix | `opendxl-client-java` | Release: do not fail when the version is already in GitHub Packages |
 | bug fix | `opendxl-client-javascript` | Make PKI test helpers work with OpenSSL 3.2+ and Windows line endings |
+| bug fix | `opendxl-client-javascript` | Release: a metadata-only npm conflict must not fail the release |
 | bug fix | `opendxl-console` | Support Python 3.8-3.14 |
 | bug fix | `opendxl-console` | Fix provisioning on Python 3 (client configuration template read) |
 | bug fix | `opendxl-console` | Replace pkg_resources with importlib.resources |
@@ -87,28 +121,39 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-databus-client-java` | Sample: use StoreQueryParameters for the state store lookup |
 | bug fix | `opendxl-domaintools-service-python` | Fix Python 3.12+ compatibility |
 | bug fix | `opendxl-domaintools-service-python` | Require domaintools_api 2.x |
+| bug fix | `opendxl-domaintools-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-elasticsearch-client-python` | Fix AttributeError for error responses without "info", add unit tests |
 | bug fix | `opendxl-elasticsearch-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-elasticsearch-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
+| bug fix | `opendxl-environment` | Image: install dxlbootstrap from the fork |
+| bug fix | `opendxl-environment` | Report through the job summary, because forks have issues disabled |
+| bug fix | `opendxl-environment` | Decode the pinned tag correctly |
 | bug fix | `opendxl-epo-client-javascript` | Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1 |
 | bug fix | `opendxl-epo-client-python` | Fix SyntaxWarning: compare ePO service count with == instead of is |
 | bug fix | `opendxl-epo-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-epo-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-mar-client-javascript` | Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1 |
 | bug fix | `opendxl-mar-client-python` | Fix TypeError for non-string MAR error bodies, Python 3 doc examples |
 | bug fix | `opendxl-maxmind-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-maxmind-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-misp-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-misp-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-openc2-client-python` | Require stix2 < 3 (openc2 1.0.5 is incompatible with stix2 3.x) |
 | bug fix | `opendxl-pxgrid-client-python` | Do not raise from event callbacks when "content" is not base64 JSON |
 | bug fix | `opendxl-streaming-client-python` | Fix SyntaxWarning in fake streaming service sample |
 | bug fix | `opendxl-thehive-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-thehive-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-tie-client-javascript` | Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1 |
 | bug fix | `opendxl-urlvoid-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-urlvoid-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-virustotal-service-python` | Fix Python 3.12+ compatibility |
+| bug fix | `opendxl-virustotal-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 
 ## Every change, by repository
 
 ### Core clients
 
-**[opendxl-client-python](https://github.com/JMuellerTX/opendxl-client-python)** — 23 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
+**[opendxl-client-python](https://github.com/JMuellerTX/opendxl-client-python)** — 24 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
 
 - *security* — Default TLS cipher list: forward secrecy first, AES128-SHA256 as fallback
 - *security* — Add TlsCiphers setting to the client configuration file
@@ -116,13 +161,12 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *security* — Add tls_min_version (default TLS 1.2) to the client configuration
 - *security* — Add optional broker host name verification (verify_hostname)
 - *security* — CLI: selectable key type and size for certificate requests
+- *security* — CLI: validate the management server's certificate by default
+- *security* — Replace oscrypto/asn1crypto with cryptography in the provisioning CLI
 - *bug fix* — Fix msgpack 1.x compatibility, connection/threading bugs and modernize tests
 - *bug fix* — Do not wait for the connect callback when connect() already failed
-- *dependencies* — Make connect() safe against concurrent callers; do not drop odd otherFields silently
-- *dependencies* — CLI: validate the management server's certificate by default
-- *dependencies* — CLI: report the TLS reason, not the whole request URL, on a failed handshake
-- *dependencies* — Replace oscrypto/asn1crypto with cryptography in the provisioning CLI
-- *dependencies* — Mark the fork's version: 5.7.0.1+fork.1
+- *bug fix* — Make connect() safe against concurrent callers; do not drop odd otherFields silently
+- *bug fix* — CLI: report the TLS reason, not the whole request URL, on a failed handshake
 - *dependencies* — Release workflow: build a wheel and publish it as a GitHub release
 - *tests* — Tests: DXL_TEST_CONFIG selects the client configuration for the broker-based tests
 - *tests* — Tests: TLS 1.3 minimum must connect when the broker offers TLS 1.3
@@ -132,42 +176,47 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: run the suite against the fork's broker as a second axis
 - *CI* — CI: the GHCR broker axis is no longer optional
+- *CI* — CI: pull the broker image from the account that now publishes it
 - *docs* — Document the branch strategy (master vs. epo-legacy)
+- *Chore* — Mark the fork's version: 5.7.0.1+fork.1
 
-**[opendxl-client-java](https://github.com/JMuellerTX/opendxl-client-java)** — 21 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
+**[opendxl-client-java](https://github.com/JMuellerTX/opendxl-client-java)** — 22 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
 
 - *security* — Update dependencies with known vulnerabilities
 - *security* — Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname
+- *security* — CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits
+- *security* — Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax
 - *bug fix* — Replace msgpack 0.6.7 with msgpack-core 0.9.12
 - *bug fix* — Keep RSA key exchange cipher suites available for broker connections
 - *bug fix* — CLI: write errors to stderr and make --verbose effective
 - *bug fix* — Build: compile the sources as UTF-8 and fix the non-ASCII wire format vectors
+- *bug fix* — Build: mark the jars Multi-Release so log4j prints INFO and WARN again
+- *bug fix* — Do not write TlsCiphers=default into the configuration file
+- *bug fix* — Release: do not fail when the version is already in GitHub Packages
 - *feature* — Build: per-JDK branch model with toolchain auto-provisioning
 - *feature* — Build: master is the JDK 21 line (toolchain 21, --release 21)
 - *dependencies* — Build with Gradle 8.14.5 and an explicit Java 8 target
-- *dependencies* — CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits
-- *dependencies* — Build: mark the jars Multi-Release so log4j prints INFO and WARN again
-- *dependencies* — Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax
-- *dependencies* — Do not write TlsCiphers=default into the configuration file
 - *dependencies* — Release workflow: GitHub release plus GitHub Packages, version marked as a fork build
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Tests: run the CLI tests without a SecurityManager (JDK 18+)
 - *tests* — Tests: give up on an unreachable broker instead of reconnecting forever
 - *CI* — CI: actions/checkout@v4 and setup-java@v4 with a Temurin JDK matrix
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: only flip UseWebSockets, and time the job out
 - *docs* — Docs: sync the dependency version references to 0.2.9
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-client-javascript](https://github.com/JMuellerTX/opendxl-client-javascript)** — 8 commits
+**[opendxl-client-javascript](https://github.com/JMuellerTX/opendxl-client-javascript)** — 10 commits
 
 - *security* — Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x
 - *security* — Validate the management server certificate in the provisioning CLI
 - *bug fix* — Make PKI test helpers work with OpenSSL 3.2+ and Windows line endings
+- *bug fix* — Release: a metadata-only npm conflict must not fail the release
 - *dependencies* — Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages
 - *dependencies* — Release workflow: npm install, not npm ci
 - *dependencies* — Release workflow: run the tests that do not need a broker
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
+- *Chore* — Version 0.1.4+fork.2
 
 **[opendxl-databus-client-java](https://github.com/JMuellerTX/opendxl-databus-client-java)** — 10 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
 
@@ -211,262 +260,288 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 **[opendxl-domaintools-client-python](https://github.com/JMuellerTX/opendxl-domaintools-client-python)** — 5 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Add unit tests for DomainToolsApiClient with a fake DXL client
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-elasticsearch-client-python](https://github.com/JMuellerTX/opendxl-elasticsearch-client-python)** — 6 commits
 
 - *security* — Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3)
 - *bug fix* — Fix AttributeError for error responses without "info", add unit tests
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-epo-client-javascript](https://github.com/JMuellerTX/opendxl-epo-client-javascript)** — 5 commits
+**[opendxl-epo-client-javascript](https://github.com/JMuellerTX/opendxl-epo-client-javascript)** — 7 commits
 
+- *security* — Pin tmp and uuid below the published DXL client
 - *bug fix* — Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test against the fork's dxl-client, not the published 0.1.4
+- *CI* — CI: install the client from the v0.1.4+fork.2 release
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-epo-client-python](https://github.com/JMuellerTX/opendxl-epo-client-python)** — 5 commits
 
 - *bug fix* — Fix SyntaxWarning: compare ePO service count with == instead of is
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-mar-client-javascript](https://github.com/JMuellerTX/opendxl-mar-client-javascript)** — 5 commits
+**[opendxl-mar-client-javascript](https://github.com/JMuellerTX/opendxl-mar-client-javascript)** — 7 commits
 
+- *security* — Pin tmp and uuid below the published DXL client
 - *bug fix* — Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test against the fork's dxl-client, not the published 0.1.4
+- *CI* — CI: install the client from the v0.1.4+fork.2 release
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-mar-client-python](https://github.com/JMuellerTX/opendxl-mar-client-python)** — 6 commits
 
 - *bug fix* — Fix TypeError for non-string MAR error bodies, Python 3 doc examples
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Add unit tests for MarClient with a fake DXL client
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-maxmind-client-python](https://github.com/JMuellerTX/opendxl-maxmind-client-python)** — 5 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Tests: mocked client wrapper tests, skip sample test without license key
 - *CI* — CI: install the fixed dxlclient and dxlbootstrap forks first
 - *CI* — CI: provision against the throwaway broker with --insecure
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-misp-client-python](https://github.com/JMuellerTX/opendxl-misp-client-python)** — 4 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: install the fixed dxlclient and dxlbootstrap forks first
 - *CI* — CI: provision against the throwaway broker with --insecure
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-openc2-client-python](https://github.com/JMuellerTX/opendxl-openc2-client-python)** — 6 commits
 
 - *bug fix* — Require stix2 < 3 (openc2 1.0.5 is incompatible with stix2 3.x)
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Add unit tests for OpenC2Client with a fake DXL client
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-pxgrid-client-python](https://github.com/JMuellerTX/opendxl-pxgrid-client-python)** — 6 commits
 
 - *bug fix* — Do not raise from event callbacks when "content" is not base64 JSON
 - *dependencies* — Packaging and CI for Python 3.8-3.14, run pytest in CI
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Add unit tests for the client request methods
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-tie-client-javascript](https://github.com/JMuellerTX/opendxl-tie-client-javascript)** — 5 commits
+**[opendxl-tie-client-javascript](https://github.com/JMuellerTX/opendxl-tie-client-javascript)** — 7 commits
 
+- *security* — Pin tmp and uuid below the published DXL client
 - *bug fix* — Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test against the fork's dxl-client, not the published 0.1.4
+- *CI* — CI: install the client from the v0.1.4+fork.2 release
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-tie-client-python](https://github.com/JMuellerTX/opendxl-tie-client-python)** — 4 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-virustotal-client-python](https://github.com/JMuellerTX/opendxl-virustotal-client-python)** — 4 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
 ### Services
 
-**[opendxl-domaintools-service-python](https://github.com/JMuellerTX/opendxl-domaintools-service-python)** — 8 commits
+**[opendxl-domaintools-service-python](https://github.com/JMuellerTX/opendxl-domaintools-service-python)** — 9 commits
 
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
 - *bug fix* — Require domaintools_api 2.x
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-elasticsearch-service-python](https://github.com/JMuellerTX/opendxl-elasticsearch-service-python)** — 8 commits
+**[opendxl-elasticsearch-service-python](https://github.com/JMuellerTX/opendxl-elasticsearch-service-python)** — 9 commits
 
 - *security* — Require elasticsearch 7.17 and drop the urllib3<1.25 pin
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-epo-service-python](https://github.com/JMuellerTX/opendxl-epo-service-python)** — 7 commits
+**[opendxl-epo-service-python](https://github.com/JMuellerTX/opendxl-epo-service-python)** — 9 commits
 
+- *security* — Image: run the service as an unprivileged user
+- *security* — Stop suppressing a certificate warning that was never the caller's choice
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-maxmind-service-python](https://github.com/JMuellerTX/opendxl-maxmind-service-python)** — 9 commits
+**[opendxl-maxmind-service-python](https://github.com/JMuellerTX/opendxl-maxmind-service-python)** — 10 commits
 
 - *security* — Download the MaxMind database over HTTPS
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *tests* — Tests: skip the sample test when no MaxMind license key is configured
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-misp-service-python](https://github.com/JMuellerTX/opendxl-misp-service-python)** — 8 commits
+**[opendxl-misp-service-python](https://github.com/JMuellerTX/opendxl-misp-service-python)** — 9 commits
 
 - *security* — Drop the enum34 dependency
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-thehive-service-python](https://github.com/JMuellerTX/opendxl-thehive-service-python)** — 7 commits
+**[opendxl-thehive-service-python](https://github.com/JMuellerTX/opendxl-thehive-service-python)** — 8 commits
 
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-urlvoid-service-python](https://github.com/JMuellerTX/opendxl-urlvoid-service-python)** — 7 commits
+**[opendxl-urlvoid-service-python](https://github.com/JMuellerTX/opendxl-urlvoid-service-python)** — 8 commits
 
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-virustotal-service-python](https://github.com/JMuellerTX/opendxl-virustotal-service-python)** — 7 commits
+**[opendxl-virustotal-service-python](https://github.com/JMuellerTX/opendxl-virustotal-service-python)** — 8 commits
 
+- *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
+- *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
-- *dependencies* — Image: install dxlbootstrap from the fork instead of pinning setuptools
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
+- *Chore* — Point the fork references at JMuellerTX
 
 ### Node-RED nodes
 
-**[node-red-contrib-dxl](https://github.com/JMuellerTX/node-red-contrib-dxl)** — 7 commits
+**[node-red-contrib-dxl](https://github.com/JMuellerTX/node-red-contrib-dxl)** — 9 commits
 
+- *security* — Pin tmp and uuid below the published DXL client
 - *dependencies* — Use Node-RED 4.x and node-red-node-test-helper 0.3.6 for the test suite
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test against the fork's dxl-client, not the published 0.1.4
 - *CI* — CI: pass --insecure to the JavaScript provisioning CLI
 - *CI* — CI: install the client from the branch, not the stale release tarball
+- *CI* — CI: install the client from the v0.1.4+fork.2 release
+- *Chore* — Point the fork references at JMuellerTX
 
-**[node-red-contrib-dxl-epo-client](https://github.com/JMuellerTX/node-red-contrib-dxl-epo-client)** — 4 commits
+**[node-red-contrib-dxl-epo-client](https://github.com/JMuellerTX/node-red-contrib-dxl-epo-client)** — 5 commits
 
 - *security* — Pin ws to 6.2.6 below websocket-stream
+- *security* — Pin tmp and uuid below the published DXL client
 - *dependencies* — Use Node-RED 4.x for the test suite
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 
-**[node-red-contrib-dxl-mar-client](https://github.com/JMuellerTX/node-red-contrib-dxl-mar-client)** — 4 commits
+**[node-red-contrib-dxl-mar-client](https://github.com/JMuellerTX/node-red-contrib-dxl-mar-client)** — 5 commits
 
 - *security* — Pin ws to 6.2.6 below websocket-stream
+- *security* — Pin tmp and uuid below the published DXL client
 - *dependencies* — Use Node-RED 4.x for the test suite
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 
-**[node-red-contrib-dxl-pxgrid-client](https://github.com/JMuellerTX/node-red-contrib-dxl-pxgrid-client)** — 6 commits
+**[node-red-contrib-dxl-pxgrid-client](https://github.com/JMuellerTX/node-red-contrib-dxl-pxgrid-client)** — 8 commits
 
 - *security* — Pin ws to 6.2.6 below websocket-stream
+- *security* — Pin tmp and uuid below the published DXL client
 - *bug fix* — Use Node-RED 4.x for the test suite and fix the dxl-client range
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test against the fork's dxl-client, not the published 0.1.4
+- *CI* — CI: install the client from the v0.1.4+fork.2 release
+- *Chore* — Point the fork references at JMuellerTX
 
-**[node-red-contrib-dxl-tie-client](https://github.com/JMuellerTX/node-red-contrib-dxl-tie-client)** — 4 commits
+**[node-red-contrib-dxl-tie-client](https://github.com/JMuellerTX/node-red-contrib-dxl-tie-client)** — 5 commits
 
 - *security* — Pin ws to 6.2.6 below websocket-stream
+- *security* — Pin tmp and uuid below the published DXL client
 - *dependencies* — Use Node-RED 4.x for the test suite
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 
 ### Tooling and scaffolding
 
-**[bootprint-opendxl](https://github.com/JMuellerTX/bootprint-opendxl)** — 2 commits
+**[bootprint-opendxl](https://github.com/JMuellerTX/bootprint-opendxl)** — 4 commits
 
+- *security* — Move to bootprint 4, which drops five critical advisories
+- *dependencies* — Release the template module so the fixed one can be installed
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 
-**[opendxl-bootstrap-javascript](https://github.com/JMuellerTX/opendxl-bootstrap-javascript)** — 7 commits
+**[opendxl-bootstrap-javascript](https://github.com/JMuellerTX/opendxl-bootstrap-javascript)** — 9 commits
 
+- *security* — Pin tmp and uuid below the published DXL client
 - *dependencies* — Update uuid dev dependency to 11.x and ignore generated test config
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test against the fork's dxl-client, not the published 0.1.4
 - *CI* — CI: pass --insecure to the JavaScript provisioning CLI
 - *CI* — CI: install the client from the branch, not the stale release tarball
+- *CI* — CI: install the client from the v0.1.4+fork.2 release
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-bootstrap-python](https://github.com/JMuellerTX/opendxl-bootstrap-python)** — 4 commits
 
 - *bug fix* — Replace pkg_resources with importlib.resources, fix SyntaxWarnings
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
-- *dependencies* — Point the fork references at JMuellerTX
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
+- *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 11 commits
+**[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 12 commits
 
 - *security* — Add the LGPL notice and licence texts, drop the SDK's WEB-INF
 - *bug fix* — Support Python 3.8-3.14
@@ -475,25 +550,25 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *dependencies* — Docker: python:3.13-slim base image, two-stage build
 - *dependencies* — Issue X.509 v3 client certificates with the usual extensions
 - *dependencies* — Lint: the certificate module is over pylint's line limit
-- *dependencies* — Point the fork references at JMuellerTX
+- *dependencies* — Image: install dxlbootstrap from the fork, and stop running as root
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: provision against the throwaway broker with --insecure
+- *Chore* — Point the fork references at JMuellerTX
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 18 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 19 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
 - *bug fix* — Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener
 - *bug fix* — Build against OpenSSL 3: FIPS mode via the provider API
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage
+- *bug fix* — Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid
+- *bug fix* — Image: install dxlbootstrap from the fork, or the console will not start
 - *feature* — Docker: Debian 12 / UBI 9 base images, OpenSSL 3, Python 3 console
-- *dependencies* — Force LF line endings for the files copied into the image
-- *dependencies* — Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid
-- *dependencies* — Report TLS version, cipher and certificate thumbprint in the client connect event
-- *dependencies* — Point the fork references at JMuellerTX
+- *feature* — Report TLS version, cipher and certificate thumbprint in the client connect event
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test the image with the fork of the Java client, current actions
 - *CI* — CI: run the Java client test suite on JDK 21
@@ -502,22 +577,31 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: clone the Python client with its submodule
 - *CI* — CI: the Java CLI now validates the management server's certificate too; pass --insecure
 - *CI* — CI: publish the broker images to GHCR
+- *Chore* — Force LF line endings for the files copied into the image
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-cuckoo-reporting-module](https://github.com/JMuellerTX/opendxl-cuckoo-reporting-module)** — 1 commits
 
 - *docs* — README: fix dead link to the Cuckoo reporting module documentation
 
-**[opendxl-environment](https://github.com/JMuellerTX/opendxl-environment)** — 4 commits
+**[opendxl-environment](https://github.com/JMuellerTX/opendxl-environment)** — 11 commits
 
+- *security* — Say why this image runs as root, and what that costs
+- *bug fix* — Image: install dxlbootstrap from the fork
+- *bug fix* — Report through the job summary, because forks have issues disabled
+- *bug fix* — Decode the pinned tag correctly
 - *feature* — Move to python:3.12-slim-bookworm, Node 22, JDK 17 and current tools
-- *dependencies* — Force LF line endings for shell scripts
-- *dependencies* — Point the fork references at JMuellerTX
+- *feature* — Notice when a pinned release has moved on
+- *dependencies* — Image: install bootprint-opendxl from the fork's release tarball
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
+- *CI* — CI: actions/checkout@v4
+- *Chore* — Force LF line endings for shell scripts
+- *Chore* — Point the fork references at JMuellerTX
 
 **[opendxl-node-red-docker](https://github.com/JMuellerTX/opendxl-node-red-docker)** — 2 commits
 
 - *feature* — Move to the supported nodered/node-red image, Node 22 and Python 3
-- *dependencies* — Force LF line endings for shell scripts
+- *Chore* — Force LF line endings for shell scripts
 
 ### Specifications and schemas
 
@@ -527,8 +611,12 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 **[mvision-api-developer-guide](https://github.com/JMuellerTX/mvision-api-developer-guide)** — 2 commits
 
+- *security* — Sample sent the API client secret over unverified TLS
 - *dependencies* — Update TypeScript sample dependencies (axios 1.x, yargs 17)
-- *dependencies* — Sample sent the API client secret over unverified TLS
+
+**[opendxl-api-specification](https://github.com/JMuellerTX/opendxl-api-specification)** — 1 commits
+
+- *bug fix* — Move the schema from Swagger 2.0 to OpenAPI 3.2, and make it checkable
 
 ## Using the fork
 

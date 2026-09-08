@@ -2,17 +2,18 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 281,
-    "repositories_touched": 43,
+    "commits": 321,
+    "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 36,
-      "security": 22,
+      "bug": 56,
+      "security": 47,
       "docs": 4,
-      "ci": 96,
-      "deps": 102,
+      "ci": 104,
       "tests": 13,
-      "feature": 8
+      "chore": 34,
+      "deps": 53,
+      "feature": 10
     },
     "misattributed_commits": 0
   },
@@ -88,12 +89,12 @@
         },
         {
           "subject": "Make connect() safe against concurrent callers; do not drop odd otherFields silently",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "CLI: validate the management server's certificate by default",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         },
         {
@@ -103,7 +104,7 @@
         },
         {
           "subject": "CLI: report the TLS reason, not the whole request URL, on a failed handshake",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
@@ -118,7 +119,7 @@
         },
         {
           "subject": "Replace oscrypto/asn1crypto with cryptography in the provisioning CLI",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         },
         {
@@ -128,7 +129,7 @@
         },
         {
           "subject": "Mark the fork's version: 5.7.0.1+fork.1",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         },
         {
@@ -138,6 +139,11 @@
         },
         {
           "subject": "CI: the GHCR broker axis is no longer optional",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: pull the broker image from the account that now publishes it",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -157,6 +163,16 @@
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Move to bootprint 4, which drops five critical advisories",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release the template module so the fixed one can be installed",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -187,7 +203,7 @@
         },
         {
           "subject": "Sample sent the API client secret over unverified TLS",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -230,7 +246,17 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the v0.1.4+fork.2 release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -260,6 +286,11 @@
           "subject": "Pin ws to 6.2.6 below websocket-stream",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -286,6 +317,11 @@
         },
         {
           "subject": "Pin ws to 6.2.6 below websocket-stream",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
           "kind": "security",
           "author": "JMuellerTX"
         }
@@ -324,7 +360,17 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the v0.1.4+fork.2 release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -354,6 +400,11 @@
           "subject": "Pin ws to 6.2.6 below websocket-stream",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -362,7 +413,13 @@
       "group": "specs",
       "default_branch": "master",
       "extra_branches": [],
-      "commits": []
+      "commits": [
+        {
+          "subject": "Move the schema from Swagger 2.0 to OpenAPI 3.2, and make it checkable",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        }
+      ]
     },
     {
       "name": "opendxl-bootstrap-javascript",
@@ -402,7 +459,17 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the v0.1.4+fork.2 release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -430,7 +497,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -455,7 +522,7 @@
         },
         {
           "subject": "Force LF line endings for the files copied into the image",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         },
         {
@@ -495,7 +562,7 @@
         },
         {
           "subject": "Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
@@ -505,7 +572,7 @@
         },
         {
           "subject": "Report TLS version, cipher and certificate thumbprint in the client connect event",
-          "kind": "deps",
+          "kind": "feature",
           "author": "JMuellerTX"
         },
         {
@@ -530,7 +597,12 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork, or the console will not start",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -629,22 +701,22 @@
         },
         {
           "subject": "CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         },
         {
           "subject": "Build: mark the jars Multi-Release so log4j prints INFO and WARN again",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         },
         {
           "subject": "Do not write TlsCiphers=default into the configuration file",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
@@ -654,7 +726,12 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release: do not fail when the version is already in GitHub Packages",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -703,6 +780,16 @@
         {
           "subject": "Validate the management server certificate in the provisioning CLI",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Version 0.1.4+fork.2",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Release: a metadata-only npm conflict must not fail the release",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -765,6 +852,11 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork, and stop running as root",
           "kind": "deps",
           "author": "JMuellerTX"
         }
@@ -873,7 +965,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -916,12 +1008,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -959,7 +1056,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1002,12 +1099,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1020,7 +1122,7 @@
       "commits": [
         {
           "subject": "Force LF line endings for shell scripts",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         },
         {
@@ -1035,7 +1137,42 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: actions/checkout@v4",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install bootprint-opendxl from the fork's release tarball",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Notice when a pinned release has moved on",
+          "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Report through the job summary, because forks have issues disabled",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Decode the pinned tag correctly",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Say why this image runs as root, and what that costs",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1068,7 +1205,17 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the v0.1.4+fork.2 release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1101,7 +1248,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1139,12 +1286,22 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Stop suppressing a certificate warning that was never the caller's choice",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1177,7 +1334,17 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the v0.1.4+fork.2 release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1215,7 +1382,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1248,7 +1415,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1296,12 +1463,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1329,7 +1501,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1372,12 +1544,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1390,7 +1567,7 @@
       "commits": [
         {
           "subject": "Force LF line endings for shell scripts",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         },
         {
@@ -1433,7 +1610,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1471,7 +1648,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1612,12 +1789,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1650,7 +1832,17 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the v0.1.4+fork.2 release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1678,7 +1870,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1716,12 +1908,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1749,7 +1946,7 @@
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -1787,12 +1984,17 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
-          "kind": "deps",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {
           "subject": "Point the fork references at JMuellerTX",
-          "kind": "deps",
+          "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: run the service as an unprivileged user",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
