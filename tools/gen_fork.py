@@ -42,8 +42,12 @@ def header(data):
     by = t['by_kind']
     return """# The maintained fork
 
-Upstream OpenDXL has published nothing since 2021. The work described on the
-[compatibility page](compatibility.md) — the TLS fixes, the MessagePack compatibility, the
+Upstream OpenDXL is maintained, but unevenly. The core clients still see occasional
+releases from Trellix engineers - the Python client 5.7.0.1 in January 2025, the Java client
+0.2.9 in July 2025, the Databus client 2.7.0 in May 2025 with CVE fixes as late as July 2026.
+The roughly thirty integration and service repositories have had no commit since 2019-2021.
+Nothing is archived, so from the outside it is hard to tell which of the two a given
+repository is. The work described on the [compatibility page](compatibility.md) — the TLS fixes, the MessagePack compatibility, the
 Python 3.12+ and JDK 21 support — lives in a **maintained fork of all %(total)d
 repositories**.
 
@@ -210,8 +214,8 @@ image from the fork; `DXL_TLS_MODE` then selects the cipher profile. See
   means a URL, a GitHub Packages registry entry, or a git reference - not a bare
   `pip install dxlclient`.
 - **Not offered upstream yet.** No pull request has been opened against
-  `opendxl/opendxl-client-python`. Given upstream's activity since 2021, that is a question
-  of whether anyone would merge it rather than whether it is ready.
+  `opendxl/opendxl-client-python`. The core repositories do have active maintainers, so this
+  is a question of getting the changes in front of them, not of whether anyone is there.
 - **This is a personal fork.** It is not an official Trellix distribution, carries no support
   commitment, and may stop being maintained. Treat it as you would any single-maintainer
   dependency: read the diff, pin a commit, and be ready to carry it yourself.

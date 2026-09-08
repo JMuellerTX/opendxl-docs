@@ -11,7 +11,7 @@
 | 2019–2021 | Upstream commit activity tapers off. The last releases of most repositories date from this window. |
 | Jan 2022 | McAfee Enterprise and FireEye combine and rebrand as **Trellix**. The legal entity behind the products is **Musarubra US LLC**. |
 | 2024 | Several OpenDXL repositories receive a copyright and link refresh upstream — `Copyright 2024 Musarubra US LLC`, links pointing at trellix.com — without functional changes. |
-| Today | The protocol is unchanged and DXL is a shipping Trellix capability. The open source packages are dormant; see [Compatibility](compatibility.md). |
+| Today | The protocol is unchanged and DXL is a shipping Trellix capability. The core clients still get occasional releases; the integration repositories have been dormant since 2019-2021. See [Compatibility](compatibility.md). |
 
 ## What "McAfee" in the code means
 
