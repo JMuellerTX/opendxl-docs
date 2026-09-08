@@ -1,8 +1,9 @@
 # Repositories
 
 Every OpenDXL repository, grouped by what it does. All of them are Apache-2.0 unless the
-table says otherwise, and all of them live under
-[github.com/opendxl](https://github.com/opendxl).
+table says otherwise. The upstream projects live under
+[github.com/opendxl](https://github.com/opendxl); the SIEM sensor is new work of this fork
+and has no upstream counterpart.
 
 The version shown is the version declared in the repository, which for most of these is also
 the last published release. Read [Compatibility](compatibility.md) before pinning any of them.

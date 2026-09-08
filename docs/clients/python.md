@@ -9,9 +9,18 @@ it is the only one that ships the provisioning CLI.
 
 ## Install
 
+The release on PyPI is `dxlclient` 5.7.0.1. It pins `msgpack<1.0.0` and has none of the
+fixes below, so install the [maintained fork](../fork.md) instead — it keeps the name
+`dxlclient`, so anything that depends on the package is satisfied:
+
 ```bash
-pip install dxlclient
+pip install "dxlclient @ git+https://github.com/derjochenmueller/opendxl-client-python@epo-legacy"
 ```
+
+Install it *before* the project that pulls `dxlclient` in, or pip will fetch the PyPI
+release first. The `master` branch is the same code with a forward-secrecy-only cipher
+default; use it only against brokers ≥ 6.1.1. The upstream release is still one
+`pip install dxlclient` away if you need to reproduce its behaviour.
 
 ## Configuration
 
@@ -32,7 +41,7 @@ The settings that matter most in practice:
 | `keep_alive_interval` | 1800 s | MQTT keep-alive |
 | `reconnect_delay` / `_max` | 1 s / 60 s | Exponential backoff between reconnects |
 | `TlsMinVersion` | `1.2` | Minimum TLS version. Added in the [maintained fork](../fork.md); see [TLS](../broker/tls.md). |
-| `TlsCiphers` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL` | OpenSSL cipher string. Also fork-added. |
+| `TlsCiphers` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL` on `epo-legacy`, without `AES128-SHA256` on `master` | OpenSSL cipher string. Also fork-added. |
 | `VerifyHostname` | `false` | Broker host name verification. Off by default for compatibility. |
 
 `TlsMinVersion`, `TlsCiphers` and `VerifyHostname` do not exist in the released 5.7.0.1
