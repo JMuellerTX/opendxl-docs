@@ -2,15 +2,15 @@
   "author": "JMuellerTX",
   "fork_owner_account": "derjochenmueller",
   "totals": {
-    "commits": 215,
+    "commits": 250,
     "repositories_touched": 43,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 35,
-      "security": 16,
+      "bug": 36,
+      "security": 22,
       "docs": 4,
-      "ci": 75,
-      "deps": 64,
+      "ci": 95,
+      "deps": 72,
       "tests": 13,
       "feature": 8
     },
@@ -207,6 +207,16 @@
           "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: pass --insecure to the JavaScript provisioning CLI",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the branch, not the stale release tarball",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -230,6 +240,11 @@
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin ws to 6.2.6 below websocket-stream",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -252,6 +267,11 @@
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin ws to 6.2.6 below websocket-stream",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -281,6 +301,11 @@
           "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin ws to 6.2.6 below websocket-stream",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -303,6 +328,11 @@
         {
           "subject": "CI: allow manual workflow runs (workflow_dispatch)",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin ws to 6.2.6 below websocket-stream",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -337,6 +367,16 @@
         },
         {
           "subject": "CI: test against the fork's dxl-client, not the published 0.1.4",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: pass --insecure to the JavaScript provisioning CLI",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: install the client from the branch, not the stale release tarball",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -619,6 +659,11 @@
           "subject": "Release workflow: run the tests that do not need a broker",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate the management server certificate in the provisioning CLI",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -666,6 +711,16 @@
         {
           "subject": "Lint: the certificate module is over pylint's line limit",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Replace pkg_resources with importlib.resources",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add the LGPL notice and licence texts, drop the SDK's WEB-INF",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -765,6 +820,11 @@
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -798,6 +858,16 @@
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -824,6 +894,11 @@
         },
         {
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -858,6 +933,16 @@
         {
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -933,6 +1018,11 @@
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -960,6 +1050,16 @@
         {
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1015,6 +1115,11 @@
         },
         {
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -1083,6 +1188,16 @@
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1139,6 +1254,16 @@
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1185,6 +1310,11 @@
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1211,6 +1341,11 @@
         },
         {
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -1344,6 +1479,16 @@
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1390,6 +1535,11 @@
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1418,6 +1568,16 @@
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1434,6 +1594,11 @@
         },
         {
           "subject": "CI: test against the fork's dxlclient, not the PyPI release",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -1463,6 +1628,16 @@
         {
           "subject": "CI: provision against the throwaway broker with --insecure",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Image: install dxlbootstrap from the fork instead of pinning setuptools",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
