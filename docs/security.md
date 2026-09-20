@@ -45,6 +45,13 @@ So it is worth being precise about where that port is and what guards it:
 - **The passphrase on the CA key is not a control.** The console needs it unattended, so
   it sits in cleartext in `dxlconsole.config` beside the key. What protects the CA is the
   keystore directory and who can reach the port, not that string.
+- **The console's own TLS matters more than the fabric's here**, because this is the
+  connection the management password travels over. Upstream passed Tornado a certificate
+  and a key and let it build a default context, which accepted four RSA key transport
+  suites with no forward secrecy — a later compromise of the server key would expose
+  every password recorded until then. The fork's console builds the context explicitly:
+  TLS 1.2 floor, ECDHE only. TLS 1.3 stays available on purpose; its suites all provide
+  forward secrecy, and ePO 5.10 SP1 U7 offers TLS 1.3 on the same role.
 
 The managed equivalent is ePolicy Orchestrator, where the same reasoning applies to the
 account `provisionconfig` authenticates with: it can mint fabric identities, so it is not

@@ -136,6 +136,25 @@ commercial brokers get there. `DXL_TLS_VERSION=tlsv1.3` (or `tlsVersion=tlsv1.3`
 deliberately. The mirror image is `DXL_TLS_VERSION=tlsv1.2`, which is what the `legacy` and
 `trellix-6.1` profiles set for you.
 
+## The management port is not the fabric
+
+A broker container exposes two TLS listeners with different jobs, and they are allowed to
+disagree — in production they *do*:
+
+| | Fabric (8883, 443) | Management (8443) |
+|---|---|---|
+| Trellix / ePO | DXL 6.1.x broker: **TLS 1.2 max** | ePO 5.10 SP1 U7: **TLS 1.3** |
+| Fork's container | follows `DXL_TLS_MODE` | TLS 1.2 floor, no cap, ECDHE only |
+
+So a container running `DXL_TLS_MODE=trellix-6.1` answers TLS 1.2 on 8883 and TLS 1.3 on
+8443, and that is not an inconsistency to fix — it is the shape of a current managed
+fabric. What was worth fixing is the cipher list behind 8443: it used to include RSA key
+transport, on the one connection that carries the management password.
+
+Override it with `ciphers=` in `dxlconsole.config` only for a client that cannot do ECDHE.
+None of the three provisioning CLIs needs it — they do not set a cipher list for the
+management connection at all.
+
 ## Fixing it on the client
 
 When you cannot change the broker.
