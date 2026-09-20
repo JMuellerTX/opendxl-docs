@@ -50,6 +50,13 @@ writes the resulting configuration and key material into a directory:
 python -m dxlclient provisionconfig ./config 127.0.0.1 client -u admin -p password
 ```
 
+!!! note "`admin` / `password` belongs to the Docker Hub image"
+    Those are the credentials the 2021 image ships with, and it has no way to change
+    them. The [maintained fork](fork.md) does not have a default password at all: it
+    generates one per volume on first start and prints it once, or takes one from
+    `DXL_CONSOLE_PASSWORD`. See
+    [Credentials, and which port actually needs protecting](broker/index.md#credentials-and-which-port-actually-needs-protecting).
+
 Afterwards `./config` holds:
 
 ```
