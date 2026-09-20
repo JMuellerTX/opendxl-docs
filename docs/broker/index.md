@@ -43,32 +43,53 @@ password anywhere near it.
 
 **Port 8443 is the exception, and it is the one that matters.** The console behind it holds
 the client CA and signs certificates on request, so whoever reaches it can mint an identity
-for the whole fabric. Its default login is `admin` / `password`, which is fine for a
-throwaway broker bound to `127.0.0.1` and nowhere near fine for anything else. The fork's
-image says so in its own log at every start, and gives three ways out:
+for the whole fabric. The published `opendxl/opendxl-broker` image has a fixed login of
+`admin` / `password` — a password that is in its source, in this page, and in every search
+result about it.
+
+**The fork's image has no default password.** It generates one on first start, keeps it in
+the volume so a restart does not invalidate it, and prints it once:
+
+```
+  Console credentials: admin / htBWHXymBDZ2y75K6GQ27AQC
+  ^ generated for this volume and shown only here. Read it back later with:
+      docker exec <container> /dxlbroker/console-credentials.sh
+```
+
+Two ways to get at it, and the choice is really "who owns the secret":
+
+```bash
+# Started by hand: let it generate one and read it back when needed.
+docker run -d --name dxlbroker -p 8883:8883 -p 127.0.0.1:8443:8443 -p 8444:443 \
+  -v dxlbroker-volume:/dxlbroker-volume ghcr.io/jmuellertx/opendxl-broker:debian
+
+PW=$(docker exec dxlbroker /dxlbroker/console-credentials.sh --password)
+python -m dxlclient provisionconfig ./config 127.0.0.1 client -u admin -p "$PW" --insecure
+
+# Scripted: supply one. No read-back, and it never reaches the container log.
+export DXL_CONSOLE_PASSWORD=$(openssl rand -hex 16)
+docker run -d --name dxlbroker -p 8883:8883 -p 127.0.0.1:8443:8443 -p 8444:443 \
+  -e DXL_CONSOLE_PASSWORD ghcr.io/jmuellertx/opendxl-broker:debian
+python -m dxlclient provisionconfig ./config 127.0.0.1 client \
+  -u admin -p "$DXL_CONSOLE_PASSWORD" --insecure
+```
 
 | Variable | Effect |
 |---|---|
-| `DXL_CONSOLE_PASSWORD=<value>` | sets the password |
-| `DXL_CONSOLE_PASSWORD=random` | generates one per container and prints it once, at start, in `docker logs` |
+| *(unset)* | a password is generated on first start, kept in the volume, printed once |
+| `DXL_CONSOLE_PASSWORD=<value>` | use this one instead — nothing is generated and nothing is printed |
+| `DXL_CONSOLE_PASSWORD=random` | force a new one even though the volume already has credentials |
 | `DXL_CONSOLE_USER=<name>` | sets the user (default `admin`) |
 | `DXL_CONSOLE_ENABLED=false` | does not start the console at all |
 
-```bash
-# a broker with no credentials of any kind: mutual TLS and nothing else
-docker run -d --name dxlbroker -p 8883:8883 -p 8444:443 \
-  -e DXL_CONSOLE_ENABLED=false \
-  ghcr.io/jmuellertx/opendxl-broker:debian
-
-# console needed, but not with a known password
-docker run -d --name dxlbroker -p 8883:8883 -p 127.0.0.1:8443:8443 \
-  -e DXL_CONSOLE_PASSWORD=random \
-  ghcr.io/jmuellertx/opendxl-broker:debian
-docker logs dxlbroker | grep "Console credentials"
-```
+`/dxlbroker/console-credentials.sh` prints `user=` and `password=` lines, or just one of them
+with `--user` / `--password`. It reads a file in the volume rather than the log, so it still
+answers after the log has rotated or been shipped elsewhere. It exits 1 when there is nothing
+to print, which means the console is switched off or the container is still starting.
 
 With the console switched off nothing can be provisioned against the broker, so bring
 certificates issued earlier (the persisted `/dxlbroker-volume` keeps the CA that signed them).
+That is the configuration with no credentials anywhere in the container.
 
 One thing the passphrase on the CA key is **not**: protection. `OpenDxlBroker` is a constant
 in the start-up script, and the console needs it unattended, so it sits in cleartext in
