@@ -169,6 +169,9 @@ What the port consisted of, for anyone maintaining a different base:
 - The Python 2 runtime is gone; the console runs on Python 3 from the fixed console fork.
 - `DXL_TLS_MODE` selects the cipher profile at start (`modern`, `legacy`, `pfs-only`,
   `trellix-6.1`), see [TLS and ciphers](tls.md); `docker-compose.test.yml` starts all four.
+  The profile also sets the protocol ceiling, because a cipher list cannot: `legacy` and
+  `trellix-6.1` pin TLS 1.2, since the brokers they imitate cannot do 1.3. `DXL_TLS_VERSION`
+  overrides that.
 
 ## Related components
 

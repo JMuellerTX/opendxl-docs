@@ -60,17 +60,42 @@ can list ECDHE suites all it wants; the binary cannot negotiate them. Rebuilding
 `WITH_EC` defined — which also means building against OpenSSL 3 on a maintained base image —
 is what actually widens the cipher list.
 
-The [maintained broker fork](../fork.md) exposes three profiles through the environment:
+The [maintained broker fork](../fork.md) exposes four profiles through the environment:
 
-| `DXL_TLS_MODE` | Cipher list | Models |
-|---|---|---|
-| `modern` (default) | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL:!MD5:!3DES` | Trellix DXL ≥ 6.1.1: forward secrecy first, legacy suite as fallback |
-| `legacy` | `AES128-SHA256:AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:!aNULL:!eNULL` | DXL brokers before 6.1.1 — for reproducing the old behaviour on purpose |
-| `pfs-only` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:!aNULL:!eNULL:!MD5:!3DES` | A FIPS-140-3-oriented profile with no RSA key transport at all |
-| `trellix-6.1` | the twelve suites listed below | Exactly what a Trellix DXL 6.1.3.55 broker presents, measured against a live fabric. Use this to test against production rather than a superset of it |
+| `DXL_TLS_MODE` | Cipher list | Max TLS | Models |
+|---|---|---|---|
+| `modern` (default) | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL:!MD5:!3DES` | 1.3 | Trellix DXL ≥ 6.1.1: forward secrecy first, legacy suite as fallback |
+| `legacy` | `AES128-SHA256:AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:!aNULL:!eNULL` | 1.2 | DXL brokers before 6.1.1 — for reproducing the old behaviour on purpose |
+| `pfs-only` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:!aNULL:!eNULL:!MD5:!3DES` | 1.3 | A FIPS-140-3-oriented profile with no RSA key transport at all |
+| `trellix-6.1` | the twelve suites listed below | 1.2 | Exactly what a Trellix DXL 6.1.3.55 broker presents, measured against a live fabric. Use this to test against production rather than a superset of it |
 
 `DXL_TLS_CIPHERS` overrides the list with an explicit OpenSSL cipher string. An explicit
 `ciphers=` line in `dxlbroker.conf` still wins over both.
+
+### A cipher list does not cap the protocol version
+
+The `Max TLS` column is a separate setting, and it has to be: an OpenSSL cipher string
+selects TLS 1.2 suites and below. The three TLS 1.3 suites are a different list that
+`ciphers=` does not address at all. A broker built against OpenSSL 3 or 4 therefore
+negotiates TLS 1.3 with any client that asks for it, whatever the cipher profile says —
+which made `legacy` and `trellix-6.1`, the two profiles that exist to imitate brokers
+that *cannot* do TLS 1.3, quietly unfaithful. A client whose TLS 1.3 path works against
+`trellix-6.1` would have learnt nothing about production.
+
+Those two profiles therefore also set `tlsVersion=tlsv1.2`, which pins both listeners —
+MQTT on 8883 and WebSockets on 443. `DXL_TLS_VERSION` overrides it per container
+(`tlsv1.2`, `tlsv1.3`, or empty for "negotiate the highest both ends support"), and
+`tlsVersion=` in `dxlbroker.conf` is the same switch in the configuration file.
+
+Verify it rather than trust it — `s_client` reports the version it actually got:
+
+```
+$ echo | openssl s_client -connect broker:8883 -tls1_3 | head -1
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384    # modern, pfs-only
+
+$ echo | openssl s_client -connect broker:8883 -tls1_3 | head -1
+...alert protocol version                          # legacy, trellix-6.1
+```
 
 `modern` is the profile to run in a mixed estate: current clients negotiate ECDHE, and an old
 client that only knows `AES128-SHA256` still connects.
@@ -106,8 +131,10 @@ version.
 
 No Trellix DXL broker offers TLS 1.3 — the 6.1.x line is on OpenSSL 1.0.2zk. The practical use
 of this is therefore testing: it is somewhere to exercise a client's TLS 1.3 path before the
-commercial brokers get there. `tls_version=tlsv1.3` in `dxlbroker.conf` pins the listener to
-1.3 only, which is the configuration to test that path deliberately.
+commercial brokers get there. `DXL_TLS_VERSION=tlsv1.3` (or `tlsVersion=tlsv1.3` in
+`dxlbroker.conf`) pins the listener to 1.3 only, which is the configuration to test that path
+deliberately. The mirror image is `DXL_TLS_VERSION=tlsv1.2`, which is what the `legacy` and
+`trellix-6.1` profiles set for you.
 
 ## Fixing it on the client
 
