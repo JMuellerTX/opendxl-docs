@@ -30,17 +30,17 @@ repositories**.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 50 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Security | 52 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 58 | Defects that make the published code fail on a current runtime or return wrong results |
-| Build and packaging | 10 + 53 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
+| Build and packaging | 10 + 44 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
-| CI | 105 | Working GitHub Actions instead of `python setup.py test` |
+| CI | 110 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 7 | READMEs that no longer describe the code |
-| Chore | 34 | Mechanical, no behaviour: the account rename, formatting, version markers |
+| Chore | 36 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 ## Security and correctness fixes
 
-The full list of the 108 commits that fix a defect or harden something, as opposed to
+The full list of the 110 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -75,7 +75,9 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-client-java` | Add the TlsCiphers setting: JSSE cipher suite names, no OpenSSL syntax |
 | security | `opendxl-client-javascript` | Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x |
 | security | `opendxl-client-javascript` | Validate the management server certificate in the provisioning CLI |
+| security | `opendxl-console` | Issue X.509 v3 client certificates with the usual extensions |
 | security | `opendxl-console` | Add the LGPL notice and licence texts, drop the SDK's WEB-INF |
+| security | `opendxl-console` | Image: install dxlbootstrap from the fork, and stop running as root |
 | security | `opendxl-console` | Forward secrecy on the port that carries the management password |
 | security | `opendxl-domaintools-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-elasticsearch-client-python` | Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3) |
@@ -173,7 +175,6 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Make connect() safe against concurrent callers; do not drop odd otherFields silently
 - *bug fix* — CLI: report the TLS reason, not the whole request URL, on a failed handshake
 - *bug fix* — Seven review findings: the disconnect race, and a key lost to a typo
-- *dependencies* — Release workflow: build a wheel and publish it as a GitHub release
 - *tests* — Tests: DXL_TEST_CONFIG selects the client configuration for the broker-based tests
 - *tests* — Tests: TLS 1.3 minimum must connect when the broker offers TLS 1.3
 - *CI* — CI: run pytest on Python 3.9-3.14 with current actions
@@ -181,6 +182,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest instead of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: run the suite against the fork's broker as a second axis
+- *CI* — Release workflow: build a wheel and publish it as a GitHub release
 - *CI* — CI: the GHCR broker axis is no longer optional
 - *CI* — CI: pull the broker image from the account that now publishes it
 - *CI* — CI: supply the broker's console password instead of assuming it
@@ -203,12 +205,12 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *feature* — Build: per-JDK branch model with toolchain auto-provisioning
 - *feature* — Build: master is the JDK 21 line (toolchain 21, --release 21)
 - *dependencies* — Build with Gradle 8.14.5 and an explicit Java 8 target
-- *dependencies* — Release workflow: GitHub release plus GitHub Packages, version marked as a fork build
 - *tests* — Tests: run the CLI tests without a SecurityManager (JDK 18+)
 - *tests* — Tests: give up on an unreachable broker instead of reconnecting forever
 - *CI* — CI: actions/checkout@v4 and setup-java@v4 with a Temurin JDK matrix
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: only flip UseWebSockets, and time the job out
+- *CI* — Release workflow: GitHub release plus GitHub Packages, version marked as a fork build
 - *docs* — Docs: sync the dependency version references to 0.2.9
 - *Chore* — Point the fork references at JMuellerTX
 
@@ -218,11 +220,11 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *security* — Validate the management server certificate in the provisioning CLI
 - *bug fix* — Make PKI test helpers work with OpenSSL 3.2+ and Windows line endings
 - *bug fix* — Release: a metadata-only npm conflict must not fail the release
-- *dependencies* — Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages
-- *dependencies* — Release workflow: npm install, not npm ci
-- *dependencies* — Release workflow: run the tests that do not need a broker
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
+- *CI* — Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages
+- *CI* — Release workflow: npm install, not npm ci
+- *CI* — Release workflow: run the tests that do not need a broker
 - *Chore* — Version 0.1.4+fork.2
 
 **[opendxl-databus-client-java](https://github.com/JMuellerTX/opendxl-databus-client-java)** — 10 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
@@ -525,9 +527,9 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 **[bootprint-opendxl](https://github.com/JMuellerTX/bootprint-opendxl)** — 4 commits
 
 - *security* — Move to bootprint 4, which drops five critical advisories
-- *dependencies* — Release the template module so the fixed one can be installed
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
+- *Chore* — Release the template module so the fixed one can be installed
 
 **[opendxl-bootstrap-javascript](https://github.com/JMuellerTX/opendxl-bootstrap-javascript)** — 9 commits
 
@@ -550,18 +552,18 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 **[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 13 commits
 
+- *security* — Issue X.509 v3 client certificates with the usual extensions
 - *security* — Add the LGPL notice and licence texts, drop the SDK's WEB-INF
+- *security* — Image: install dxlbootstrap from the fork, and stop running as root
 - *security* — Forward secrecy on the port that carries the management password
 - *bug fix* — Support Python 3.8-3.14
 - *bug fix* — Fix provisioning on Python 3 (client configuration template read)
 - *bug fix* — Replace pkg_resources with importlib.resources
 - *dependencies* — Docker: python:3.13-slim base image, two-stage build
-- *dependencies* — Issue X.509 v3 client certificates with the usual extensions
-- *dependencies* — Lint: the certificate module is over pylint's line limit
-- *dependencies* — Image: install dxlbootstrap from the fork, and stop running as root
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: provision against the throwaway broker with --insecure
+- *Chore* — Lint: the certificate module is over pylint's line limit
 - *Chore* — Point the fork references at JMuellerTX
 
 ### Broker, containers and environments

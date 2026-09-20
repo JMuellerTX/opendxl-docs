@@ -7,12 +7,12 @@
     "repositories_total": 45,
     "by_kind": {
       "bug": 58,
-      "security": 50,
+      "security": 52,
       "docs": 7,
-      "ci": 105,
+      "ci": 110,
       "tests": 13,
-      "chore": 34,
-      "deps": 53,
+      "chore": 36,
+      "deps": 44,
       "feature": 10
     },
     "misattributed_commits": 0
@@ -134,7 +134,7 @@
         },
         {
           "subject": "Release workflow: build a wheel and publish it as a GitHub release",
-          "kind": "deps",
+          "kind": "ci",
           "author": "JMuellerTX"
         },
         {
@@ -182,7 +182,7 @@
         },
         {
           "subject": "Release the template module so the fixed one can be installed",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]
@@ -761,7 +761,7 @@
         },
         {
           "subject": "Release workflow: GitHub release plus GitHub Packages, version marked as a fork build",
-          "kind": "deps",
+          "kind": "ci",
           "author": "JMuellerTX"
         },
         {
@@ -804,17 +804,17 @@
         },
         {
           "subject": "Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages",
-          "kind": "deps",
+          "kind": "ci",
           "author": "JMuellerTX"
         },
         {
           "subject": "Release workflow: npm install, not npm ci",
-          "kind": "deps",
+          "kind": "ci",
           "author": "JMuellerTX"
         },
         {
           "subject": "Release workflow: run the tests that do not need a broker",
-          "kind": "deps",
+          "kind": "ci",
           "author": "JMuellerTX"
         },
         {
@@ -867,7 +867,7 @@
         },
         {
           "subject": "Issue X.509 v3 client certificates with the usual extensions",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         },
         {
@@ -877,7 +877,7 @@
         },
         {
           "subject": "Lint: the certificate module is over pylint's line limit",
-          "kind": "deps",
+          "kind": "chore",
           "author": "JMuellerTX"
         },
         {
@@ -897,7 +897,7 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork, and stop running as root",
-          "kind": "deps",
+          "kind": "security",
           "author": "JMuellerTX"
         },
         {
