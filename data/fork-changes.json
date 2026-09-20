@@ -2,13 +2,13 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 325,
+    "commits": 329,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
       "bug": 57,
-      "security": 49,
-      "docs": 4,
+      "security": 50,
+      "docs": 7,
       "ci": 105,
       "tests": 13,
       "chore": 34,
@@ -624,6 +624,21 @@
           "subject": "No default console password: generate one per volume, and let callers supply it",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "README: say what this fork's image does differently",
+          "kind": "docs",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "The trellix-6.1 suites were measured in a lab, not on a live fabric",
+          "kind": "docs",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Console config: document the cipher knob the console now honours",
+          "kind": "docs",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -878,6 +893,11 @@
         {
           "subject": "Image: install dxlbootstrap from the fork, and stop running as root",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Forward secrecy on the port that carries the management password",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]

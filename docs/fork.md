@@ -25,22 +25,22 @@ repositories**.
 
 ## What changed, in numbers
 
-325 commits across **44 of 45 repositories**. One was left alone:
+329 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 49 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Security | 50 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 57 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 53 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
 | CI | 105 | Working GitHub Actions instead of `python setup.py test` |
-| Docs | 4 | READMEs that no longer describe the code |
+| Docs | 7 | READMEs that no longer describe the code |
 | Chore | 34 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 ## Security and correctness fixes
 
-The full list of the 106 commits that fix a defect or harden something, as opposed to
+The full list of the 107 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -76,6 +76,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-client-javascript` | Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x |
 | security | `opendxl-client-javascript` | Validate the management server certificate in the provisioning CLI |
 | security | `opendxl-console` | Add the LGPL notice and licence texts, drop the SDK's WEB-INF |
+| security | `opendxl-console` | Forward secrecy on the port that carries the management password |
 | security | `opendxl-domaintools-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-elasticsearch-client-python` | Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3) |
 | security | `opendxl-elasticsearch-service-python` | Require elasticsearch 7.17 and drop the urllib3<1.25 pin |
@@ -545,9 +546,10 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 12 commits
+**[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 13 commits
 
 - *security* — Add the LGPL notice and licence texts, drop the SDK's WEB-INF
+- *security* — Forward secrecy on the port that carries the management password
 - *bug fix* — Support Python 3.8-3.14
 - *bug fix* — Fix provisioning on Python 3 (client configuration template read)
 - *bug fix* — Replace pkg_resources with importlib.resources
@@ -562,7 +564,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 22 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 25 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
@@ -584,6 +586,9 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: clone the Python client with its submodule
 - *CI* — CI: the Java CLI now validates the management server's certificate too; pass --insecure
 - *CI* — CI: publish the broker images to GHCR
+- *docs* — README: say what this fork's image does differently
+- *docs* — The trellix-6.1 suites were measured in a lab, not on a live fabric
+- *docs* — Console config: document the cipher knob the console now honours
 - *Chore* — Force LF line endings for the files copied into the image
 - *Chore* — Point the fork references at JMuellerTX
 
