@@ -36,6 +36,11 @@ jobs:
 
       - name: Collect
         id: collect
+        env:
+          # Not for access - everything read here is public - but for the rate
+          # limit. Anonymous is 60 requests an hour per address, this makes one
+          # per repository, and the address belongs to the whole runner fleet.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
           python tools/fleet_status.py --json fleet.json | tee fleet.txt && rc=0 || rc=$?
