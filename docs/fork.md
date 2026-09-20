@@ -25,12 +25,12 @@ repositories**.
 
 ## What changed, in numbers
 
-322 commits across **44 of 45 repositories**. One was left alone:
+323 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 47 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Security | 48 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 57 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 53 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
@@ -40,7 +40,7 @@ repositories**.
 
 ## Security and correctness fixes
 
-The full list of the 104 commits that fix a defect or harden something, as opposed to
+The full list of the 105 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -67,6 +67,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-bootstrap-javascript` | Pin tmp and uuid below the published DXL client |
 | security | `opendxl-broker` | startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS) |
 | security | `opendxl-broker` | Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM |
+| security | `opendxl-broker` | The console password is settable, and the container can run without one |
 | security | `opendxl-client-java` | Update dependencies with known vulnerabilities |
 | security | `opendxl-client-java` | Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname |
 | security | `opendxl-client-java` | CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits |
@@ -559,10 +560,11 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 20 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 21 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
+- *security* — The console password is settable, and the container can run without one
 - *bug fix* — Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener
 - *bug fix* — Build against OpenSSL 3: FIPS mode via the provider API
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage

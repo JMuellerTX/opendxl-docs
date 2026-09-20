@@ -2,12 +2,12 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 322,
+    "commits": 323,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
       "bug": 57,
-      "security": 47,
+      "security": 48,
       "docs": 4,
       "ci": 104,
       "tests": 13,
@@ -608,6 +608,11 @@
         {
           "subject": "The legacy TLS profiles no longer offer TLS 1.3",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "The console password is settable, and the container can run without one",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
