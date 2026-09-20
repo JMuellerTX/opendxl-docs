@@ -25,13 +25,13 @@ repositories**.
 
 ## What changed, in numbers
 
-321 commits across **44 of 45 repositories**. One was left alone:
+322 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
 | Security | 47 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
-| Bug fixes | 56 | Defects that make the published code fail on a current runtime or return wrong results |
+| Bug fixes | 57 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 53 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
 | CI | 104 | Working GitHub Actions instead of `python setup.py test` |
@@ -40,7 +40,7 @@ repositories**.
 
 ## Security and correctness fixes
 
-The full list of the 103 commits that fix a defect or harden something, as opposed to
+The full list of the 104 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -105,6 +105,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-broker` | startup: run the console from its virtual environment, RFC 5280 key usage |
 | bug fix | `opendxl-broker` | Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid |
 | bug fix | `opendxl-broker` | Image: install dxlbootstrap from the fork, or the console will not start |
+| bug fix | `opendxl-broker` | The legacy TLS profiles no longer offer TLS 1.3 |
 | bug fix | `opendxl-client-java` | Replace msgpack 0.6.7 with msgpack-core 0.9.12 |
 | bug fix | `opendxl-client-java` | Keep RSA key exchange cipher suites available for broker connections |
 | bug fix | `opendxl-client-java` | CLI: write errors to stderr and make --verbose effective |
@@ -558,7 +559,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 19 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 20 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
@@ -567,6 +568,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage
 - *bug fix* — Track dxlbroker/healthcheck.sh, which 65ecc83 referenced but .gitignore hid
 - *bug fix* — Image: install dxlbootstrap from the fork, or the console will not start
+- *bug fix* — The legacy TLS profiles no longer offer TLS 1.3
 - *feature* — Docker: Debian 12 / UBI 9 base images, OpenSSL 3, Python 3 console
 - *feature* — Report TLS version, cipher and certificate thumbprint in the client connect event
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
