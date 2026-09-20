@@ -5,3 +5,5 @@ __pycache__/
 site-offline/
 dist/
 tools/vendor/
+fleet.json
+fleet.txt
