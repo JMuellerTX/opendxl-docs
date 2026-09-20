@@ -30,13 +30,13 @@ repositories**.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 52 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
-| Bug fixes | 58 | Defects that make the published code fail on a current runtime or return wrong results |
+| Security | 51 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Bug fixes | 59 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 44 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
-| CI | 110 | Working GitHub Actions instead of `python setup.py test` |
+| CI | 111 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 7 | READMEs that no longer describe the code |
-| Chore | 36 | Mechanical, no behaviour: the account rename, formatting, version markers |
+| Chore | 35 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 ## Security and correctness fixes
 
@@ -77,7 +77,6 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-client-javascript` | Validate the management server certificate in the provisioning CLI |
 | security | `opendxl-console` | Issue X.509 v3 client certificates with the usual extensions |
 | security | `opendxl-console` | Add the LGPL notice and licence texts, drop the SDK's WEB-INF |
-| security | `opendxl-console` | Image: install dxlbootstrap from the fork, and stop running as root |
 | security | `opendxl-console` | Forward secrecy on the port that carries the management password |
 | security | `opendxl-domaintools-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-elasticsearch-client-python` | Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3) |
@@ -124,6 +123,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-console` | Support Python 3.8-3.14 |
 | bug fix | `opendxl-console` | Fix provisioning on Python 3 (client configuration template read) |
 | bug fix | `opendxl-console` | Replace pkg_resources with importlib.resources |
+| bug fix | `opendxl-console` | Image: install dxlbootstrap from the fork, and stop running as root |
 | bug fix | `opendxl-databus-client-java` | Update Kafka to 3.9.2 and repair the embedded test cluster |
 | bug fix | `opendxl-databus-client-java` | Sample: use StoreQueryParameters for the state store lookup |
 | bug fix | `opendxl-domaintools-service-python` | Fix Python 3.12+ compatibility |
@@ -529,7 +529,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *security* — Move to bootprint 4, which drops five critical advisories
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
-- *Chore* — Release the template module so the fixed one can be installed
+- *CI* — Release the template module so the fixed one can be installed
 
 **[opendxl-bootstrap-javascript](https://github.com/JMuellerTX/opendxl-bootstrap-javascript)** — 9 commits
 
@@ -554,11 +554,11 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 - *security* — Issue X.509 v3 client certificates with the usual extensions
 - *security* — Add the LGPL notice and licence texts, drop the SDK's WEB-INF
-- *security* — Image: install dxlbootstrap from the fork, and stop running as root
 - *security* — Forward secrecy on the port that carries the management password
 - *bug fix* — Support Python 3.8-3.14
 - *bug fix* — Fix provisioning on Python 3 (client configuration template read)
 - *bug fix* — Replace pkg_resources with importlib.resources
+- *bug fix* — Image: install dxlbootstrap from the fork, and stop running as root
 - *dependencies* — Docker: python:3.13-slim base image, two-stage build
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)

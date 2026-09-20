@@ -44,6 +44,13 @@ jobs:
           exit 1
         fi
 
+    # gen_fork.py owns the generated pages, and the step above owns gen_fork.py.
+    # A total typed into a sentence had nothing watching it: compatibility.md
+    # claimed "215 commits ... 16 security changes" for six regenerations after
+    # that stopped being true, on a page that links to the right figures.
+    - name: Hand-written totals match the inventory
+      run: python tools/check_prose_numbers.py
+
     # The standalone copy is the one people take away with them, and it breaks
     # in ways the served site does not - a link that only resolves behind a web
     # server, a resource that only loads from a CDN. build_offline.py fails on

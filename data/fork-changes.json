@@ -6,12 +6,12 @@
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 58,
-      "security": 52,
+      "bug": 59,
+      "security": 51,
       "docs": 7,
-      "ci": 110,
+      "ci": 111,
       "tests": 13,
-      "chore": 36,
+      "chore": 35,
       "deps": 44,
       "feature": 10
     },
@@ -182,7 +182,7 @@
         },
         {
           "subject": "Release the template module so the fixed one can be installed",
-          "kind": "chore",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -897,7 +897,7 @@
         },
         {
           "subject": "Image: install dxlbootstrap from the fork, and stop running as root",
-          "kind": "security",
+          "kind": "bug",
           "author": "JMuellerTX"
         },
         {

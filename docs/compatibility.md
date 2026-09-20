@@ -69,8 +69,8 @@ forward-secrecy-only cipher default the correct one going forward, not merely th
 ## Fixes available in the maintained fork
 
 All 45 repositories are forked and maintained by
-[**@JMuellerTX**](https://github.com/JMuellerTX) — 215 commits across 43 of them, including
-16 security changes and 35 bug fixes. [The maintained fork](fork.md) lists every one of them
+[**@JMuellerTX**](https://github.com/JMuellerTX) — 330 commits across 44 of them, including
+51 security changes and 59 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
 None of it is on PyPI, npm, Docker Hub or Maven Central - those namespaces belong to the
