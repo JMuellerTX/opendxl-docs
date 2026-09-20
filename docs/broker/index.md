@@ -33,6 +33,48 @@ immediately able to sign client certificates. Persist `/dxlbroker-volume` if you
 and the broker identity to survive a container replacement — without it, every restart from a
 fresh image invalidates every certificate it previously issued.
 
+### Credentials, and which port actually needs protecting
+
+The two ports a DXL client uses, 8883 and 443, have **no credentials at all** and do not need
+any: both require a client certificate (`require_certificate`), so the fabric is protected by
+mutual TLS. A client without a certificate signed by this broker's client CA never gets past
+the handshake. That is the DXL model, and it is why the broker is safe to run without a
+password anywhere near it.
+
+**Port 8443 is the exception, and it is the one that matters.** The console behind it holds
+the client CA and signs certificates on request, so whoever reaches it can mint an identity
+for the whole fabric. Its default login is `admin` / `password`, which is fine for a
+throwaway broker bound to `127.0.0.1` and nowhere near fine for anything else. The fork's
+image says so in its own log at every start, and gives three ways out:
+
+| Variable | Effect |
+|---|---|
+| `DXL_CONSOLE_PASSWORD=<value>` | sets the password |
+| `DXL_CONSOLE_PASSWORD=random` | generates one per container and prints it once, at start, in `docker logs` |
+| `DXL_CONSOLE_USER=<name>` | sets the user (default `admin`) |
+| `DXL_CONSOLE_ENABLED=false` | does not start the console at all |
+
+```bash
+# a broker with no credentials of any kind: mutual TLS and nothing else
+docker run -d --name dxlbroker -p 8883:8883 -p 8444:443 \
+  -e DXL_CONSOLE_ENABLED=false \
+  ghcr.io/jmuellertx/opendxl-broker:debian
+
+# console needed, but not with a known password
+docker run -d --name dxlbroker -p 8883:8883 -p 127.0.0.1:8443:8443 \
+  -e DXL_CONSOLE_PASSWORD=random \
+  ghcr.io/jmuellertx/opendxl-broker:debian
+docker logs dxlbroker | grep "Console credentials"
+```
+
+With the console switched off nothing can be provisioned against the broker, so bring
+certificates issued earlier (the persisted `/dxlbroker-volume` keeps the CA that signed them).
+
+One thing the passphrase on the CA key is **not**: protection. `OpenDxlBroker` is a constant
+in the start-up script, and the console needs it unattended, so it sits in cleartext in
+`dxlconsole.config` in the same directory as the key it protects. Treat the keystore
+directory, not the passphrase, as the secret.
+
 ## Configuration
 
 | File | Purpose |
