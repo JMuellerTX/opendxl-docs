@@ -2,14 +2,14 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 323,
+    "commits": 325,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
       "bug": 57,
-      "security": 48,
+      "security": 49,
       "docs": 4,
-      "ci": 104,
+      "ci": 105,
       "tests": 13,
       "chore": 34,
       "deps": 53,
@@ -144,6 +144,11 @@
         },
         {
           "subject": "CI: pull the broker image from the account that now publishes it",
+          "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "CI: supply the broker's console password instead of assuming it",
           "kind": "ci",
           "author": "JMuellerTX"
         }
@@ -612,6 +617,11 @@
         },
         {
           "subject": "The console password is settable, and the container can run without one",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "No default console password: generate one per volume, and let callers supply it",
           "kind": "security",
           "author": "JMuellerTX"
         }

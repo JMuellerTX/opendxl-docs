@@ -149,8 +149,11 @@ HTTP**. It now uses HTTPS.
 The root cause of the missing forward secrecy was `WITH_EC` never being defined at build
 time, so ECDHE was compiled out regardless of the `ciphers=` setting. The fork rebuilds on Debian 12 /
 UBI 9 against OpenSSL 3 (FIPS via the provider API), offers ECDHE/DHE, and exposes
-`DXL_TLS_MODE=modern|legacy|pfs-only|trellix-6.1` — see [TLS and ciphers](broker/tls.md). The bundled
-console had Python 3 defects that broke provisioning outright; it now runs on 3.8–3.14.
+`DXL_TLS_MODE=modern|legacy|pfs-only|trellix-6.1` — see [TLS and ciphers](broker/tls.md), where the
+profile now also fixes the protocol ceiling, because a cipher list reaches TLS 1.2 and below and
+the 1.3 suites are a separate list. The bundled console had Python 3 defects that broke
+provisioning outright; it now runs on 3.8–3.14 — and has no hardcoded password any more, see
+[Security guidance](security.md#the-one-password-the-management-console).
 
 ### Node-RED and containers
 

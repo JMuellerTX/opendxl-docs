@@ -104,6 +104,7 @@ directory, not the passphrase, as the secret.
 | `topicauth.policy` | Per-topic send/receive allow-lists by certificate thumbprint |
 | `general.policy` | Keep-alive for broker bridges, connection limit |
 | `brokerstate.policy` | Broker mesh state |
+| `console/console-credentials` | The console login for this volume (fork's image only, mode 0600) |
 
 Selected defaults:
 
@@ -235,6 +236,11 @@ What the port consisted of, for anyone maintaining a different base:
   The profile also sets the protocol ceiling, because a cipher list cannot: `legacy` and
   `trellix-6.1` pin TLS 1.2, since the brokers they imitate cannot do 1.3. `DXL_TLS_VERSION`
   overrides that.
+- `DXL_CONSOLE_PASSWORD`, `DXL_CONSOLE_USER` and `DXL_CONSOLE_ENABLED` replace the
+  hardcoded `admin`/`password`; unset, a password is generated per volume on first start.
+
+Every one of these is read on **each** start, not only the first, so a profile or a
+password can be changed by recreating the container against the same volume.
 
 ## Related components
 

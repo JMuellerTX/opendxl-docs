@@ -20,6 +20,36 @@ else — topic authorization, audit, revocation — hangs off that.
 - **Plan revocation before you need it.** Know who runs the CA — the broker in a lab,
   ePolicy Orchestrator in a managed fabric — and how a certificate is revoked there.
 
+## The one password: the management console
+
+"No username or password" holds for the fabric, and stops holding at the broker's
+management port. The console on 8443 is what `provisionconfig` talks to, which means it
+holds the client CA and signs certificates on request. **Whoever reaches it can issue
+themselves an identity for the fabric** — and that identity is, per the section above,
+everything.
+
+So it is worth being precise about where that port is and what guards it:
+
+- **Bind it to loopback, or not at all.** `-p 127.0.0.1:8443:8443` for a lab broker.
+  Nothing about DXL requires the console to be reachable from the network; clients use
+  8883 and 443, and neither of those has or needs a password.
+- **`opendxl/opendxl-broker` ships `admin` / `password`** and offers no way to change it.
+  Published on any network, that image is a certificate authority with a documented
+  password. The [maintained fork](fork.md) has no default: it generates one per volume on
+  first start, prints it once and keeps it, or takes one from `DXL_CONSOLE_PASSWORD`. See
+  [Credentials, and which port actually needs protecting](broker/index.md#credentials-and-which-port-actually-needs-protecting).
+- **Turn the console off when nothing provisions against it.** `DXL_CONSOLE_ENABLED=false`
+  in the fork's image leaves a broker with no credentials anywhere in it, held entirely by
+  mutual TLS. Certificates then have to come from somewhere else — a persisted volume
+  keeps the CA that signed the existing ones.
+- **The passphrase on the CA key is not a control.** The console needs it unattended, so
+  it sits in cleartext in `dxlconsole.config` beside the key. What protects the CA is the
+  keystore directory and who can reach the port, not that string.
+
+The managed equivalent is ePolicy Orchestrator, where the same reasoning applies to the
+account `provisionconfig` authenticates with: it can mint fabric identities, so it is not
+an ordinary read-only service account.
+
 ## Transport
 
 TLS 1.2 minimum, forward secrecy where the fabric allows it. The details, including why an

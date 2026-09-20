@@ -25,22 +25,22 @@ repositories**.
 
 ## What changed, in numbers
 
-323 commits across **44 of 45 repositories**. One was left alone:
+325 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 48 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Security | 49 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 57 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 53 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
-| CI | 104 | Working GitHub Actions instead of `python setup.py test` |
+| CI | 105 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 4 | READMEs that no longer describe the code |
 | Chore | 34 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 ## Security and correctness fixes
 
-The full list of the 105 commits that fix a defect or harden something, as opposed to
+The full list of the 106 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -68,6 +68,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-broker` | startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS) |
 | security | `opendxl-broker` | Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM |
 | security | `opendxl-broker` | The console password is settable, and the container can run without one |
+| security | `opendxl-broker` | No default console password: generate one per volume, and let callers supply it |
 | security | `opendxl-client-java` | Update dependencies with known vulnerabilities |
 | security | `opendxl-client-java` | Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname |
 | security | `opendxl-client-java` | CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits |
@@ -155,7 +156,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Core clients
 
-**[opendxl-client-python](https://github.com/JMuellerTX/opendxl-client-python)** — 24 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
+**[opendxl-client-python](https://github.com/JMuellerTX/opendxl-client-python)** — 25 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
 
 - *security* — Default TLS cipher list: forward secrecy first, AES128-SHA256 as fallback
 - *security* — Add TlsCiphers setting to the client configuration file
@@ -179,6 +180,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: run the suite against the fork's broker as a second axis
 - *CI* — CI: the GHCR broker axis is no longer optional
 - *CI* — CI: pull the broker image from the account that now publishes it
+- *CI* — CI: supply the broker's console password instead of assuming it
 - *docs* — Document the branch strategy (master vs. epo-legacy)
 - *Chore* — Mark the fork's version: 5.7.0.1+fork.1
 
@@ -560,11 +562,12 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 21 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 22 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
 - *security* — The console password is settable, and the container can run without one
+- *security* — No default console password: generate one per volume, and let callers supply it
 - *bug fix* — Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener
 - *bug fix* — Build against OpenSSL 3: FIPS mode via the provider API
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage
