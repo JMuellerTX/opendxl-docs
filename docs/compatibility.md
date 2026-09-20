@@ -29,6 +29,13 @@ almost everything you will hit:
 
 ## Broker and fabric versions
 
+!!! info "Where the measured numbers come from"
+    Every "measured" below is a scan of a lab installation — ePolicy Orchestrator 5.10
+    SP1 U7 with a DXL 6.1.3.55 broker on a local VM, and the container images for the
+    open source side. No production or customer system was involved, and nothing here
+    needs one: `openssl s_client` and `nmap ssl-enum-ciphers` against your own fabric
+    reproduce all of it in a minute.
+
 | Fabric | TLS | Ciphers | Notes |
 |---|---|---|---|
 | OpenDXL broker (Docker image, 2021) | 1.2 max | 8 suites, all `TLS_RSA_*`, no forward secrecy | OpenSSL 1.0.2 on Debian stretch (EOL 2022). `WITH_EC` not compiled in — see [The broker](broker/index.md#building-a-current-image) |
@@ -36,7 +43,7 @@ almost everything you will hit:
 | Trellix DXL 6.1.1+ | 1.2 max | 4 ECDHE (secp256r1) + 8 RSA key transport | Measured against a 6.1.3.55 broker. ECDHE available; the first version a stock modern client connects to unaided |
 | Trellix DXL 6.1.2+ | 1.2 max | as above | Adds IPv6 broker listeners |
 | OpenDXL broker, fork on OpenSSL 4 | **1.3** | 3 TLS 1.3 suites + 15 on TLS 1.2 | Measured. TLS 1.3 key exchange is **X25519MLKEM768**, a post-quantum hybrid. See [the maintained fork](fork.md) |
-| ePO 5.10 SP1 U7 (management service) | **1.3** | 4 TLS 1.3 suites + 4 ECDHE on 1.2 | Measured. `provisionconfig`/`updateconfig` talk to this, not to the MQTT listener. **Offering TLS 1.3 depends on the web server configuration** — the same server presented TLS 1.2 only until Apache was restarted |
+| ePO 5.10 SP1 U7 (management service) | **1.3** | 4 TLS 1.3 suites + 4 ECDHE on 1.2 | Measured. `provisionconfig`/`updateconfig` talk to this, not to the MQTT listener. **Offering TLS 1.3 depends on the web server configuration** — the same lab server presented TLS 1.2 only until Apache was restarted |
 
 The broker appliance in DXL 6.1.x still runs OpenSSL 1.0.2zk, so **TLS 1.3 is not available on
 the fabric connection** regardless of client support — confirmed by scanning a 6.1.3.55 broker.

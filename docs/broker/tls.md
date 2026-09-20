@@ -67,7 +67,7 @@ The [maintained broker fork](../fork.md) exposes four profiles through the envir
 | `modern` (default) | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:AES128-SHA256:!aNULL:!eNULL:!MD5:!3DES` | 1.3 | Trellix DXL ≥ 6.1.1: forward secrecy first, legacy suite as fallback |
 | `legacy` | `AES128-SHA256:AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:!aNULL:!eNULL` | 1.2 | DXL brokers before 6.1.1 — for reproducing the old behaviour on purpose |
 | `pfs-only` | `ECDHE+AESGCM:ECDHE+AES:DHE+AES:!aNULL:!eNULL:!MD5:!3DES` | 1.3 | A FIPS-140-3-oriented profile with no RSA key transport at all |
-| `trellix-6.1` | the twelve suites listed below | 1.2 | Exactly what a Trellix DXL 6.1.3.55 broker presents, measured against a live fabric. Use this to test against production rather than a superset of it |
+| `trellix-6.1` | the twelve suites listed below | 1.2 | Exactly what a Trellix DXL 6.1.3.55 broker presents, measured against one in a lab. Use this to test against what production offers rather than against a superset of it |
 
 `DXL_TLS_CIPHERS` overrides the list with an explicit OpenSSL cipher string. An explicit
 `ciphers=` line in `dxlbroker.conf` still wins over both.
