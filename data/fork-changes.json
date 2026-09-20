@@ -2,11 +2,11 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 329,
+    "commits": 330,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 57,
+      "bug": 58,
       "security": 50,
       "docs": 7,
       "ci": 105,
@@ -150,6 +150,11 @@
         {
           "subject": "CI: supply the broker's console password instead of assuming it",
           "kind": "ci",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Seven review findings: the disconnect race, and a key lost to a typo",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
