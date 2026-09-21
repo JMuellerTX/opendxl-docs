@@ -79,7 +79,7 @@ The fork uses three kinds of git reference, and the difference is deliberate:
 
 | Reference | Where | Why |
 |---|---|---|
-| `fork-2026-09-21` | Dockerfiles | A **collective tag**, one per repository, marking the state at the end of a connected run of sessions. An image has to be reproducible. |
+| `fork-2026-09-21` | Dockerfiles | A **collective tag**, one in each of the 44 repositories the fork changed (`opendxl-build-status` has none, because it has no fork commit), marking the state at the end of a connected run of sessions. An image has to be reproducible. |
 | `fork-2026-09-21-epo-legacy` | Dockerfiles that need the fallback line | The `epo-legacy` branch of the Python client keeps `AES128-SHA256` for brokers older than DXL 6.1.1; `master` is forward secrecy only. One tag for both lines would have moved every image to the other one. |
 | `@master` / `@epo-legacy` | `setup.py`, CI workflows | A branch says which **line** a library needs, not which build shipped. CI tests the tip on purpose. |
 
@@ -92,23 +92,65 @@ can still contain the build before it.
 
 ### Installing from a clone
 
-The Python repositories name the fork's client and bootstrap directly:
+`setup.py` in the Python repositories keeps naming `dxlclient` and `dxlbootstrap` by
+plain name, so **a bare `pip install .` resolves them from PyPI** - and the published
+`dxlclient` requires `msgpack<1.0.0` while the published `dxlbootstrap` imports
+`pkg_resources`, which setuptools 82 removed. Install the fork's builds first:
 
-```python
-install_requires=[
-    "dxlbootstrap @ git+https://github.com/JMuellerTX/opendxl-bootstrap-python@master",
-    "dxlclient @ git+https://github.com/JMuellerTX/opendxl-client-python@epo-legacy",
-]
+```bash
+pip install "dxlclient @ git+https://github.com/JMuellerTX/opendxl-client-python@epo-legacy"
+pip install "dxlbootstrap @ git+https://github.com/JMuellerTX/opendxl-bootstrap-python@master"
+pip install .
 ```
 
-Not cosmetic: the published `dxlclient` requires `msgpack<1.0.0`, and the published
-`dxlbootstrap` imports `pkg_resources`, which setuptools 82 removed. Every CI here
-already installed the fork builds first and so never saw either problem - but a clone
-plus `pip install .` did. Resolved in a clean environment after the change:
-`dxlclient 5.7.0.1+fork.1` and `dxlbootstrap 0.2.2` from GitHub, and **`msgpack 1.2.2`**.
+That is what every CI here does, and what the Dockerfiles do in one resolver pass, so
+neither ever reaches PyPI for these two.
 
-A direct reference cannot be uploaded to PyPI. That costs nothing here, because none of
-this is published there - see below.
+??? note "Why not a direct reference in `setup.py`, which would make this automatic"
+
+    It was tried on 2026-09-21 and reverted the same day. A PEP 508 direct reference
+    does remove the PyPI resolution - measured, `msgpack 1.2.2` instead of `0.6.2` - but
+    it lands in the wheel metadata, and that costs more than it buys:
+
+    * **Images stop building.** Where a Dockerfile resolves the pinned `ARG` URL and `.`
+      in one pass, pip sees two different direct URLs for one project name and fails with
+      `ResolutionImpossible`, even when the versions are identical.
+    * **Offline installs stop working.** The broker and console runtime stages install
+      from pre-built wheels with `--no-index`; a direct URL in the metadata needs `git`
+      and GitHub at install time. An air-gapped or mirrored install - realistic for ePO -
+      fails where a version specifier resolved locally.
+    * **The `master` line becomes uninstallable.** `dxlbootstrap` would hard-require the
+      `epo-legacy` client, so the forward-secrecy-only line could no longer be deployed
+      through these packages at all.
+    * **The pin becomes nominal.** A `pip install .` after the pinned `ARG` re-resolves
+      the branch, so the image no longer matches its own pin.
+
+    The only case a direct reference improves is someone cloning and running
+    `pip install .` without reading anything. That is worth documenting, not worth those
+    four costs. The real fix is one release from upstream - see below.
+
+### What a clean master and clean registries would take
+
+Everything below is blocked on someone who is not the fork. Listing it precisely is the
+point: each line names the one party who can act, and what it unlocks.
+
+| What | Who can do it | Why only them | What it unlocks |
+|---|---|---|---|
+| **A clean upstream `master`** | the OpenDXL maintainers | Only they can merge into `opendxl/*`. The fork is 330 commits across 44 repositories, on branches with clean history, and every repository still records `opendxl/<name>` as its parent - so a pull request arrives the ordinary way. | The fixes stop being a fork. Downstream projects get them without changing a single reference. |
+| **PyPI `dxlclient`** | the account that owns the name | A PyPI name belongs to an **account**, not to a domain. No DNS record, no trademark and no fork can obtain it; `opendxl.com` is irrelevant here. | One upload without the `msgpack<1.0.0` pin ends the transitive advisory in **20 downstream projects** at once. Nothing else on this page comes close in value per effort. |
+| **Maven Central `com.opendxl`** | whoever holds `opendxl.com` **and** the Central account | Central verifies a namespace by a **DNS TXT record on the matching domain**. This one really is domain-bound - the opposite of PyPI, and the two are regularly confused. | Java consumers get the fixed client under the coordinates their builds already resolve. |
+| **npm `@opendxl`** | an owner of the npm organisation | A scope is an npm organisation; membership is the only key. | Same for the JavaScript line, including the `tmp`/`uuid` chain the fork works around with overrides. |
+
+What the fork can do without any of them, and has: publish to **GitHub Releases, GitHub
+Packages and GHCR** under a `fork.n` version marker, and pin its own images to a
+collective tag. What it deliberately will not do is occupy any of those three
+namespaces - a fork publishing under a name it does not own is indistinguishable from
+the supply-chain attack described in
+[Security](security.md#package-names-are-a-security-boundary).
+
+**The order that matters:** the upstream release is worth more than everything else
+combined, it needs no domain, no legal step and no coordination with the fork - and it
+is the one thing the fork cannot substitute for.
 
 None of it is on PyPI, npm, Docker Hub or Maven Central - those namespaces belong to the
 upstream project (see [Security](security.md#package-names-are-a-security-boundary)). The fork
