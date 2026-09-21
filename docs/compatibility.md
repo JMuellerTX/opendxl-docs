@@ -73,6 +73,43 @@ All 45 repositories are forked and maintained by
 51 security changes and 59 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
+### Tags, branches and what a reference should point at
+
+The fork uses three kinds of git reference, and the difference is deliberate:
+
+| Reference | Where | Why |
+|---|---|---|
+| `fork-2026-09-21` | Dockerfiles | A **collective tag**, one per repository, marking the state at the end of a connected run of sessions. An image has to be reproducible. |
+| `fork-2026-09-21-epo-legacy` | Dockerfiles that need the fallback line | The `epo-legacy` branch of the Python client keeps `AES128-SHA256` for brokers older than DXL 6.1.1; `master` is forward secrecy only. One tag for both lines would have moved every image to the other one. |
+| `@master` / `@epo-legacy` | `setup.py`, CI workflows | A branch says which **line** a library needs, not which build shipped. CI tests the tip on purpose. |
+
+These are not the `v<version>+fork.n` tags. Those mark a **release** that carries
+artifacts; the collective tag is a reproducibility anchor and carries nothing.
+
+`@master` in an image was never reproducible, and it is not even reliably current:
+Docker caches the layer as long as the line does not change, so a rebuild after a fix
+can still contain the build before it.
+
+### Installing from a clone
+
+The Python repositories name the fork's client and bootstrap directly:
+
+```python
+install_requires=[
+    "dxlbootstrap @ git+https://github.com/JMuellerTX/opendxl-bootstrap-python@master",
+    "dxlclient @ git+https://github.com/JMuellerTX/opendxl-client-python@epo-legacy",
+]
+```
+
+Not cosmetic: the published `dxlclient` requires `msgpack<1.0.0`, and the published
+`dxlbootstrap` imports `pkg_resources`, which setuptools 82 removed. Every CI here
+already installed the fork builds first and so never saw either problem - but a clone
+plus `pip install .` did. Resolved in a clean environment after the change:
+`dxlclient 5.7.0.1+fork.1` and `dxlbootstrap 0.2.2` from GitHub, and **`msgpack 1.2.2`**.
+
+A direct reference cannot be uploaded to PyPI. That costs nothing here, because none of
+this is published there - see below.
+
 None of it is on PyPI, npm, Docker Hub or Maven Central - those namespaces belong to the
 upstream project (see [Security](security.md#package-names-are-a-security-boundary)). The fork
 publishes its own releases instead: a wheel, the Java jars, an npm tarball and a broker image

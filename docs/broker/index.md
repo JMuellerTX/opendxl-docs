@@ -199,6 +199,15 @@ docker run -d --name dxlbroker -p 8883:8883 -p 8443:8443 -p 8444:443 dxlbroker:a
 The fork's CI publishes both images to GitHub Container Registry on every push to `master`,
 after the build jobs have run the Java and Python client suites against them:
 
+!!! note "What the image is built from"
+    The Dockerfiles pin every cross-repository reference to the collective tag
+    `fork-2026-09-21` (and `fork-2026-09-21-epo-legacy` for the Python client, whose
+    `epo-legacy` line keeps the `AES128-SHA256` fallback). A rebuild therefore produces
+    the same image rather than whatever the branches happened to hold - see
+    [Compatibility](../compatibility.md#tags-branches-and-what-a-reference-should-point-at).
+    Override one for a test with `--build-arg`, for example
+    `--build-arg DXL_CONSOLE_PIP_SPEC=git+https://github.com/JMuellerTX/opendxl-console@master`.
+
 ```bash
 docker pull ghcr.io/jmuellertx/opendxl-broker:debian      # also :latest
 docker pull ghcr.io/jmuellertx/opendxl-broker:almalinux
