@@ -25,16 +25,16 @@ repositories**.
 
 ## What changed, in numbers
 
-330 commits across **44 of 45 repositories**. One was left alone:
+373 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
 | Security | 51 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 59 | Defects that make the published code fail on a current runtime or return wrong results |
-| Build and packaging | 10 + 44 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
+| Build and packaging | 10 + 86 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
-| CI | 111 | Working GitHub Actions instead of `python setup.py test` |
+| CI | 112 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 7 | READMEs that no longer describe the code |
 | Chore | 35 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
@@ -266,19 +266,23 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Product client libraries
 
-**[opendxl-domaintools-client-python](https://github.com/JMuellerTX/opendxl-domaintools-client-python)** — 5 commits
+**[opendxl-domaintools-client-python](https://github.com/JMuellerTX/opendxl-domaintools-client-python)** — 7 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *tests* — Add unit tests for DomainToolsApiClient with a fake DXL client
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-elasticsearch-client-python](https://github.com/JMuellerTX/opendxl-elasticsearch-client-python)** — 6 commits
+**[opendxl-elasticsearch-client-python](https://github.com/JMuellerTX/opendxl-elasticsearch-client-python)** — 8 commits
 
 - *security* — Drop the urllib3<1.25 pin (nine known vulnerabilities in urllib3 1.24.3)
 - *bug fix* — Fix AttributeError for error responses without "info", add unit tests
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
@@ -293,10 +297,12 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: install the client from the v0.1.4+fork.2 release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-epo-client-python](https://github.com/JMuellerTX/opendxl-epo-client-python)** — 5 commits
+**[opendxl-epo-client-python](https://github.com/JMuellerTX/opendxl-epo-client-python)** — 7 commits
 
 - *bug fix* — Fix SyntaxWarning: compare ePO service count with == instead of is
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
@@ -311,43 +317,53 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: install the client from the v0.1.4+fork.2 release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-mar-client-python](https://github.com/JMuellerTX/opendxl-mar-client-python)** — 6 commits
+**[opendxl-mar-client-python](https://github.com/JMuellerTX/opendxl-mar-client-python)** — 8 commits
 
 - *bug fix* — Fix TypeError for non-string MAR error bodies, Python 3 doc examples
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *tests* — Add unit tests for MarClient with a fake DXL client
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-maxmind-client-python](https://github.com/JMuellerTX/opendxl-maxmind-client-python)** — 5 commits
+**[opendxl-maxmind-client-python](https://github.com/JMuellerTX/opendxl-maxmind-client-python)** — 7 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *tests* — Tests: mocked client wrapper tests, skip sample test without license key
 - *CI* — CI: install the fixed dxlclient and dxlbootstrap forks first
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-misp-client-python](https://github.com/JMuellerTX/opendxl-misp-client-python)** — 4 commits
+**[opendxl-misp-client-python](https://github.com/JMuellerTX/opendxl-misp-client-python)** — 6 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: install the fixed dxlclient and dxlbootstrap forks first
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-openc2-client-python](https://github.com/JMuellerTX/opendxl-openc2-client-python)** — 6 commits
+**[opendxl-openc2-client-python](https://github.com/JMuellerTX/opendxl-openc2-client-python)** — 8 commits
 
 - *bug fix* — Require stix2 < 3 (openc2 1.0.5 is incompatible with stix2 3.x)
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py ci
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *tests* — Add unit tests for OpenC2Client with a fake DXL client
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-pxgrid-client-python](https://github.com/JMuellerTX/opendxl-pxgrid-client-python)** — 6 commits
+**[opendxl-pxgrid-client-python](https://github.com/JMuellerTX/opendxl-pxgrid-client-python)** — 8 commits
 
 - *bug fix* — Do not raise from event callbacks when "content" is not base64 JSON
 - *dependencies* — Packaging and CI for Python 3.8-3.14, run pytest in CI
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *tests* — Add unit tests for the client request methods
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
@@ -363,23 +379,27 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: install the client from the v0.1.4+fork.2 release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-tie-client-python](https://github.com/JMuellerTX/opendxl-tie-client-python)** — 4 commits
+**[opendxl-tie-client-python](https://github.com/JMuellerTX/opendxl-tie-client-python)** — 6 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-virustotal-client-python](https://github.com/JMuellerTX/opendxl-virustotal-client-python)** — 4 commits
+**[opendxl-virustotal-client-python](https://github.com/JMuellerTX/opendxl-virustotal-client-python)** — 6 commits
 
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
 ### Services
 
-**[opendxl-domaintools-service-python](https://github.com/JMuellerTX/opendxl-domaintools-service-python)** — 9 commits
+**[opendxl-domaintools-service-python](https://github.com/JMuellerTX/opendxl-domaintools-service-python)** — 11 commits
 
 - *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
@@ -387,11 +407,13 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-elasticsearch-service-python](https://github.com/JMuellerTX/opendxl-elasticsearch-service-python)** — 9 commits
+**[opendxl-elasticsearch-service-python](https://github.com/JMuellerTX/opendxl-elasticsearch-service-python)** — 11 commits
 
 - *security* — Require elasticsearch 7.17 and drop the urllib3<1.25 pin
 - *security* — Image: run the service as an unprivileged user
@@ -399,11 +421,13 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-epo-service-python](https://github.com/JMuellerTX/opendxl-epo-service-python)** — 9 commits
+**[opendxl-epo-service-python](https://github.com/JMuellerTX/opendxl-epo-service-python)** — 11 commits
 
 - *security* — Image: run the service as an unprivileged user
 - *security* — Stop suppressing a certificate warning that was never the caller's choice
@@ -411,11 +435,13 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-maxmind-service-python](https://github.com/JMuellerTX/opendxl-maxmind-service-python)** — 10 commits
+**[opendxl-maxmind-service-python](https://github.com/JMuellerTX/opendxl-maxmind-service-python)** — 12 commits
 
 - *security* — Download the MaxMind database over HTTPS
 - *security* — Image: run the service as an unprivileged user
@@ -423,12 +449,14 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *tests* — Tests: skip the sample test when no MaxMind license key is configured
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-misp-service-python](https://github.com/JMuellerTX/opendxl-misp-service-python)** — 9 commits
+**[opendxl-misp-service-python](https://github.com/JMuellerTX/opendxl-misp-service-python)** — 11 commits
 
 - *security* — Drop the enum34 dependency
 - *security* — Image: run the service as an unprivileged user
@@ -436,39 +464,47 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-thehive-service-python](https://github.com/JMuellerTX/opendxl-thehive-service-python)** — 8 commits
+**[opendxl-thehive-service-python](https://github.com/JMuellerTX/opendxl-thehive-service-python)** — 10 commits
 
 - *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-urlvoid-service-python](https://github.com/JMuellerTX/opendxl-urlvoid-service-python)** — 8 commits
+**[opendxl-urlvoid-service-python](https://github.com/JMuellerTX/opendxl-urlvoid-service-python)** — 10 commits
 
 - *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-virustotal-service-python](https://github.com/JMuellerTX/opendxl-virustotal-service-python)** — 8 commits
+**[opendxl-virustotal-service-python](https://github.com/JMuellerTX/opendxl-virustotal-service-python)** — 10 commits
 
 - *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: provision against the throwaway broker with --insecure
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
@@ -543,14 +579,16 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: install the client from the v0.1.4+fork.2 release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-bootstrap-python](https://github.com/JMuellerTX/opendxl-bootstrap-python)** — 4 commits
+**[opendxl-bootstrap-python](https://github.com/JMuellerTX/opendxl-bootstrap-python)** — 6 commits
 
 - *bug fix* — Replace pkg_resources with importlib.resources, fix SyntaxWarnings
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
+- *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: test against the fork's dxlclient, not the PyPI release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 13 commits
+**[opendxl-console](https://github.com/JMuellerTX/opendxl-console)** — 15 commits
 
 - *security* — Issue X.509 v3 client certificates with the usual extensions
 - *security* — Add the LGPL notice and licence texts, drop the SDK's WEB-INF
@@ -560,6 +598,8 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Replace pkg_resources with importlib.resources
 - *bug fix* — Image: install dxlbootstrap from the fork, and stop running as root
 - *dependencies* — Docker: python:3.13-slim base image, two-stage build
+- *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
+- *dependencies* — Take the direct references back out of setup.py
 - *CI* — CI: Python 3.10-3.14 matrix, current actions, pytest
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: provision against the throwaway broker with --insecure
@@ -568,7 +608,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 25 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 26 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
@@ -582,6 +622,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — The legacy TLS profiles no longer offer TLS 1.3
 - *feature* — Docker: Debian 12 / UBI 9 base images, OpenSSL 3, Python 3 console
 - *feature* — Report TLS version, cipher and certificate thumbprint in the client connect event
+- *dependencies* — Pin the image's fork refs to fork-2026-09-21
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: test the image with the fork of the Java client, current actions
 - *CI* — CI: run the Java client test suite on JDK 21
@@ -600,7 +641,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 - *docs* — README: fix dead link to the Cuckoo reporting module documentation
 
-**[opendxl-environment](https://github.com/JMuellerTX/opendxl-environment)** — 11 commits
+**[opendxl-environment](https://github.com/JMuellerTX/opendxl-environment)** — 13 commits
 
 - *security* — Say why this image runs as root, and what that costs
 - *bug fix* — Image: install dxlbootstrap from the fork
@@ -609,8 +650,10 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *feature* — Move to python:3.12-slim-bookworm, Node 22, JDK 17 and current tools
 - *feature* — Notice when a pinned release has moved on
 - *dependencies* — Image: install bootprint-opendxl from the fork's release tarball
+- *dependencies* — Pin the image's fork refs to fork-2026-09-21
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — CI: actions/checkout@v4
+- *CI* — The staleness watchdog also watches the collective tags
 - *Chore* — Force LF line endings for shell scripts
 - *Chore* — Point the fork references at JMuellerTX
 

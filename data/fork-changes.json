@@ -2,17 +2,17 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 330,
+    "commits": 373,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
       "bug": 59,
       "security": 51,
       "docs": 7,
-      "ci": 111,
+      "ci": 112,
       "tests": 13,
       "chore": 35,
-      "deps": 44,
+      "deps": 86,
       "feature": 10
     },
     "misattributed_commits": 0
@@ -509,6 +509,16 @@
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -643,6 +653,11 @@
         {
           "subject": "Console config: document the cipher knob the console now honours",
           "kind": "docs",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the image's fork refs to fork-2026-09-21",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -904,6 +919,16 @@
           "subject": "Forward secrecy on the port that carries the management password",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1012,6 +1037,16 @@
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1065,6 +1100,16 @@
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1102,6 +1147,16 @@
         {
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1155,6 +1210,16 @@
         {
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1218,6 +1283,16 @@
         {
           "subject": "Say why this image runs as root, and what that costs",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the image's fork refs to fork-2026-09-21",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "The staleness watchdog also watches the collective tags",
+          "kind": "ci",
           "author": "JMuellerTX"
         }
       ]
@@ -1295,6 +1370,16 @@
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1347,6 +1432,16 @@
         {
           "subject": "Stop suppressing a certificate warning that was never the caller's choice",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1429,6 +1524,16 @@
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1461,6 +1566,16 @@
         {
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1520,6 +1635,16 @@
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1547,6 +1672,16 @@
         {
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1600,6 +1735,16 @@
         {
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1657,6 +1802,16 @@
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1694,6 +1849,16 @@
         {
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -1846,6 +2011,16 @@
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1917,6 +2092,16 @@
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1965,6 +2150,16 @@
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1992,6 +2187,16 @@
         {
           "subject": "Point the fork references at JMuellerTX",
           "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Install the fork's client and bootstrap, not the PyPI ones",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]
@@ -2040,6 +2245,16 @@
         {
           "subject": "Image: run the service as an unprivileged user",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pin the fork refs: tag in the image, branch in setup.py",
+          "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Take the direct references back out of setup.py",
+          "kind": "deps",
           "author": "JMuellerTX"
         }
       ]

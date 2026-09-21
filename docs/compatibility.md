@@ -69,7 +69,7 @@ forward-secrecy-only cipher default the correct one going forward, not merely th
 ## Fixes available in the maintained fork
 
 All 45 repositories are forked and maintained by
-[**@JMuellerTX**](https://github.com/JMuellerTX) — 330 commits across 44 of them, including
+[**@JMuellerTX**](https://github.com/JMuellerTX) — 373 commits across 44 of them, including
 51 security changes and 59 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
