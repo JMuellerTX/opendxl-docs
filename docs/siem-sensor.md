@@ -45,7 +45,7 @@ then only listens. It never publishes on business topics.
 
 | DXL source | OCSF class | Notes |
 |---|---|---|
-| `svcregistry/register` / `unregister` | API Activity (6003), create / delete | Service type, GUID, request channels, TTL, certificate thumbprints of the registering client |
+| `svcregistry/register` / `unregister` | API Activity (6003), create / delete | Service type, service GUID, registering client GUID (plus TTL and certificate thumbprints tracked by the detection engine) |
 | `clientregistry/connect` / `disconnect` | Network Activity (4001) | Only when the broker publishes them — see below |
 | Detections (below) | Detection Finding (2004) | Severity, the client's certificate thumbprint as `suser` |
 

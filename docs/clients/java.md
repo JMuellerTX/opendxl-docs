@@ -1,8 +1,8 @@
 # Java client
 
-Artifact `com.opendxl:dxlclient`. Feature parity with the Python client for messaging;
-provisioning is done with the Python CLI or ePolicy Orchestrator, then the resulting
-`dxlclient.config` is read by the Java client.
+Artifact `com.opendxl:dxlclient`. Feature parity with the Python client for messaging and
+command-line provisioning (`java -jar dxlclient-all.jar provisionconfig ...`), reading and
+writing the same `dxlclient.config` format.
 
 - Upstream: [opendxl/opendxl-client-java](https://github.com/opendxl/opendxl-client-java)
 - API documentation: [opendxl.github.io/opendxl-client-java](https://opendxl.github.io/opendxl-client-java/docs/javadoc/index.html)

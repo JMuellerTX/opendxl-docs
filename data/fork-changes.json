@@ -2,11 +2,11 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 404,
+    "commits": 424,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 89,
+      "bug": 109,
       "security": 51,
       "docs": 7,
       "ci": 112,
@@ -164,6 +164,11 @@
         },
         {
           "subject": "Support v3 source_client_instance_id and fix DxlClientConfig.write() empty section handling",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix disconnect/destroy race, updateconfig WebSocket key, and Broker.parse validation",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -549,6 +554,11 @@
           "subject": "Fix generated templates for Python 3.12+ (shutil.rmtree, optional distutils, non-root Dockerfile)",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Replace remaining distutils imports in dist.py templates and build scripts",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -694,6 +704,11 @@
           "subject": "Align wire format unpacking with broker 6.1.3 and bound ASN.1 extension parsing",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix missing variable prefixes in startup.sh and socket cleanup on TLS init failure",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -828,6 +843,11 @@
           "subject": "Align ErrorResponse uint32 unpacking, odd otherFields handling, and ClientId INI support",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix config write round-trip, ServiceManager unsubscribe, and CallbackManager concurrency",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -905,6 +925,11 @@
         {
           "subject": "Use ES6 property shorthand for checkServerIdentity in lib/client.js",
           "kind": "chore",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix HttpsProxyAgent v7 import, IPv6 WebSocket URL, updateconfig, and Broker.parse",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -994,6 +1019,11 @@
           "subject": "Fix evicted DxlClient cleanup, topology missing broker guard, Basic Auth colon split, and Dockerfile runtime tools",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix broker cert extendedKeyUsage, WebSocket lookup, and monitor synchronization",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1010,6 +1040,11 @@
         },
         {
           "subject": "Fix Python 3 compatibility in dxleventreporting (functools.reduce, json.dumps, zlib bytes)",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Use options.get('indent') consistently in DxlEventReporting",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -1073,6 +1108,11 @@
         {
           "subject": "Build: master is the JDK 21 line",
           "kind": "feature",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix jsonProducer lifecycle, CLI headers option, null offsets handling, and metrics tags",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1183,6 +1223,11 @@
         },
         {
           "subject": "Support html format in parsed_whois request handler and fix Dockerfile VOLUME order",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -1304,6 +1349,16 @@
         },
         {
           "subject": "Fix Dockerfile VOLUME declaration order to preserve non-root dxl ownership",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Skip indexing when event payload is invalid JSON or id_field_name is missing",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -1432,6 +1487,11 @@
           "subject": "Unregister threat event wrapper function in removeThreatEventCallback",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Scope event callback wrappers per topic on the client instance",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1541,6 +1601,11 @@
         },
         {
           "subject": "Fix Dockerfile VOLUME declaration order to preserve non-root dxl ownership",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -1755,6 +1820,11 @@
           "subject": "Fix update_interval unit (minutes), null geolocation payload handling, and Dockerfile VOLUME order",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1864,6 +1934,11 @@
         },
         {
           "subject": "Import MessageUtils in dxlmispservice/app.py for ZeroMQ event encoding",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl in Dockerfile and pass str to ErrorResponse",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -2047,6 +2122,11 @@
           "subject": "Fix duplicate query string in Channel.delete and enable TLSv1.3 in HttpConnection",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Retry TemporaryError in consumeLoop when retryOnFail is enabled and drop TLS 1.0/1.1",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2156,6 +2236,11 @@
           "subject": "Fix missing attribute check in _pop_attribute_from_request and Dockerfile VOLUME order",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2202,6 +2287,11 @@
         },
         {
           "subject": "Fix event callback unregistration and wrapper lookup in TieClient",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Scope event callback wrappers per topic on the client instance",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -2310,6 +2400,11 @@
           "subject": "Fix Dockerfile VOLUME declaration order to preserve non-root dxl ownership",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2409,6 +2504,11 @@
         },
         {
           "subject": "Check custom HTTP error messages before raise_for_status and fix Dockerfile VOLUME order",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
         }

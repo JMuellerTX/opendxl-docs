@@ -1,7 +1,7 @@
 # Python client
 
-Package `dxlclient`. The reference implementation and the most complete of the four clients:
-it is the only one that ships the provisioning CLI.
+Package `dxlclient`. The reference implementation of the OpenDXL client, including the
+command-line provisioning tools (`provisionconfig`, `updateconfig`, `generatecsr`).
 
 - Upstream: [opendxl/opendxl-client-python](https://github.com/opendxl/opendxl-client-python)
 - API documentation: [opendxl.github.io/opendxl-client-python](https://opendxl.github.io/opendxl-client-python/pydoc/)

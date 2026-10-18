@@ -54,11 +54,9 @@ repositories**.
 
 - **Maintainer:** [@%(author)s](https://github.com/%(author)s). Every change below was
   written, tested and pushed by that account.
-- **Where the repositories are hosted:** the forks currently sit under the personal GitHub
-  account [`%(owner)s`](https://github.com/%(owner)s), with `%(author)s` as a collaborator
-  with push rights. The hosting account is an artefact of how the forks were first created;
-  the maintainer is `%(author)s`. Moving them to `%(author)s` or to an organisation is an
-  open question, not a change of ownership of the work.
+- **Where the repositories are hosted:** all %(total)d repositories sit under the GitHub
+  account [`%(owner)s`](https://github.com/%(owner)s), each as a direct GitHub fork of
+  `opendxl/<name>`.
 - **Released, but not to the public registries.** Every core client has tagged releases with
   built artifacts, and the broker image is on GHCR. Nothing goes to PyPI, npmjs.com or Maven
   Central: those namespaces belong to the upstream project — see
