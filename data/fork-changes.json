@@ -2,16 +2,16 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 402,
+    "commits": 404,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 88,
+      "bug": 89,
       "security": 51,
       "docs": 7,
       "ci": 112,
       "tests": 13,
-      "chore": 35,
+      "chore": 36,
       "deps": 86,
       "feature": 10
     },
@@ -895,6 +895,16 @@
         {
           "subject": "Fix jshint ternary line-break warning in Broker constructor",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Pass checkServerIdentity in wsOptions for WebSocket TLS connections",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Use ES6 property shorthand for checkServerIdentity in lib/client.js",
+          "kind": "chore",
           "author": "JMuellerTX"
         }
       ]

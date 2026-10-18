@@ -69,8 +69,8 @@ forward-secrecy-only cipher default the correct one going forward, not merely th
 ## Fixes available in the maintained fork
 
 All 45 repositories are forked and maintained by
-[**@JMuellerTX**](https://github.com/JMuellerTX) — 402 commits across 44 of them, including
-51 security changes and 88 bug fixes. [The maintained fork](fork.md) lists every one of them
+[**@JMuellerTX**](https://github.com/JMuellerTX) — 404 commits across 44 of them, including
+51 security changes and 89 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
 ### Tags, branches and what a reference should point at
@@ -136,7 +136,7 @@ point: each line names the one party who can act, and what it unlocks.
 
 | What | Who can do it | Why only them | What it unlocks |
 |---|---|---|---|
-| **A clean upstream `master`** | the OpenDXL maintainers | Only they can merge into `opendxl/*`. The fork is 402 commits across 44 repositories, on branches with clean history, and every repository still records `opendxl/<name>` as its parent - so a pull request arrives the ordinary way. | The fixes stop being a fork. Downstream projects get them without changing a single reference. |
+| **A clean upstream `master`** | the OpenDXL maintainers | Only they can merge into `opendxl/*`. The fork is 404 commits across 44 repositories, on branches with clean history, and every repository still records `opendxl/<name>` as its parent - so a pull request arrives the ordinary way. | The fixes stop being a fork. Downstream projects get them without changing a single reference. |
 | **PyPI `dxlclient`** | the account that owns the name | A PyPI name belongs to an **account**, not to a domain. No DNS record, no trademark and no fork can obtain it; `opendxl.com` is irrelevant here. | One upload without the `msgpack<1.0.0` pin ends the transitive advisory in **20 downstream projects** at once. Nothing else on this page comes close in value per effort. |
 | **Maven Central `com.opendxl`** | whoever holds `opendxl.com` **and** the Central account | Central verifies a namespace by a **DNS TXT record on the matching domain**. This one really is domain-bound - the opposite of PyPI, and the two are regularly confused. | Java consumers get the fixed client under the coordinates their builds already resolve. |
 | **npm `@opendxl`** | an owner of the npm organisation | A scope is an npm organisation; membership is the only key. | Same for the JavaScript line, including the `tmp`/`uuid` chain the fork works around with overrides. |
