@@ -23,12 +23,12 @@ repositories**.
 
 ## What changed, in numbers
 
-424 commits across **44 of 45 repositories**. One was left alone:
+427 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
-| Security | 51 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
+| Security | 54 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
 | Bug fixes | 109 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 86 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
@@ -38,7 +38,7 @@ repositories**.
 
 ## Security and correctness fixes
 
-The full list of the 160 commits that fix a defect or harden something, as opposed to
+The full list of the 163 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -67,6 +67,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-broker` | Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM |
 | security | `opendxl-broker` | The console password is settable, and the container can run without one |
 | security | `opendxl-broker` | No default console password: generate one per volume, and let callers supply it |
+| security | `opendxl-broker` | Harden broker against service hijacking, unauthorized revocation, and spoofed broker events |
 | security | `opendxl-client-java` | Update dependencies with known vulnerabilities |
 | security | `opendxl-client-java` | Let the client negotiate TLS 1.3, and add TlsMinVersion and VerifyHostname |
 | security | `opendxl-client-java` | CLI: validate the management server's certificate by default; -e reads the file; --insecure; --key-bits |
@@ -92,6 +93,8 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | security | `opendxl-streaming-client-javascript` | Replace the deprecated request package with @cypress/request |
 | security | `opendxl-thehive-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-tie-client-javascript` | Pin tmp and uuid below the published DXL client |
+| security | `opendxl-tie-client-javascript` | Add agentGuid vs sourceClientId verification in file detection and first instance callbacks |
+| security | `opendxl-tie-client-python` | Add agentGuid vs source_client_id verification in DetectionCallback and FirstInstanceCallback |
 | security | `opendxl-urlvoid-service-python` | Image: run the service as an unprivileged user |
 | security | `opendxl-virustotal-service-python` | Image: run the service as an unprivileged user |
 | bug fix | `opendxl-client-python` | Fix msgpack 1.x compatibility, connection/threading bugs and modernize tests |
@@ -435,9 +438,10 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-tie-client-javascript](https://github.com/JMuellerTX/opendxl-tie-client-javascript)** — 9 commits
+**[opendxl-tie-client-javascript](https://github.com/JMuellerTX/opendxl-tie-client-javascript)** — 10 commits
 
 - *security* — Pin tmp and uuid below the published DXL client
+- *security* — Add agentGuid vs sourceClientId verification in file detection and first instance callbacks
 - *bug fix* — Depend on @opendxl/dxl-client ^0.1.0 instead of ^0.0.1
 - *bug fix* — Fix event callback unregistration and wrapper lookup in TieClient
 - *bug fix* — Scope event callback wrappers per topic on the client instance
@@ -447,8 +451,9 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: install the client from the v0.1.4+fork.2 release
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-tie-client-python](https://github.com/JMuellerTX/opendxl-tie-client-python)** — 7 commits
+**[opendxl-tie-client-python](https://github.com/JMuellerTX/opendxl-tie-client-python)** — 8 commits
 
+- *security* — Add agentGuid vs source_client_id verification in DetectionCallback and FirstInstanceCallback
 - *bug fix* — Accept TrustLevel.NOT_SET (0) in set_external_file_reputation
 - *dependencies* — Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test
 - *dependencies* — Install the fork's client and bootstrap, not the PyPI ones
@@ -702,12 +707,13 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Broker, containers and environments
 
-**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 28 commits · branches: `(default) master`, `openssl-3`
+**[opendxl-broker](https://github.com/JMuellerTX/opendxl-broker)** — 29 commits · branches: `(default) master`, `openssl-3`
 
 - *security* — startup: selectable TLS cipher mode (DXL_TLS_MODE / DXL_TLS_CIPHERS)
 - *security* — Move the broker to OpenSSL 4.0.2, which brings TLS 1.3 and ML-KEM
 - *security* — The console password is settable, and the container can run without one
 - *security* — No default console password: generate one per volume, and let callers supply it
+- *security* — Harden broker against service hijacking, unauthorized revocation, and spoofed broker events
 - *bug fix* — Offer ECDHE/DHE cipher suites (forward secrecy) on the MQTT listener
 - *bug fix* — Build against OpenSSL 3: FIPS mode via the provider API
 - *bug fix* — startup: run the console from its virtual environment, RFC 5280 key usage

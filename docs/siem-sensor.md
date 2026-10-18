@@ -59,6 +59,10 @@ Detections available today:
 | **Service TTL expired** | A registration ran past its TTL plus the broker's grace period (5 minutes by default) without re-registering or unregistering |
 | **Fabric change** | Broker bridge topology changed |
 | **Rate anomalies** | Per client and per topic |
+| **Spoofed broker event** | A non-broker client published on `/mcafee/event/dxl/#` (detected via client `dxl.certs`, a non-broker `source_client_id`, or an unrecognized sub-topic); rejected before normalisation so it cannot frame another thumbprint |
+| **Service hijack attempt** | An existing `serviceGuid` was re-registered under a different `clientGuid` |
+| **Certificate revoked** | A certificate thumbprint was published to `/mcafee/event/dxl/revocation/list` |
+| **Payload identity spoofing** | A message on a business topic claimed an `agentGuid`, `clientGuid` or `certThumbprint` in its JSON payload that does not match the envelope publisher |
 
 The CEF line for a connection carries the transport (`app`), TLS version, cipher suite and
 certificate thumbprint as custom strings and the peer address as `src`; a legacy-cipher

@@ -2,12 +2,12 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 424,
+    "commits": 427,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
       "bug": 109,
-      "security": 51,
+      "security": 54,
       "docs": 7,
       "ci": 112,
       "tests": 13,
@@ -708,6 +708,11 @@
         {
           "subject": "Fix missing variable prefixes in startup.sh and socket cleanup on TLS init failure",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Harden broker against service hijacking, unauthorized revocation, and spoofed broker events",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -2294,6 +2299,11 @@
           "subject": "Scope event callback wrappers per topic on the client instance",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add agentGuid vs sourceClientId verification in file detection and first instance callbacks",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2336,6 +2346,11 @@
         {
           "subject": "Accept TrustLevel.NOT_SET (0) in set_external_file_reputation",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Add agentGuid vs source_client_id verification in DetectionCallback and FirstInstanceCallback",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
