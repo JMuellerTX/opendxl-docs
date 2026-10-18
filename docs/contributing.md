@@ -42,6 +42,7 @@ docs/
   clients/                 python, java, javascript, node-red
   broker/                  running a broker, TLS and ciphers
   integrations.md          the reference services and their client libraries
+  siem-sensor.md           monitoring a fabric: OCSF/CEF normalisation and detections
   repositories.md          generated — see below
   compatibility.md         versions, TLS matrix, what is broken and what is fixed
   fork.md                  generated — every change in the maintained fork

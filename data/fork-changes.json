@@ -2,11 +2,11 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 373,
+    "commits": 374,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 59,
+      "bug": 60,
       "security": 51,
       "docs": 7,
       "ci": 112,
@@ -154,6 +154,11 @@
         },
         {
           "subject": "Seven review findings: the disconnect race, and a key lost to a typo",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Guard the connect thread at the field, not at the call site",
           "kind": "bug",
           "author": "JMuellerTX"
         }

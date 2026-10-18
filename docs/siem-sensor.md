@@ -13,11 +13,11 @@ forwards it to a SIEM. It is the first OpenDXL component that is useful to someo
 already running DXL integrations: it makes an existing fabric observable.
 
 !!! note "Status"
-    Under development, repository `JMuellerTX/opendxl-siem-sensor` (Apache-2.0, not yet
-    published). Everything on this page has been run against the open source broker of the
-    [maintained fork](fork.md) (OpenSSL 3 and OpenSSL 4 images). The protocol facts it relies on
-    were measured against a Trellix DXL broker 6.1.3 with the Python client; the sensor itself has
-    not been run against a Trellix fabric yet.
+    Published under [`JMuellerTX/opendxl-siem-sensor`](https://github.com/JMuellerTX/opendxl-siem-sensor)
+    (Apache-2.0, v0.1.0 in development). Everything on this page has been run against the open
+    source broker of the [maintained fork](fork.md) (OpenSSL 3 and OpenSSL 4 images). The protocol
+    facts it relies on were measured against a Trellix DXL broker 6.1.3 with the Python client; the
+    sensor itself has not been run against a Trellix fabric yet.
 
 ## How it works
 
@@ -65,7 +65,7 @@ certificate thumbprint as custom strings and the peer address as `src`; a legacy
 detection looks like this on the wire:
 
 ```
-CEF:0|OpenDXL|RustSensor|1.0|2004|Legacy Cipher Suite|4|msg=Client connected with weak legacy cipher: TLS_RSA_WITH_AES_128_CBC_SHA256 suser=5a752ed6a24f6d2dd77634b0c68dd729b48d4613
+CEF:0|OpenDXL|opendxl-siem-sensor|1.0|2004|Legacy Cipher Suite|4|msg=Client connected with weak legacy cipher: TLS_RSA_WITH_AES_128_CBC_SHA256 suser=5a752ed6a24f6d2dd77634b0c68dd729b48d4613
 ```
 
 That line was produced end to end: a Python client forced to TLS 1.2 with `AES128-SHA256`

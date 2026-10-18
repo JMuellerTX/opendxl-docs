@@ -41,8 +41,9 @@ honest about that is more useful than a status badge:
 
 - **The protocol is stable and supported.** DXL is a shipping Trellix capability with its own
   release train. A client written against the fabric today keeps working.
-- **The open source packages are not maintained upstream.** No releases since 2020/2021, and
-  the accumulated dependency drift described in [Compatibility](compatibility.md) is real.
+- **Most of the open source packages are not maintained upstream.** The integration and
+  service repositories have had no releases since 2019–2021, and the accumulated dependency
+  and TLS drift described in [Compatibility](compatibility.md) is real.
 - **The license does not expire.** Apache-2.0 is irrevocable. Anyone may fork, fix and
   redistribute, and several people have. The fork this documentation is written against is
   maintained by [@JMuellerTX](https://github.com/JMuellerTX) and covers all 45 repositories —

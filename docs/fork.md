@@ -25,13 +25,13 @@ repositories**.
 
 ## What changed, in numbers
 
-373 commits across **44 of 45 repositories**. One was left alone:
+374 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
 | Security | 51 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
-| Bug fixes | 59 | Defects that make the published code fail on a current runtime or return wrong results |
+| Bug fixes | 60 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 86 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
 | CI | 112 | Working GitHub Actions instead of `python setup.py test` |
@@ -40,7 +40,7 @@ repositories**.
 
 ## Security and correctness fixes
 
-The full list of the 110 commits that fix a defect or harden something, as opposed to
+The full list of the 111 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -101,6 +101,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-client-python` | Make connect() safe against concurrent callers; do not drop odd otherFields silently |
 | bug fix | `opendxl-client-python` | CLI: report the TLS reason, not the whole request URL, on a failed handshake |
 | bug fix | `opendxl-client-python` | Seven review findings: the disconnect race, and a key lost to a typo |
+| bug fix | `opendxl-client-python` | Guard the connect thread at the field, not at the call site |
 | bug fix | `mcafee-dxl-schemas` | ePO schema: detectedUTC is a string with format date-time |
 | bug fix | `node-red-contrib-dxl-pxgrid-client` | Use Node-RED 4.x for the test suite and fix the dxl-client range |
 | bug fix | `opendxl-api-specification` | Move the schema from Swagger 2.0 to OpenAPI 3.2, and make it checkable |
@@ -160,7 +161,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Core clients
 
-**[opendxl-client-python](https://github.com/JMuellerTX/opendxl-client-python)** — 26 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
+**[opendxl-client-python](https://github.com/JMuellerTX/opendxl-client-python)** — 27 commits · branches: `(default) master`, `epo-legacy`, `fix/python3-modernization`
 
 - *security* — Default TLS cipher list: forward secrecy first, AES128-SHA256 as fallback
 - *security* — Add TlsCiphers setting to the client configuration file
@@ -175,6 +176,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Make connect() safe against concurrent callers; do not drop odd otherFields silently
 - *bug fix* — CLI: report the TLS reason, not the whole request URL, on a failed handshake
 - *bug fix* — Seven review findings: the disconnect race, and a key lost to a typo
+- *bug fix* — Guard the connect thread at the field, not at the call site
 - *tests* — Tests: DXL_TEST_CONFIG selects the client configuration for the broker-based tests
 - *tests* — Tests: TLS 1.3 minimum must connect when the broker offers TLS 1.3
 - *CI* — CI: run pytest on Python 3.9-3.14 with current actions

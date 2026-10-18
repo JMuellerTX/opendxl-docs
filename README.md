@@ -21,6 +21,7 @@ line do I need, and why does my connection fail on a current runtime".
 | [Python](docs/clients/python.md) · [Java](docs/clients/java.md) · [JavaScript](docs/clients/javascript.md) · [Node-RED](docs/clients/node-red.md) | Per-client usage and pitfalls |
 | [The broker](docs/broker/index.md) · [TLS and ciphers](docs/broker/tls.md) | Running a fabric, and the cipher problem that breaks current clients |
 | [Integrations](docs/integrations.md) | TIE, ePO, MAR, VirusTotal, MISP and the rest |
+| [SIEM sensor](docs/siem-sensor.md) | Monitoring a fabric: OCSF/CEF normalisation and detections |
 | [Repositories](docs/repositories.md) | All 45 repositories, grouped by purpose |
 | [Compatibility](docs/compatibility.md) | Version matrix, what is broken, what is fixed where |
 | [The maintained fork](docs/fork.md) | Every fix in the fork, per repository, and how to install it |

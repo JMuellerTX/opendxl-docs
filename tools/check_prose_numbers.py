@@ -32,6 +32,11 @@ SENTENCE = re.compile(
     r'(\d+)\s+security\s+(?:changes|fixes)\s+and\s+(\d+)\s+bug\s+fixes',
     re.IGNORECASE | re.DOTALL)
 
+# "The fork is 374 commits across 44 repositories"
+SHORT_SENTENCE = re.compile(
+    r'(\d+)\s+commits?\s+across\s+(\d+)\s+repositories',
+    re.IGNORECASE)
+
 
 def main():
     totals = json.load(open(DATA, encoding='utf-8'))['totals']
@@ -46,10 +51,10 @@ def main():
                 continue
             path = os.path.join(base, name)
             text = open(path, encoding='utf-8').read()
+            where = os.path.relpath(path, ROOT).replace(os.sep, '/')
             for match in SENTENCE.finditer(text):
                 found += 1
                 got = tuple(int(g) for g in match.groups())
-                where = os.path.relpath(path, ROOT).replace(os.sep, '/')
                 line = text[:match.start()].count('\n') + 1
                 if got == want:
                     print('  ok    %s:%d  %s' % (where, line, ' / '.join(map(str, got))))
@@ -57,6 +62,18 @@ def main():
                 bad += 1
                 print('  WRONG %s:%d' % (where, line))
                 for label, g, w in zip(labels, got, want):
+                    if g != w:
+                        print('        %-14s says %s, the inventory says %s' % (label, g, w))
+            for match in SHORT_SENTENCE.finditer(text):
+                found += 1
+                got = tuple(int(g) for g in match.groups())
+                line = text[:match.start()].count('\n') + 1
+                if got == want[:2]:
+                    print('  ok    %s:%d  %s' % (where, line, ' / '.join(map(str, got))))
+                    continue
+                bad += 1
+                print('  WRONG %s:%d' % (where, line))
+                for label, g, w in zip(labels[:2], got, want[:2]):
                     if g != w:
                         print('        %-14s says %s, the inventory says %s' % (label, g, w))
 
