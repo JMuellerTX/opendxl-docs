@@ -25,13 +25,13 @@ repositories**.
 
 ## What changed, in numbers
 
-399 commits across **44 of 45 repositories**. One was left alone:
+402 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
 | Security | 51 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
-| Bug fixes | 85 | Defects that make the published code fail on a current runtime or return wrong results |
+| Bug fixes | 88 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 86 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
 | CI | 112 | Working GitHub Actions instead of `python setup.py test` |
@@ -40,7 +40,7 @@ repositories**.
 
 ## Security and correctness fixes
 
-The full list of the 136 commits that fix a defect or harden something, as opposed to
+The full list of the 139 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -105,6 +105,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-client-python` | Support v3 source_client_instance_id and fix DxlClientConfig.write() empty section handling |
 | bug fix | `mcafee-dxl-schemas` | ePO schema: detectedUTC is a string with format date-time |
 | bug fix | `node-red-contrib-dxl` | Avoid mutating event.payload in dxl-event-in and support truststore/insecure in provisioning UI |
+| bug fix | `node-red-contrib-dxl` | Clone event in dxl-event-in so msg.dxlEvent.payload is decoded without mutating shared event |
 | bug fix | `node-red-contrib-dxl-mar-client` | Remove duplicate errorCount argument in ResultsContext pagination |
 | bug fix | `node-red-contrib-dxl-pxgrid-client` | Use Node-RED 4.x for the test suite and fix the dxl-client range |
 | bug fix | `opendxl-api-specification` | Move the schema from Swagger 2.0 to OpenAPI 3.2, and make it checkable |
@@ -128,6 +129,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-client-javascript` | Make PKI test helpers work with OpenSSL 3.2+ and Windows line endings |
 | bug fix | `opendxl-client-javascript` | Release: a metadata-only npm conflict must not fail the release |
 | bug fix | `opendxl-client-javascript` | Align wire format v3, IPv6 host normalization, and WSS TLS verification with broker 6.1.3 |
+| bug fix | `opendxl-client-javascript` | Fix jshint ternary line-break warning in Broker constructor |
 | bug fix | `opendxl-console` | Support Python 3.8-3.14 |
 | bug fix | `opendxl-console` | Fix provisioning on Python 3 (client configuration template read) |
 | bug fix | `opendxl-console` | Replace pkg_resources with importlib.resources |
@@ -164,6 +166,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-misp-service-python` | Fix Python 3.12+ compatibility |
 | bug fix | `opendxl-misp-service-python` | Image: install dxlbootstrap from the fork instead of pinning setuptools |
 | bug fix | `opendxl-misp-service-python` | Handle dict and list PyMISP error responses, encode ZeroMQ payload via MessageUtils, and fix Dockerfile VOLUME order |
+| bug fix | `opendxl-misp-service-python` | Import MessageUtils in dxlmispservice/app.py for ZeroMQ event encoding |
 | bug fix | `opendxl-openc2-client-python` | Require stix2 < 3 (openc2 1.0.5 is incompatible with stix2 3.x) |
 | bug fix | `opendxl-pxgrid-client-python` | Do not raise from event callbacks when "content" is not base64 JSON |
 | bug fix | `opendxl-streaming-client-java` | Fix duplicate query string in Channel.delete and enable TLSv1.3 in HttpConnection |
@@ -243,13 +246,14 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *docs* — Docs: sync the dependency version references to 0.2.9
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-client-javascript](https://github.com/JMuellerTX/opendxl-client-javascript)** — 11 commits
+**[opendxl-client-javascript](https://github.com/JMuellerTX/opendxl-client-javascript)** — 12 commits
 
 - *security* — Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x
 - *security* — Validate the management server certificate in the provisioning CLI
 - *bug fix* — Make PKI test helpers work with OpenSSL 3.2+ and Windows line endings
 - *bug fix* — Release: a metadata-only npm conflict must not fail the release
 - *bug fix* — Align wire format v3, IPv6 host normalization, and WSS TLS verification with broker 6.1.3
+- *bug fix* — Fix jshint ternary line-break warning in Broker constructor
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages
@@ -497,13 +501,14 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *CI* — CI: use the fork's dxlbootstrap too, and drop the setuptools pin where it was
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-misp-service-python](https://github.com/JMuellerTX/opendxl-misp-service-python)** — 12 commits
+**[opendxl-misp-service-python](https://github.com/JMuellerTX/opendxl-misp-service-python)** — 13 commits
 
 - *security* — Drop the enum34 dependency
 - *security* — Image: run the service as an unprivileged user
 - *bug fix* — Fix Python 3.12+ compatibility
 - *bug fix* — Image: install dxlbootstrap from the fork instead of pinning setuptools
 - *bug fix* — Handle dict and list PyMISP error responses, encode ZeroMQ payload via MessageUtils, and fix Dockerfile VOLUME order
+- *bug fix* — Import MessageUtils in dxlmispservice/app.py for ZeroMQ event encoding
 - *dependencies* — Modernize packaging and CI for Python 3.8-3.14
 - *dependencies* — Dockerfile: build on python:3.13-slim
 - *dependencies* — Pin the fork refs: tag in the image, branch in setup.py
@@ -556,10 +561,11 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 
 ### Node-RED nodes
 
-**[node-red-contrib-dxl](https://github.com/JMuellerTX/node-red-contrib-dxl)** — 10 commits
+**[node-red-contrib-dxl](https://github.com/JMuellerTX/node-red-contrib-dxl)** — 11 commits
 
 - *security* — Pin tmp and uuid below the published DXL client
 - *bug fix* — Avoid mutating event.payload in dxl-event-in and support truststore/insecure in provisioning UI
+- *bug fix* — Clone event in dxl-event-in so msg.dxlEvent.payload is decoded without mutating shared event
 - *dependencies* — Use Node-RED 4.x and node-red-node-test-helper 0.3.6 for the test suite
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)

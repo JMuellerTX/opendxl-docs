@@ -2,11 +2,11 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 399,
+    "commits": 402,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 85,
+      "bug": 88,
       "security": 51,
       "docs": 7,
       "ci": 112,
@@ -281,6 +281,11 @@
         },
         {
           "subject": "Avoid mutating event.payload in dxl-event-in and support truststore/insecure in provisioning UI",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Clone event in dxl-event-in so msg.dxlEvent.payload is decoded without mutating shared event",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -884,6 +889,11 @@
         },
         {
           "subject": "Align wire format v3, IPv6 host normalization, and WSS TLS verification with broker 6.1.3",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix jshint ternary line-break warning in Broker constructor",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -1839,6 +1849,11 @@
         },
         {
           "subject": "Handle dict and list PyMISP error responses, encode ZeroMQ payload via MessageUtils, and fix Dockerfile VOLUME order",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Import MessageUtils in dxlmispservice/app.py for ZeroMQ event encoding",
           "kind": "bug",
           "author": "JMuellerTX"
         }
