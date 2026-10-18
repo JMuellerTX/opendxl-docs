@@ -2,12 +2,12 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 427,
+    "commits": 446,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
       "bug": 109,
-      "security": 54,
+      "security": 73,
       "docs": 7,
       "ci": 112,
       "tests": 13,
@@ -293,6 +293,11 @@
           "subject": "Clone event in dxl-event-in so msg.dxlEvent.payload is decoded without mutating shared event",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Enforce dxl-client.read permission, validate commonOrCsrFileName, and harden extractProperty",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -559,6 +564,11 @@
           "subject": "Replace remaining distutils imports in dist.py templates and build scripts",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate JSON object root in json_to_dict and restrict generated config permissions",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -712,6 +722,11 @@
         },
         {
           "subject": "Harden broker against service hijacking, unauthorized revocation, and spoofed broker events",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Harden broker request replyToTopic, LWT DXL checks, and service registry ownership",
           "kind": "security",
           "author": "JMuellerTX"
         }
@@ -1029,6 +1044,11 @@
           "subject": "Fix broker cert extendedKeyUsage, WebSocket lookup, and monitor synchronization",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix static file path traversal, XSS in monitor, JSON injection, and auth hardening",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1235,6 +1255,11 @@
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate request payload dict and redact DomainTools API key in ErrorResponse",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1365,6 +1390,11 @@
         {
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Redact http_auth credentials from debug logs and validate request payload dict",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1497,6 +1527,11 @@
           "subject": "Scope event callback wrappers per topic on the client instance",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate ePO command names and guard threat event callbacks against malformed JSON",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1539,6 +1574,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate ePO command_name against topic wildcards and path separators",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1613,6 +1653,11 @@
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate ePO command names, redact security tokens, and support allowedCommands",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1654,6 +1699,11 @@
         },
         {
           "subject": "Pin tmp and uuid below the published DXL client",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate MAR searchId and fail on non-running poll status",
           "kind": "security",
           "author": "JMuellerTX"
         }
@@ -1703,6 +1753,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate MAR search_id and fail on non-running poll status",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -1830,6 +1885,11 @@
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Clean up temp files on database update failure, lock reader swap, and cancel update timer",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1946,6 +2006,11 @@
           "subject": "Set WORKDIR /home/dxl in Dockerfile and pass str to ErrorResponse",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Reject private API names and validate controller parameter in MISP requests",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2059,6 +2124,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Guard pxGrid callbacks against malformed or non-dict JSON payloads",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -2246,6 +2316,11 @@
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate ID parameters against URL path traversal in TheHive requests",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2304,6 +2379,11 @@
           "subject": "Add agentGuid vs sourceClientId verification in file detection and first instance callbacks",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fail closed in verifySource and accept leaf cert thumbprint match",
+          "kind": "security",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2350,6 +2430,11 @@
         },
         {
           "subject": "Add agentGuid vs source_client_id verification in DetectionCallback and FirstInstanceCallback",
+          "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fail closed in verify_source and accept leaf cert thumbprint match",
           "kind": "security",
           "author": "JMuellerTX"
         }
@@ -2419,6 +2504,11 @@
         {
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate host parameter and redact URLVoid API key in ErrorResponse",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
@@ -2525,6 +2615,11 @@
         {
           "subject": "Set WORKDIR /home/dxl after removing /tmp/build in Dockerfile",
           "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Validate JSON object payload and redact API key in error logs",
+          "kind": "security",
           "author": "JMuellerTX"
         }
       ]
