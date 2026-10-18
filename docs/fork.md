@@ -25,22 +25,22 @@ repositories**.
 
 ## What changed, in numbers
 
-402 commits across **44 of 45 repositories**. One was left alone:
+404 commits across **44 of 45 repositories**. One was left alone:
 `opendxl-build-status`.
 
 | Kind | Commits | What it means |
 |---|---|---|
 | Security | 51 | TLS defaults and options, removed vulnerable pins, a plaintext download made HTTPS |
-| Bug fixes | 88 | Defects that make the published code fail on a current runtime or return wrong results |
+| Bug fixes | 89 | Defects that make the published code fail on a current runtime or return wrong results |
 | Build and packaging | 10 + 86 | Python 3.8–3.14, JDK 8–21 branch lines, current base images, dependency updates |
 | Tests | 13 | New unit tests, mostly where a fix needed one to hold |
 | CI | 112 | Working GitHub Actions instead of `python setup.py test` |
 | Docs | 7 | READMEs that no longer describe the code |
-| Chore | 35 | Mechanical, no behaviour: the account rename, formatting, version markers |
+| Chore | 36 | Mechanical, no behaviour: the account rename, formatting, version markers |
 
 ## Security and correctness fixes
 
-The full list of the 139 commits that fix a defect or harden something, as opposed to
+The full list of the 140 commits that fix a defect or harden something, as opposed to
 updating a dependency or a workflow. Everything else is in the per-repository listing below.
 
 | Kind | Repository | Change |
@@ -130,6 +130,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 | bug fix | `opendxl-client-javascript` | Release: a metadata-only npm conflict must not fail the release |
 | bug fix | `opendxl-client-javascript` | Align wire format v3, IPv6 host normalization, and WSS TLS verification with broker 6.1.3 |
 | bug fix | `opendxl-client-javascript` | Fix jshint ternary line-break warning in Broker constructor |
+| bug fix | `opendxl-client-javascript` | Pass checkServerIdentity in wsOptions for WebSocket TLS connections |
 | bug fix | `opendxl-console` | Support Python 3.8-3.14 |
 | bug fix | `opendxl-console` | Fix provisioning on Python 3 (client configuration template read) |
 | bug fix | `opendxl-console` | Replace pkg_resources with importlib.resources |
@@ -246,7 +247,7 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *docs* — Docs: sync the dependency version references to 0.2.9
 - *Chore* — Point the fork references at JMuellerTX
 
-**[opendxl-client-javascript](https://github.com/JMuellerTX/opendxl-client-javascript)** — 12 commits
+**[opendxl-client-javascript](https://github.com/JMuellerTX/opendxl-client-javascript)** — 14 commits
 
 - *security* — Update mqtt to 5.x, tmp to 0.2.x and uuid to 11.x
 - *security* — Validate the management server certificate in the provisioning CLI
@@ -254,12 +255,14 @@ updating a dependency or a workflow. Everything else is in the per-repository li
 - *bug fix* — Release: a metadata-only npm conflict must not fail the release
 - *bug fix* — Align wire format v3, IPv6 host normalization, and WSS TLS verification with broker 6.1.3
 - *bug fix* — Fix jshint ternary line-break warning in Broker constructor
+- *bug fix* — Pass checkServerIdentity in wsOptions for WebSocket TLS connections
 - *CI* — Update GitHub Actions workflow to current action versions and Node 18-22
 - *CI* — CI: allow manual workflow runs (workflow_dispatch)
 - *CI* — Release workflow: drop-in tarball on the release page, scoped copy in GitHub Packages
 - *CI* — Release workflow: npm install, not npm ci
 - *CI* — Release workflow: run the tests that do not need a broker
 - *Chore* — Version 0.1.4+fork.2
+- *Chore* — Use ES6 property shorthand for checkServerIdentity in lib/client.js
 
 **[opendxl-databus-client-java](https://github.com/JMuellerTX/opendxl-databus-client-java)** — 10 commits · branches: `(default) master`, `jdk11`, `jdk17`, `jdk8`
 
