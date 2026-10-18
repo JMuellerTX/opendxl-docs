@@ -69,8 +69,8 @@ forward-secrecy-only cipher default the correct one going forward, not merely th
 ## Fixes available in the maintained fork
 
 All 45 repositories are forked and maintained by
-[**@JMuellerTX**](https://github.com/JMuellerTX) — 374 commits across 44 of them, including
-51 security changes and 60 bug fixes. [The maintained fork](fork.md) lists every one of them
+[**@JMuellerTX**](https://github.com/JMuellerTX) — 399 commits across 44 of them, including
+51 security changes and 85 bug fixes. [The maintained fork](fork.md) lists every one of them
 per repository, and explains how to consume them.
 
 ### Tags, branches and what a reference should point at
@@ -136,7 +136,7 @@ point: each line names the one party who can act, and what it unlocks.
 
 | What | Who can do it | Why only them | What it unlocks |
 |---|---|---|---|
-| **A clean upstream `master`** | the OpenDXL maintainers | Only they can merge into `opendxl/*`. The fork is 374 commits across 44 repositories, on branches with clean history, and every repository still records `opendxl/<name>` as its parent - so a pull request arrives the ordinary way. | The fixes stop being a fork. Downstream projects get them without changing a single reference. |
+| **A clean upstream `master`** | the OpenDXL maintainers | Only they can merge into `opendxl/*`. The fork is 399 commits across 44 repositories, on branches with clean history, and every repository still records `opendxl/<name>` as its parent - so a pull request arrives the ordinary way. | The fixes stop being a fork. Downstream projects get them without changing a single reference. |
 | **PyPI `dxlclient`** | the account that owns the name | A PyPI name belongs to an **account**, not to a domain. No DNS record, no trademark and no fork can obtain it; `opendxl.com` is irrelevant here. | One upload without the `msgpack<1.0.0` pin ends the transitive advisory in **20 downstream projects** at once. Nothing else on this page comes close in value per effort. |
 | **Maven Central `com.opendxl`** | whoever holds `opendxl.com` **and** the Central account | Central verifies a namespace by a **DNS TXT record on the matching domain**. This one really is domain-bound - the opposite of PyPI, and the two are regularly confused. | Java consumers get the fixed client under the coordinates their builds already resolve. |
 | **npm `@opendxl`** | an owner of the npm organisation | A scope is an npm organisation; membership is the only key. | Same for the JavaScript line, including the `tmp`/`uuid` chain the fork works around with overrides. |
@@ -163,10 +163,11 @@ that change what works; the full inventory is on the fork page.
 
 | Area | Change |
 |---|---|
-| MessagePack | Wire-format compatibility with msgpack ≥ 1.0; the `msgpack<1.0.0` pin removed; payloads > 1 MiB handled |
+| MessagePack | Wire-format compatibility with msgpack ≥ 1.0; v3 `source_client_instance_id` preserved on unpack/re-encode; the `msgpack<1.0.0` pin removed; payloads > 1 MiB handled |
 | Threading | Thread leak after a failed `connect()`; reconnect deadlock; service TTL timer; async callback leak |
 | `connect()` | No longer waits the full callback timeout after the connect has already failed — a failing connect took roughly twice as long as it needed to |
 | TLS | `PROTOCOL_TLS_CLIENT`; `TlsCiphers` config key; `TlsMinVersion` (default 1.2); `VerifyHostname` (default off) |
+| Config | `DxlClientConfig.write()` no longer emits `BrokersWebSockets = None` when no WebSocket brokers are configured; `_get_value_from_config` breaks after the first matching option |
 | CLI | `--key-type` / `--key-bits` / `--key-curve` for FIPS-profile CSRs; the management server's certificate is validated by default; `cryptography` replaces the unmaintained `oscrypto` submodule and `asn1crypto` |
 | IPv6 | Broker address parsing for `[::1]` and `id;port;host;2001:db8::1` |
 | Python | 3.9–3.14 CI matrix, pytest suite instead of nose |
@@ -180,8 +181,11 @@ The client is maintained on two lines, because the right cipher default depends 
 ### Java client
 
 `TlsCompatibility` re-enables `TLS_RSA_*` before JSSE initializes; TLS 1.3 is reachable and
-`TlsMinVersion`, `VerifyHostname` and `TlsCiphers` (JSSE suite names, not an OpenSSL cipher
-list) match the Python client's config keys; the provisioning CLI validates the management
+`TlsMinVersion`, `VerifyHostname`, `TlsCiphers` (JSSE suite names, not an OpenSSL cipher
+list) and `[General] ClientId` match the Python client's config keys; `ErrorResponse` unpacks
+unsigned 32-bit error codes (`0x80000001`) via `unpackLong()` without throwing
+`MessageIntegerOverflowException`; odd-length `otherFields` arrays discard the trailing orphan
+key instead of desynchronising the v2/v3 stream; the provisioning CLI validates the management
 server's certificate and `-e/--truststore` works at all; jackson-databind 2.9.7 → 2.22;
 msgpack 0.6.7 → msgpack-core 0.9.12 with wire-format reference vectors; log4j, BouncyCastle,
 httpclient and JUnit updated; one branch per JDK line (21/17/11/8).
@@ -189,7 +193,10 @@ httpclient and JUnit updated; one branch per JDK line (21/17/11/8).
 ### JavaScript
 
 `mqtt` 2.14 → 5.15 (which is what clears the `ws` advisories), `tmp` 0.2.x, `uuid` 11,
-`request` replaced. The downstream packages (`node-red-contrib-dxl-*`, the ePO/TIE/MAR client
+`request` replaced; wire-format v3 `sourceClientInstanceId` and odd-length `otherFields`
+supported; bracketed IPv6 hosts normalized in `Broker`; `wss` connections keep
+`rejectUnauthorized = true` with a 5-second `connectTimeout` for multi-broker failover. The
+downstream packages (`node-red-contrib-dxl-*`, the ePO/TIE/MAR client
 libraries) depend on the published `@opendxl/dxl-client@0.1.4`, so they keep the old tree
 until something replaces it. The fork's release tarball does exactly that: it keeps the
 `@opendxl/dxl-client` name and versions itself `0.1.4+fork.1`, and semver ignores build
@@ -208,14 +215,25 @@ editing a single downstream `package.json`.
 
 ### Product client libraries
 
-Three of these carried real defects, not just stale packaging:
+Several of these carried real defects, not just stale packaging:
 
 - **pxGrid** — an event callback raised whenever `content` was not base64-encoded JSON, which
   killed the callback thread instead of skipping the message.
 - **MAR** — `TypeError` when the service returned a non-string error body, so a failed search
   surfaced as a crash rather than an error.
-- **Elasticsearch** — `AttributeError` on error responses that carry no `info` field, plus a
-  `urllib3<1.25` pin that dragged in nine known vulnerabilities.
+- **Elasticsearch** — `AttributeError` on error responses that carry no `info` field, a
+  `urllib3<1.25` pin that dragged in nine known vulnerabilities, and an `elasticsearch<6.0.0`
+  range updated to `>=7.17,<8` to match the Elasticsearch service.
+- **TIE (Python & JS)** — `set_external_file_reputation` rejected `TrustLevel.NOT_SET` (`0`)
+  due to a truthiness check; JavaScript `remove*Callback` methods failed to unregister their
+  internal wrapper callbacks.
+- **ePO (JS)** — `removeThreatEventCallback` passed the unwrapped user function instead of the
+  registered wrapper, leaving the event listener active.
+- **MaxMind (Python)** — `lookup()` now returns `{}` when the service returns an empty JSON
+  payload.
+- **Streaming (Python & Java)** — Python `Auth` fixed the `clinetid` keyword typo and handles
+  non-JSON records cleanly; Java `Channel.delete` fixed a duplicated query string and
+  `HttpConnection` enables `TLSv1.3`.
 
 Plus `stix2 < 3` for OpenC2 (openc2 1.0.5 is incompatible with stix2 3.x) and an ePO client
 `SyntaxWarning` from an `is` comparison on an integer.
@@ -223,9 +241,14 @@ Plus `stix2 < 3` for OpenC2 (openc2 1.0.5 is incompatible with stix2 3.x) and an
 ### Services and bootstrap
 
 `dxlbootstrap` fixed for setuptools ≥ 82 (the `pkg_resources` import that broke every service
-at import time); Python 3.12+ compatibility across all eight reference services;
-Elasticsearch pinned to a supported range instead of `urllib3<1.25`; DomainTools API 2.x;
-`enum34` dropped from MISP; all eight build on `python:3.13-slim`.
+at import time) and its code generator templates updated for Python 3.12+ (`shutil.rmtree`,
+non-root `Dockerfile`); Python 3.12+ compatibility across all eight reference services;
+Elasticsearch pinned to a supported range instead of `urllib3<1.25`; DomainTools API 2.x with
+`"html"` format enabled in `parsed_whois`; MaxMind `update_interval` timer corrected from hours
+to minutes; MISP handles both dict and list `errors` from PyMISP 2.4+ and encodes ZeroMQ
+payloads via `MessageUtils.encode_payload`; TheHive validates empty required attributes in
+`_pop_attribute_from_request`; all eight build on `python:3.13-slim` with `VOLUME` declared
+after `chown dxl:dxl` so non-root volume ownership is preserved.
 
 One security fix worth naming: the **MaxMind service downloaded its database over plain
 HTTP**. It now uses HTTPS.
@@ -237,14 +260,20 @@ time, so ECDHE was compiled out regardless of the `ciphers=` setting. The fork r
 UBI 9 against OpenSSL 3 (FIPS via the provider API), offers ECDHE/DHE, and exposes
 `DXL_TLS_MODE=modern|legacy|pfs-only|trellix-6.1` — see [TLS and ciphers](broker/tls.md), where the
 profile now also fixes the protocol ceiling, because a cipher list reaches TLS 1.2 and below and
-the 1.3 suites are a separate list. The bundled console had Python 3 defects that broke
-provisioning outright; it now runs on 3.8–3.14 — and has no hardcoded password any more, see
+the 1.3 suites are a separate list. Wire-format unpacking in the broker accepts both signed and
+unsigned 32-bit `errorCode` integers and `STR`/`BIN` payloads, matching commercial Broker 6.1.3.
+The bundled console had Python 3 defects that broke
+provisioning outright; it now runs on 3.8–3.14, cleans up evicted `DxlClient` sessions, ships
+`openssl` and `iproute2` in the runtime image, and has no hardcoded password any more, see
 [Security guidance](security.md#the-one-password-the-management-console).
 
 ### Node-RED and containers
 
 Node-RED 4.x for the test suites, and the `@opendxl/dxl-client ^0.0.1` ranges corrected to
-`^0.1.0` — the old range installed two copies of the client side by side. The environment and
+`^0.1.0` — the old range installed two copies of the client side by side. `dxl-event-in` no
+longer mutates `event.payload` in place when multiple listeners are attached, and
+`node-red-contrib-dxl-mar-client` fixes a duplicate `errorCount` constructor argument that broke
+multi-page MAR result sets. The environment and
 node-red-docker images move to maintained bases.
 
 ## Open items

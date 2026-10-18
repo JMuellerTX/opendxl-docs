@@ -2,11 +2,11 @@
   "author": "JMuellerTX",
   "fork_owner_account": "JMuellerTX",
   "totals": {
-    "commits": 374,
+    "commits": 399,
     "repositories_touched": 44,
     "repositories_total": 45,
     "by_kind": {
-      "bug": 60,
+      "bug": 85,
       "security": 51,
       "docs": 7,
       "ci": 112,
@@ -161,6 +161,11 @@
           "subject": "Guard the connect thread at the field, not at the call site",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Support v3 source_client_instance_id and fix DxlClientConfig.write() empty section handling",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -273,6 +278,11 @@
           "subject": "Pin tmp and uuid below the published DXL client",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Avoid mutating event.payload in dxl-event-in and support truststore/insecure in provisioning UI",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -338,6 +348,11 @@
         {
           "subject": "Pin tmp and uuid below the published DXL client",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Remove duplicate errorCount argument in ResultsContext pagination",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -524,6 +539,11 @@
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix generated templates for Python 3.12+ (shutil.rmtree, optional distutils, non-root Dockerfile)",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -664,6 +684,11 @@
           "subject": "Pin the image's fork refs to fork-2026-09-21",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Align wire format unpacking with broker 6.1.3 and bound ASN.1 extension parsing",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -793,6 +818,11 @@
           "subject": "Release: do not fail when the version is already in GitHub Packages",
           "kind": "bug",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Align ErrorResponse uint32 unpacking, odd otherFields handling, and ClientId INI support",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -849,6 +879,11 @@
         },
         {
           "subject": "Release: a metadata-only npm conflict must not fail the release",
+          "kind": "bug",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Align wire format v3, IPv6 host normalization, and WSS TLS verification with broker 6.1.3",
           "kind": "bug",
           "author": "JMuellerTX"
         }
@@ -934,6 +969,11 @@
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix evicted DxlClient cleanup, topology missing broker guard, Basic Auth colon split, and Dockerfile runtime tools",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -946,6 +986,11 @@
         {
           "subject": "README: fix dead link to the Cuckoo reporting module documentation",
           "kind": "docs",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix Python 3 compatibility in dxleventreporting (functools.reduce, json.dumps, zlib bytes)",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1115,6 +1160,11 @@
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Support html format in parsed_whois request handler and fix Dockerfile VOLUME order",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1162,6 +1212,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Align elasticsearch dependency range (>=7.17,<8) with opendxl-elasticsearch-service-python",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1225,6 +1280,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix Dockerfile VOLUME declaration order to preserve non-root dxl ownership",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1299,6 +1359,11 @@
           "subject": "The staleness watchdog also watches the collective tags",
           "kind": "ci",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Quote DOCKER_HOSTIP check in startup.sh so default route only runs when set",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1341,6 +1406,11 @@
         {
           "subject": "Pin tmp and uuid below the published DXL client",
           "kind": "security",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Unregister threat event wrapper function in removeThreatEventCallback",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1447,6 +1517,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix Dockerfile VOLUME declaration order to preserve non-root dxl ownership",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1582,6 +1657,11 @@
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix lookup() to return empty dict on empty JSON payload",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1649,6 +1729,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix update_interval unit (minutes), null geolocation payload handling, and Dockerfile VOLUME order",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1750,6 +1835,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Handle dict and list PyMISP error responses, encode ZeroMQ payload via MessageUtils, and fix Dockerfile VOLUME order",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -1927,6 +2017,11 @@
           "subject": "Build: foojay resolver 0.9.0 so Gradle can run on a Java 8/11 JVM",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix duplicate query string in Channel.delete and enable TLSv1.3 in HttpConnection",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -1967,6 +2062,11 @@
         {
           "subject": "Packaging and CI for Python 3.8-3.14, pytest instead of setup.py test",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix auth clientid parameter typo, non-JSON payload fallback, and Python 3.12 SSLContext sample",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -2026,6 +2126,11 @@
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix missing attribute check in _pop_attribute_from_request and Dockerfile VOLUME order",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2069,6 +2174,11 @@
           "subject": "Pin tmp and uuid below the published DXL client",
           "kind": "security",
           "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix event callback unregistration and wrapper lookup in TieClient",
+          "kind": "bug",
+          "author": "JMuellerTX"
         }
       ]
     },
@@ -2106,6 +2216,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Accept TrustLevel.NOT_SET (0) in set_external_file_reputation",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -2164,6 +2279,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Fix Dockerfile VOLUME declaration order to preserve non-root dxl ownership",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
@@ -2260,6 +2380,11 @@
         {
           "subject": "Take the direct references back out of setup.py",
           "kind": "deps",
+          "author": "JMuellerTX"
+        },
+        {
+          "subject": "Check custom HTTP error messages before raise_for_status and fix Dockerfile VOLUME order",
+          "kind": "bug",
           "author": "JMuellerTX"
         }
       ]
