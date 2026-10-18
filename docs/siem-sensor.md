@@ -14,10 +14,10 @@ already running DXL integrations: it makes an existing fabric observable.
 
 !!! note "Status"
     Published under [`JMuellerTX/opendxl-siem-sensor`](https://github.com/JMuellerTX/opendxl-siem-sensor)
-    (Apache-2.0, v0.1.0 in development). Everything on this page has been run against the open
-    source broker of the [maintained fork](fork.md) (OpenSSL 3 and OpenSSL 4 images). The protocol
-    facts it relies on were measured against a Trellix DXL broker 6.1.3 with the Python client; the
-    sensor itself has not been run against a Trellix fabric yet.
+    (Apache-2.0, v0.1.0 in development). Everything on this page has been run end to end against
+    both the open source broker of the [maintained fork](fork.md) (OpenSSL 3 and OpenSSL 4 images)
+    and a real Trellix DXL broker 6.1.3.55 managed by Trellix ePO 5.10 (with Python, Java and
+    JavaScript clients on the same fabric).
 
 ## How it works
 
